@@ -3,6 +3,8 @@ export type QuestionType = 'open' | 'multiple-choice';
 export type Difficulty = 'easy' | 'medium' | 'hard';
 export type Direction = 'across' | 'down';
 export type GameStatus = 'waiting' | 'playing' | 'finished';
+export type GameMode = 'solo' | 'multiplayer';
+export type TurnPhase = 'selecting' | 'typing' | 'submitted' | 'question' | 'feedback';
 
 export type Screen =
   | 'welcome'
@@ -59,4 +61,27 @@ export interface Question {
   options?: [string, string, string, string];
   category: Category;
   difficulty: Difficulty;
+}
+
+export interface CellPosition {
+  row: number;
+  col: number;
+}
+
+export interface LastFeedback {
+  isCorrect: boolean;
+  pointsEarned: number;
+  correctAnswer?: string;
+}
+
+export interface GameStats {
+  wordsCompletedByPlayer: [number, number];
+  correctAnswersByPlayer: [number, number];
+  totalTimePlayed: number;
+}
+
+export interface WordCompletion {
+  wordId: number;
+  playerIndex: 0 | 1;
+  points: number;
 }
