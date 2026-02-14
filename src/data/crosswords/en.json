@@ -1,1 +1,117 @@
-[]
+[
+  {
+    "id": 1,
+    "title": "Knowledge Explorer",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 0, "col": 2, "letter": "A"},
+        {"row": 4, "col": 1, "letter": "E"},
+        {"row": 8, "col": 9, "letter": "R"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "PLANET", "clue": "A celestial body orbiting a star", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "ATLAS", "clue": "Book of maps and geographical charts", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "VERSE", "clue": "A line of poetry with meter and rhythm", "category": "language", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "CANVAS", "clue": "Surface for painting, often stretched on a frame", "category": "art", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "NOVEL", "clue": "A long work of narrative fiction", "category": "language", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "TEMPLE", "clue": "Sacred building for worship in ancient civilizations", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "REIGN", "clue": "Period during which a monarch rules", "category": "history", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "ETHICS", "clue": "Branch of philosophy dealing with moral principles", "category": "philosophy", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "OCEAN", "clue": "Vast body of salt water covering Earth", "category": "geography", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "FOSSIL", "clue": "Preserved remains of ancient organisms", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "MURAL", "clue": "Large painting applied directly to a wall", "category": "art", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "STOIC", "clue": "Ancient Greek school emphasizing self-control", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Mind Challenge",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 0, "col": 0, "letter": "D"},
+        {"row": 6, "col": 10, "letter": "R"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "DARWIN", "clue": "Naturalist who proposed natural selection", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "CHINA", "clue": "Country home to the Great Wall", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "LYRIC", "clue": "Words of a song or short poem", "category": "language", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "FRESCO", "clue": "Technique of painting on wet plaster", "category": "art", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "RHYME", "clue": "Correspondence of sounds in words", "category": "language", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "CASTLE", "clue": "Fortified medieval residence", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "PLATO", "clue": "Greek philosopher who wrote The Republic", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "GENOME", "clue": "Complete set of an organism's DNA", "category": "science", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "OPERA", "clue": "Dramatic art form combining music and theater", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "VIKING", "clue": "Norse seafarers and raiders (8th-11th c.)", "category": "history", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "INDIA", "clue": "Country where the Ganges flows", "category": "geography", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "CYNIC", "clue": "Diogenes was the most famous one", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Wisdom Grid",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 0, "col": 3, "letter": "I"},
+        {"row": 8, "col": 2, "letter": "N"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "EMPIRE", "clue": "Large territory under single authority", "category": "history", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "EGYPT", "clue": "Land of the pharaohs and pyramids", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "HAIKU", "clue": "Japanese poem of 17 syllables", "category": "language", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "PROTON", "clue": "Positively charged subatomic particle", "category": "science", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "DANCE", "clue": "Rhythmic movement as artistic expression", "category": "art", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "GOTHIC", "clue": "Medieval architectural style with pointed arches", "category": "art", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "AZTEC", "clue": "Pre-Columbian Mesoamerican civilization", "category": "history", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "LEAGUE", "clue": "Historical unit of distance (~5.5 km)", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "IDEAL", "clue": "A perfect standard or principle", "category": "philosophy", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "SONNET", "clue": "14-line poem with specific rhyme scheme", "category": "language", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "CORAL", "clue": "Marine organisms forming reef structures", "category": "science", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "LOGOS", "clue": "Greek concept: reason, word, principle", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  }
+]

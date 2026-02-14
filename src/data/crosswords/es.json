@@ -1,1 +1,117 @@
-[]
+[
+  {
+    "id": 1,
+    "title": "Explorador del Saber",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 0, "col": 2, "letter": "M"},
+        {"row": 4, "col": 1, "letter": "U"},
+        {"row": 8, "col": 9, "letter": "N"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "COMETA", "clue": "Cuerpo celeste con cola luminosa", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "MUNDO", "clue": "Nuestro planeta, la Tierra", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "PROSA", "clue": "Forma de escritura sin rima ni metro", "category": "language", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "LIENZO", "clue": "Tela preparada para pintar", "category": "art", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "TEXTO", "clue": "Conjunto de palabras que forman un escrito", "category": "language", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "FUERTE", "clue": "Construccion militar defensiva", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "EPOCA", "clue": "Periodo historico determinado", "category": "history", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "VIRTUD", "clue": "Cualidad moral positiva de una persona", "category": "philosophy", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "ISLAS", "clue": "Porciones de tierra rodeadas de agua", "category": "geography", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "CELULA", "clue": "Unidad basica de todo ser vivo", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "DANZA", "clue": "Arte de expresarse con movimientos del cuerpo", "category": "art", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "RAZON", "clue": "Facultad humana de pensar y argumentar", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Reto Mental",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 0, "col": 0, "letter": "N"},
+        {"row": 6, "col": 10, "letter": "N"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "NEWTON", "clue": "Fisico que formulo las leyes del movimiento", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "INDIA", "clue": "Pais del Taj Mahal", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "POEMA", "clue": "Composicion literaria en verso", "category": "language", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "PINTOR", "clue": "Artista que crea obras con pintura", "category": "art", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "FRASE", "clue": "Conjunto de palabras con sentido completo", "category": "language", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "CORONA", "clue": "Simbolo de la monarquia", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "LOGOS", "clue": "Concepto griego: razon y palabra", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "GENOMA", "clue": "Conjunto completo de ADN de un organismo", "category": "science", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "ICONO", "clue": "Imagen sagrada o simbolo representativo", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "AZTECA", "clue": "Civilizacion precolombina de Mexico", "category": "history", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "CHINA", "clue": "Pais de la Gran Muralla", "category": "geography", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "MORAL", "clue": "Relativo a las costumbres y valores eticos", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Cuadricula Sabia",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 0, "col": 3, "letter": "B"},
+        {"row": 8, "col": 2, "letter": "N"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "TRIBUS", "clue": "Grupos sociales de las primeras civilizaciones", "category": "history", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "JAPON", "clue": "Pais del Sol Naciente", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "VERSO", "clue": "Linea de un poema con ritmo y medida", "category": "language", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "ATOMO", "clue": "Particula mas pequena de un elemento", "category": "science", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "CANTO", "clue": "Arte de expresar musica con la voz", "category": "art", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "GOTICO", "clue": "Estilo arquitectonico medieval con arcos ojivales", "category": "art", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "REYES", "clue": "Monarcas que gobernaron reinos", "category": "history", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "OCEANO", "clue": "Gran masa de agua salada", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "JUSTO", "clue": "Conforme a la justicia y la equidad", "category": "philosophy", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "SONETO", "clue": "Poema de catorce versos endecasilabos", "category": "language", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "FLORA", "clue": "Conjunto de plantas de una region", "category": "science", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "SABIO", "clue": "Persona de gran conocimiento y prudencia", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  }
+]
