@@ -2,20 +2,22 @@
   "welcome": {
     "title": "CROSSFIRE INTELECTUAL",
     "subtitle": "Crucigrama Competitivo + Trivia Cultural",
-    "playSolo": "JUGAR SOLO",
+    "playSolo": "JUGAR CONTRA SÓCRATES",
     "playMulti": "MULTIJUGADOR",
-    "tutorial": "CÓMO JUGAR"
+    "tutorial": "CÓMO JUGAR",
+    "soloDescription": "Desafía a Sócrates, el bot filosófico",
+    "multiDescription": "Juega contra un amigo en el mismo dispositivo"
   },
   "tutorial": {
-    "step1Title": "COMPLETA PALABRAS",
-    "step1Desc": "Resuelve el crucigrama letra por letra",
-    "step2Title": "RESPONDE PREGUNTAS",
-    "step2Desc": "Cada palabra desbloquea una pregunta de trivia",
-    "step3Title": "DUPLICA PUNTOS",
-    "step3Desc": "Responde correctamente para duplicar tus puntos",
-    "step4Title": "GANA A 150 PTS",
-    "step4Desc": "El primero en llegar a 150 puntos gana",
-    "seeExample": "VER EJEMPLO",
+    "step1Title": "1. COMPLETA PALABRAS",
+    "step1Desc": "Toca una palabra del crucigrama y escribí las letras. Si no sabés una letra, tocá el botón PISTA (te resta 5 puntos).",
+    "step2Title": "2. RESPONDÉ LA PREGUNTA",
+    "step2Desc": "Al completar una palabra, aparece una pregunta. Podés escribir la respuesta o tocar PEDIR OPCIONES para elegir entre 4.",
+    "step3Title": "3. SUMÁ PUNTOS",
+    "step3Desc": "Si respondés bien, ganás el doble de puntos. Si pediste opciones, ganás un poco menos (x1.5 en vez de x2).",
+    "step4Title": "4. LLEGÁ A 150 PUNTOS",
+    "step4Desc": "Se turnan vos y tu rival. El primero en llegar a 150 puntos gana la partida.",
+    "seeExample": "VOLVER",
     "gotIt": "ENTENDIDO - EMPEZAR"
   },
   "config": {
@@ -36,12 +38,10 @@
     "continue": "CONTINUAR"
   },
   "waitingRoom": {
-    "roomCode": "Código de sala",
-    "shareCode": "Comparte este código con tu rival",
+    "readyTitle": "¡Listos para jugar!",
+    "readySubtitle": "Confirma los jugadores y empieza",
     "player1": "Jugador 1",
     "player2": "Jugador 2",
-    "waitingPlayer": "Esperando jugador 2...",
-    "ready": "Listo",
     "selectedCategories": "Categorías seleccionadas",
     "startGame": "INICIAR PARTIDA"
   },
@@ -56,7 +56,20 @@
     "exitConfirm": "¿Seguro que quieres salir? Tu oponente ganará por defecto.",
     "exitConfirmSolo": "¿Seguro que quieres salir de la partida?",
     "yes": "Sí",
-    "no": "No"
+    "no": "No",
+    "botThinking": "Sócrates está pensando...",
+    "botTurnThinking": "Turno de Sócrates... pensando",
+    "yourTurnHint": "¡Tu turno! Elige una palabra",
+    "playerTurnHint": "¡Turno de {{name}}! Elige una palabra",
+    "botQuestion": "Sócrates responde:",
+    "botAnswered": "Respondió",
+    "selectWord": "Selecciona una palabra para comenzar",
+    "wordCorrect": "¡Palabra completada!",
+    "wordIncorrect": "Palabra incorrecta",
+    "opponentTurn": "Turno del oponente",
+    "hint": "PISTA",
+    "hintCost": "-{{cost}} pts",
+    "noHintsLeft": "Sin pistas"
   },
   "question": {
     "title": "PREGUNTA DE CONOCIMIENTO",
@@ -64,7 +77,9 @@
     "basePoints": "pts base",
     "doublePoints": "si aciertas",
     "answerPlaceholder": "Escribe tu respuesta...",
-    "submitAnswer": "RESPONDER"
+    "submitAnswer": "RESPONDER",
+    "requestOptions": "PEDIR OPCIONES",
+    "requestOptionsCost": "(x0.5 pts)"
   },
   "feedback": {
     "correct": "¡CORRECTO!",
@@ -79,7 +94,9 @@
     "correctAnswers": "Respuestas correctas",
     "timePlayed": "Tiempo jugado",
     "rematch": "REVANCHA",
-    "backToMenu": "VOLVER AL MENÚ"
+    "backToMenu": "VOLVER AL MENÚ",
+    "tie": "¡EMPATE!",
+    "statsTitle": "Estadísticas de la partida"
   },
   "common": {
     "loading": "Cargando...",

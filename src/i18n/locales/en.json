@@ -2,20 +2,22 @@
   "welcome": {
     "title": "CROSSFIRE INTELLECTUAL",
     "subtitle": "Competitive Crossword + Cultural Trivia",
-    "playSolo": "PLAY SOLO",
+    "playSolo": "PLAY VS SOCRATES",
     "playMulti": "MULTIPLAYER",
-    "tutorial": "HOW TO PLAY"
+    "tutorial": "HOW TO PLAY",
+    "soloDescription": "Challenge Socrates, the philosophical bot",
+    "multiDescription": "Play against a friend on the same device"
   },
   "tutorial": {
-    "step1Title": "COMPLETE WORDS",
-    "step1Desc": "Solve the crossword letter by letter",
-    "step2Title": "ANSWER QUESTIONS",
-    "step2Desc": "Each word unlocks a trivia question",
-    "step3Title": "DOUBLE POINTS",
-    "step3Desc": "Answer correctly to double your points",
-    "step4Title": "WIN AT 150 PTS",
-    "step4Desc": "First player to reach 150 points wins",
-    "seeExample": "SEE EXAMPLE",
+    "step1Title": "1. COMPLETE WORDS",
+    "step1Desc": "Tap a word on the crossword and type the letters. If you don't know a letter, tap the HINT button (costs 5 points).",
+    "step2Title": "2. ANSWER THE QUESTION",
+    "step2Desc": "After completing a word, a question appears. You can type your answer or tap SHOW OPTIONS to choose from 4.",
+    "step3Title": "3. EARN POINTS",
+    "step3Desc": "If you answer correctly, you earn double points. If you asked for options, you earn a bit less (x1.5 instead of x2).",
+    "step4Title": "4. REACH 150 POINTS",
+    "step4Desc": "You and your rival take turns. The first to reach 150 points wins the game.",
+    "seeExample": "BACK",
     "gotIt": "GOT IT - START"
   },
   "config": {
@@ -36,12 +38,10 @@
     "continue": "CONTINUE"
   },
   "waitingRoom": {
-    "roomCode": "Room code",
-    "shareCode": "Share this code with your rival",
+    "readyTitle": "Ready to play!",
+    "readySubtitle": "Confirm players and start",
     "player1": "Player 1",
     "player2": "Player 2",
-    "waitingPlayer": "Waiting for player 2...",
-    "ready": "Ready",
     "selectedCategories": "Selected categories",
     "startGame": "START GAME"
   },
@@ -56,7 +56,20 @@
     "exitConfirm": "Are you sure you want to exit? Your opponent will win by default.",
     "exitConfirmSolo": "Are you sure you want to exit the game?",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "botThinking": "Socrates is thinking...",
+    "botTurnThinking": "Socrates' turn... thinking",
+    "yourTurnHint": "Your turn! Pick a word",
+    "playerTurnHint": "{{name}}'s turn! Pick a word",
+    "botQuestion": "Socrates answers:",
+    "botAnswered": "Answered",
+    "selectWord": "Select a word to begin",
+    "wordCorrect": "Word completed!",
+    "wordIncorrect": "Incorrect word",
+    "opponentTurn": "Opponent's turn",
+    "hint": "HINT",
+    "hintCost": "-{{cost}} pts",
+    "noHintsLeft": "No hints left"
   },
   "question": {
     "title": "KNOWLEDGE QUESTION",
@@ -64,7 +77,9 @@
     "basePoints": "base pts",
     "doublePoints": "if correct",
     "answerPlaceholder": "Type your answer...",
-    "submitAnswer": "ANSWER"
+    "submitAnswer": "ANSWER",
+    "requestOptions": "SHOW OPTIONS",
+    "requestOptionsCost": "(x0.5 pts)"
   },
   "feedback": {
     "correct": "CORRECT!",
@@ -79,7 +94,9 @@
     "correctAnswers": "Correct answers",
     "timePlayed": "Time played",
     "rematch": "REMATCH",
-    "backToMenu": "BACK TO MENU"
+    "backToMenu": "BACK TO MENU",
+    "tie": "IT'S A TIE!",
+    "statsTitle": "Game Statistics"
   },
   "common": {
     "loading": "Loading...",
