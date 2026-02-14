@@ -1,0 +1,1 @@
+// Grid operations, word validation

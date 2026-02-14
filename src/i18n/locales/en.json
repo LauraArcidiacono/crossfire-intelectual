@@ -1,0 +1,89 @@
+{
+  "welcome": {
+    "title": "CROSSFIRE INTELLECTUAL",
+    "subtitle": "Competitive Crossword + Cultural Trivia",
+    "playSolo": "PLAY SOLO",
+    "playMulti": "MULTIPLAYER",
+    "tutorial": "HOW TO PLAY"
+  },
+  "tutorial": {
+    "step1Title": "COMPLETE WORDS",
+    "step1Desc": "Solve the crossword letter by letter",
+    "step2Title": "ANSWER QUESTIONS",
+    "step2Desc": "Each word unlocks a trivia question",
+    "step3Title": "DOUBLE POINTS",
+    "step3Desc": "Answer correctly to double your points",
+    "step4Title": "WIN AT 150 PTS",
+    "step4Desc": "First player to reach 150 points wins",
+    "seeExample": "SEE EXAMPLE",
+    "gotIt": "GOT IT - START"
+  },
+  "config": {
+    "playerName": "Your name",
+    "namePlaceholder": "Enter your name...",
+    "createRoom": "CREATE ROOM",
+    "joinRoom": "JOIN ROOM",
+    "roomCode": "Room code",
+    "roomCodePlaceholder": "Ex: K7P2",
+    "categories": "Categories",
+    "categoriesHint": "Select at least 1 category",
+    "history": "History",
+    "language": "Language",
+    "science": "Science",
+    "philosophy": "Philosophy",
+    "art": "Art",
+    "geography": "Geography",
+    "continue": "CONTINUE"
+  },
+  "waitingRoom": {
+    "roomCode": "Room code",
+    "shareCode": "Share this code with your rival",
+    "player1": "Player 1",
+    "player2": "Player 2",
+    "waitingPlayer": "Waiting for player 2...",
+    "ready": "Ready",
+    "selectedCategories": "Selected categories",
+    "startGame": "START GAME"
+  },
+  "game": {
+    "yourTurn": "YOUR TURN",
+    "points": "points",
+    "timeLeft": "Time left",
+    "across": "ACROSS",
+    "down": "DOWN",
+    "submit": "Submit",
+    "exit": "Exit",
+    "exitConfirm": "Are you sure you want to exit? Your opponent will win by default.",
+    "exitConfirmSolo": "Are you sure you want to exit the game?",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "question": {
+    "title": "KNOWLEDGE QUESTION",
+    "completedWord": "Completed word",
+    "basePoints": "base pts",
+    "doublePoints": "if correct",
+    "answerPlaceholder": "Type your answer...",
+    "submitAnswer": "ANSWER"
+  },
+  "feedback": {
+    "correct": "CORRECT!",
+    "incorrect": "INCORRECT",
+    "theAnswerWas": "The answer was",
+    "pointsEarned": "points earned"
+  },
+  "victory": {
+    "winner": "WINNER!",
+    "finalScore": "Final score",
+    "wordsCompleted": "Words completed",
+    "correctAnswers": "Correct answers",
+    "timePlayed": "Time played",
+    "rematch": "REMATCH",
+    "backToMenu": "BACK TO MENU"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "retry": "Retry"
+  }
+}

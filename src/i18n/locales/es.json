@@ -1,0 +1,89 @@
+{
+  "welcome": {
+    "title": "CROSSFIRE INTELECTUAL",
+    "subtitle": "Crucigrama Competitivo + Trivia Cultural",
+    "playSolo": "JUGAR SOLO",
+    "playMulti": "MULTIJUGADOR",
+    "tutorial": "CÓMO JUGAR"
+  },
+  "tutorial": {
+    "step1Title": "COMPLETA PALABRAS",
+    "step1Desc": "Resuelve el crucigrama letra por letra",
+    "step2Title": "RESPONDE PREGUNTAS",
+    "step2Desc": "Cada palabra desbloquea una pregunta de trivia",
+    "step3Title": "DUPLICA PUNTOS",
+    "step3Desc": "Responde correctamente para duplicar tus puntos",
+    "step4Title": "GANA A 150 PTS",
+    "step4Desc": "El primero en llegar a 150 puntos gana",
+    "seeExample": "VER EJEMPLO",
+    "gotIt": "ENTENDIDO - EMPEZAR"
+  },
+  "config": {
+    "playerName": "Tu nombre",
+    "namePlaceholder": "Escribe tu nombre...",
+    "createRoom": "CREAR SALA",
+    "joinRoom": "UNIRSE A SALA",
+    "roomCode": "Código de sala",
+    "roomCodePlaceholder": "Ej: K7P2",
+    "categories": "Categorías",
+    "categoriesHint": "Selecciona al menos 1 categoría",
+    "history": "Historia",
+    "language": "Lengua",
+    "science": "Ciencia",
+    "philosophy": "Filosofía",
+    "art": "Arte",
+    "geography": "Geografía",
+    "continue": "CONTINUAR"
+  },
+  "waitingRoom": {
+    "roomCode": "Código de sala",
+    "shareCode": "Comparte este código con tu rival",
+    "player1": "Jugador 1",
+    "player2": "Jugador 2",
+    "waitingPlayer": "Esperando jugador 2...",
+    "ready": "Listo",
+    "selectedCategories": "Categorías seleccionadas",
+    "startGame": "INICIAR PARTIDA"
+  },
+  "game": {
+    "yourTurn": "TU TURNO",
+    "points": "puntos",
+    "timeLeft": "Tiempo restante",
+    "across": "HORIZONTALES",
+    "down": "VERTICALES",
+    "submit": "Enviar",
+    "exit": "Salir",
+    "exitConfirm": "¿Seguro que quieres salir? Tu oponente ganará por defecto.",
+    "exitConfirmSolo": "¿Seguro que quieres salir de la partida?",
+    "yes": "Sí",
+    "no": "No"
+  },
+  "question": {
+    "title": "PREGUNTA DE CONOCIMIENTO",
+    "completedWord": "Palabra completada",
+    "basePoints": "pts base",
+    "doublePoints": "si aciertas",
+    "answerPlaceholder": "Escribe tu respuesta...",
+    "submitAnswer": "RESPONDER"
+  },
+  "feedback": {
+    "correct": "¡CORRECTO!",
+    "incorrect": "INCORRECTO",
+    "theAnswerWas": "La respuesta era",
+    "pointsEarned": "puntos ganados"
+  },
+  "victory": {
+    "winner": "¡GANADOR!",
+    "finalScore": "Puntuación final",
+    "wordsCompleted": "Palabras completadas",
+    "correctAnswers": "Respuestas correctas",
+    "timePlayed": "Tiempo jugado",
+    "rematch": "REVANCHA",
+    "backToMenu": "VOLVER AL MENÚ"
+  },
+  "common": {
+    "loading": "Cargando...",
+    "error": "Error",
+    "retry": "Reintentar"
+  }
+}
