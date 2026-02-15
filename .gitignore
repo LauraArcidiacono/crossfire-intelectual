@@ -29,9 +29,6 @@ dist-ssr
 /blob-report/
 /playwright/.cache/
 
-# Claude Code
-.claude/
-
 # Environment
 .env
 .env.local
