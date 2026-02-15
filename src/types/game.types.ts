@@ -58,7 +58,7 @@ export interface Question {
   question: string;
   type: QuestionType;
   answer: string;
-  options?: [string, string, string, string];
+  options: [string, string, string, string];
   category: Category;
   difficulty: Difficulty;
 }

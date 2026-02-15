@@ -8,7 +8,7 @@ import { TimerDisplay } from '../ui/timer-display';
 import { Badge } from '../ui/badge';
 import { useTimer } from '../../hooks/use-timer';
 import { useGameStore } from '../../store/game-store';
-import { generateOptionsForQuestion } from '../../lib/data-loader';
+import { shuffleOptions } from '../../lib/data-loader';
 import { TRIVIA_HINT_COST } from '../../constants/game-config';
 import type { Question, Word } from '../../types/game.types';
 import { calculateWordScore } from '../../constants/scrabble-values';
@@ -24,7 +24,6 @@ export function QuestionModal({ question, word, onAnswer, onTimeout }: QuestionM
   const { t } = useTranslation();
   const [answer, setAnswer] = useState('');
   const [usedHint, setUsedHint] = useState(false);
-  const language = useGameStore((s) => s.language);
   const currentPlayerScore = useGameStore((s) => {
     const currentTurn = s.currentTurn;
     return s.players[currentTurn === 1 ? 0 : 1].score;
@@ -40,16 +39,9 @@ export function QuestionModal({ question, word, onAnswer, onTimeout }: QuestionM
 
   const basePoints = calculateWordScore(word.word);
 
-  // Generate options lazily for open questions (used when hint requested)
-  const generatedOptions = useMemo(() => {
-    if (question.type === 'open') {
-      return generateOptionsForQuestion(question, language);
-    }
-    return null;
-  }, [question, language]);
+  const shuffledOptions = useMemo(() => shuffleOptions(question.options), [question]);
 
   const showAsMultipleChoice = question.type === 'multiple-choice' || usedHint;
-  const options = question.type === 'multiple-choice' ? question.options : generatedOptions;
 
   const handleSubmit = () => {
     if (!showAsMultipleChoice && !answer.trim()) return;
@@ -122,7 +114,7 @@ export function QuestionModal({ question, word, onAnswer, onTimeout }: QuestionM
 
         {showAsMultipleChoice ? (
           <div className="grid grid-cols-2 gap-2">
-            {options?.map((option) => (
+            {shuffledOptions.map((option) => (
               <motion.button
                 key={option}
                 whileHover={{ scale: 1.02 }}
