@@ -38,15 +38,16 @@ src/
   components/
     ui/                  Button, Card, Timer, Modal, Badge, Input
     screens/             WelcomeScreen, Tutorial, ConfigScreen, WaitingRoom,
-                         GameBoard, QuestionModal, FeedbackOverlay, VictoryScreen
-  hooks/                 useTimer, useGameState, useSound, useRoom, useCrossword
+                         GameScreen, QuestionModal, FeedbackOverlay, VictoryScreen
+  hooks/                 useTimer, useGameState, useSound, useCrossword
   store/                 game-store.ts (Zustand slices)
   types/                 game.types.ts
   lib/
     game-logic.ts        Scoring, turns, victory conditions
     bot.ts               Socrates AI logic
     crossword.ts         Grid operations, word validation
-    networking.ts        Supabase rooms, realtime sync
+    data-loader.ts       Static JSON imports, random selection, option generation
+    networking.ts        Supabase rooms, realtime sync (Phase 3)
     sound.ts             Howler.js wrapper
   data/
     questions/
@@ -181,7 +182,7 @@ Mobile keyboard only opens on explicit cell/clue tap, never auto-focused.
   - Timer format: "2:45" (green > yellow > red based on remaining time)
 - **Crossword Grid (center, maximum space):**
   - 10x12 cell grid
-  - Black cells: empty/blocked spaces (defined explicitly in data)
+  - Black cells: any cell not part of any word is automatically black (computed)
   - White cells: empty cells where the player types letters
   - Pre-filled cells: some letters already placed as hints (warm brown text)
   - Sage green cells: correctly completed letters
@@ -601,8 +602,8 @@ test.describe('Welcome Screen', () => {
   test('should display solo and multiplayer buttons', async ({ page }) => {
     await page.goto('/');
 
-    const soloButton = page.getByRole('button', { name: /jugar solo|play solo/i });
-    const multiButton = page.getByRole('button', { name: /multijugador|multiplayer/i });
+    const soloButton = page.getByTestId('play-solo');
+    const multiButton = page.getByTestId('play-multi');
 
     await expect(soloButton).toBeVisible();
     await expect(multiButton).toBeVisible();
@@ -610,8 +611,8 @@ test.describe('Welcome Screen', () => {
 
   test('should change language when clicking selector', async ({ page }) => {
     await page.goto('/');
-    await page.click('[data-testid="lang-en"]');
-    await expect(page.getByText('PLAY SOLO')).toBeVisible();
+    await page.getByTestId('lang-selector').click();
+    await expect(page.getByText('PLAY VS SOCRATES')).toBeVisible();
   });
 });
 ```
@@ -698,9 +699,10 @@ Branch: `feature/phase2-ui-and-logic`
 12. ✅ Solo mode fully playable end-to-end
 
 **Pending:**
-- [ ] Add `options` array to ALL questions in JSON (coherent alternatives). Currently `open` questions generate options at runtime which produces incoherent distractors. Each question must have 4 pre-defined options in the JSON.
+- [ ] Add `options` array to ALL questions in JSON (coherent alternatives). Currently `open` questions generate options at runtime which produces incoherent distractors. Each question must have 4 pre-defined, semantically coherent options in the JSON.
 - [ ] Update `data-loader.ts` to use JSON options instead of `generateOptionsForQuestion()`
 - [ ] Update `Question` type to make `options` required (not optional)
+- [ ] Fix failing Playwright tests (5 of 9 fail due to navigation/testid issues in gameplay.spec.ts and e2e-solo.spec.ts)
 
 **Run full test suite. Solo mode must work end-to-end before continuing.**
 
@@ -787,7 +789,7 @@ export interface Question {
   question: string;
   type: QuestionType;
   answer: string;
-  options?: [string, string, string, string]; // only for multiple-choice
+  options: [string, string, string, string]; // REQUIRED for all questions (coherent alternatives)
   category: Category;
   difficulty: Difficulty;
 }
@@ -933,7 +935,7 @@ GOLDEN RULE: If the full checklist does not pass, it is NOT done.
 - UI text only in `es.json` and `en.json`
 - Functional language selector
 - NO Claude API (free static JSON only)
-- Exact "Modern Library" color palette
+- Glassmorphism design with defined color palette
 - Playwright tests BEFORE every commit
 - Conventional commits in ENGLISH, NO co-author
 - Phased development (sequential, parallel subagents only for independent file work)
