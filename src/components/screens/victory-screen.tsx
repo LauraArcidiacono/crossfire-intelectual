@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useGameStore } from '../../store/game-store';
 import { getWinner } from '../../lib/game-logic';
 import { getRandomCrossword } from '../../lib/data-loader';
+import { useRoom } from '../../hooks/use-room';
 import { useSound } from '../../hooks/use-sound';
 import { Button } from '../ui/button';
 import { Confetti } from '../ui/confetti';
@@ -12,20 +13,36 @@ export function VictoryScreen() {
   const { t } = useTranslation();
   const store = useGameStore();
   const { play } = useSound();
+  const room = useRoom();
+
+  const isOnline = store.mode === 'multiplayer' && store.roomId !== null;
+  const isHost = store.playerRole === 'host';
 
   useEffect(() => {
     play('victory');
   }, []);
+
   const winner = getWinner(store.players);
   const isTie = winner === null;
 
-  const handleRematch = () => {
-    const crossword = getRandomCrossword(store.language);
-    store.startGame(crossword);
-    store.setScreen('game');
+  const handleRematch = async () => {
+    if (isOnline && isHost) {
+      // Host creates a new game in the same room
+      await room.prepareOnlineGame();
+      room.navigateToGame();
+    } else if (!isOnline) {
+      // Solo/local: just restart
+      const crossword = getRandomCrossword(store.language);
+      store.startGame(crossword);
+      store.setScreen('game');
+    }
+    // Guest can't initiate rematch — they wait for host
   };
 
-  const handleBackToMenu = () => {
+  const handleBackToMenu = async () => {
+    if (isOnline) {
+      await room.leaveRoom();
+    }
     store.resetGame();
   };
 
@@ -77,7 +94,7 @@ export function VictoryScreen() {
           {t('victory.statsTitle')}
         </h2>
 
-        <table className="w-full text-sm">
+        <table className="w-full text-base">
           <thead>
             <tr className="border-b border-warm-brown/15">
               <th className="text-left py-2 text-warm-brown/70 font-semibold" />
@@ -133,9 +150,12 @@ export function VictoryScreen() {
         transition={{ delay: 0.6 }}
         className="flex gap-3 relative z-10"
       >
-        <Button variant="primary" onClick={handleRematch}>
-          {t('victory.rematch')}
-        </Button>
+        {/* Only host (or solo) can initiate rematch */}
+        {(!isOnline || isHost) && (
+          <Button variant="primary" onClick={handleRematch}>
+            {t('victory.rematch')}
+          </Button>
+        )}
         <Button variant="ghost" onClick={handleBackToMenu}>
           {t('victory.backToMenu')}
         </Button>

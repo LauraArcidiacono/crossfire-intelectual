@@ -28,9 +28,14 @@ export function GameScreen() {
   const gameState = useGameState();
   const { play } = useSound();
   const [showExitConfirm, setShowExitConfirm] = useState(false);
+  const [showDisconnect, setShowDisconnect] = useState(false);
   const [wrongWordShake, setWrongWordShake] = useState(false);
   const gridRef = useRef<HTMLDivElement>(null);
   const hiddenInputRef = useRef<HTMLInputElement>(null);
+
+  const isOnline = gameState.online.isOnline;
+  const isGuest = gameState.online.isGuest;
+  const notMyTurn = !gameState.isMyTurn;
 
   const handleTurnTimeoutWithSound = useCallback(() => {
     play('timeout');
@@ -60,18 +65,15 @@ export function GameScreen() {
       turnTimer.start();
     }
 
-    // Sound: question modal opens
     if (store.turnPhase === 'question' && prevPhase !== 'question') {
       play('question');
     }
 
-    // Sound: turn changed
     if (store.turnPhase === 'selecting' && prevTurn !== store.currentTurn) {
       play('turn');
     }
   }, [store.turnPhase, store.currentTurn]);
 
-  // Sound: correct/incorrect answer feedback
   useEffect(() => {
     if (store.turnPhase === 'feedback' && store.lastFeedback) {
       play(store.lastFeedback.isCorrect ? 'correct' : 'incorrect');
@@ -82,18 +84,30 @@ export function GameScreen() {
     gameState.syncTurnTimer(turnTimer.timeRemaining);
   }, [turnTimer.timeRemaining]);
 
+  // Show disconnect modal
+  useEffect(() => {
+    if (gameState.online.opponentDisconnected) {
+      setShowDisconnect(true);
+    }
+  }, [gameState.online.opponentDisconnected]);
+
   const focusInput = useCallback(() => {
     hiddenInputRef.current?.focus();
   }, []);
 
-  // Only auto-focus on desktop (keyboard won't cover the screen)
-  // On mobile/touch devices, only focus when user explicitly taps a cell or clue
+  // Blur hidden input when entering question/feedback to dismiss mobile keyboard
+  useEffect(() => {
+    if (store.turnPhase === 'question' || store.turnPhase === 'feedback') {
+      hiddenInputRef.current?.blur();
+    }
+  }, [store.turnPhase]);
+
   useEffect(() => {
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    if (!isTouchDevice && !gameState.isBotTurn && store.turnPhase !== 'question' && store.turnPhase !== 'feedback') {
+    if (!isTouchDevice && !gameState.isBotTurn && !notMyTurn && store.turnPhase !== 'question' && store.turnPhase !== 'feedback') {
       focusInput();
     }
-  }, [store.turnPhase, gameState.isBotTurn, store.selectedWordId, focusInput]);
+  }, [store.turnPhase, gameState.isBotTurn, notMyTurn, store.selectedWordId, focusInput]);
 
   const handleMobileInput = useCallback(
     (e: React.FormEvent<HTMLInputElement>) => {
@@ -101,14 +115,23 @@ export function GameScreen() {
       if (value.length > 0) {
         const lastChar = value[value.length - 1];
         if (/^[a-zA-ZñÑ]$/.test(lastChar)) {
+          if (isGuest) {
+            // Guest sends cell input to host
+            const selectedWord = crosswordHook.selectedWord;
+            if (selectedWord && store.selectedCell) {
+              gameState.handleGuestCellInput(
+                cellKey(store.selectedCell.row, store.selectedCell.col),
+                lastChar.toUpperCase()
+              );
+            }
+          }
           const syntheticEvent = { key: lastChar, preventDefault: () => {} } as React.KeyboardEvent;
           crosswordHook.handleKeyDown(syntheticEvent);
         }
       }
-      // Always clear the hidden input
       (e.target as HTMLInputElement).value = '';
     },
-    [crosswordHook]
+    [crosswordHook, isGuest, gameState, store.selectedCell]
   );
 
   const handleSubmitWord = useCallback(() => {
@@ -139,12 +162,18 @@ export function GameScreen() {
   const handleHint = useCallback(() => {
     if (!store.crossword || !crosswordHook.selectedWord) return;
     if (store.players[gameState.currentPlayerIndex].score < HINT_LETTER_COST) return;
+
+    if (isGuest) {
+      gameState.handleGuestHint();
+      return;
+    }
+
     const hint = getHintCell(crosswordHook.selectedWord, store.cellInputs, store.crossword.grid);
     if (!hint) return;
     store.setCellInput(cellKey(hint.row, hint.col), hint.letter);
     store.updateScore(gameState.currentPlayerIndex, -HINT_LETTER_COST);
     play('reveal');
-  }, [store, crosswordHook.selectedWord, gameState.currentPlayerIndex, play]);
+  }, [store, crosswordHook.selectedWord, gameState, play, isGuest]);
 
   const handleAnswerSubmitted = useCallback(
     (answer: string, usedHint = false) => {
@@ -155,7 +184,7 @@ export function GameScreen() {
 
   const handleGridKeyDown = useCallback(
     (e: React.KeyboardEvent) => {
-      if (gameState.isBotTurn) return;
+      if (gameState.isBotTurn || notMyTurn) return;
       if (e.key === 'Enter') {
         e.preventDefault();
         if (crosswordHook.isCurrentWordFilled && store.turnPhase === 'typing') {
@@ -163,12 +192,56 @@ export function GameScreen() {
         }
         return;
       }
+
+      // Guest sends cell inputs to host
+      if (isGuest && /^[a-zA-ZñÑ]$/.test(e.key) && store.selectedCell) {
+        gameState.handleGuestCellInput(
+          cellKey(store.selectedCell.row, store.selectedCell.col),
+          e.key.toUpperCase()
+        );
+      }
+
       crosswordHook.handleKeyDown(e);
     },
-    [crosswordHook, gameState.isBotTurn, handleSubmitWord, store.turnPhase]
+    [crosswordHook, gameState, notMyTurn, handleSubmitWord, store.turnPhase, isGuest, store.selectedCell]
   );
 
-  const handleExit = () => {
+  const handleCellClick = useCallback(
+    (row: number, col: number) => {
+      if (gameState.isBotTurn || notMyTurn) return;
+
+      if (isGuest) {
+        // Check if clicking a word cell — derive the wordId
+        const word = store.crossword?.words.find((w) => {
+          const cells = getWordCells(w);
+          return cells.some((c) => c.row === row && c.col === col);
+        });
+        if (word && store.turnPhase === 'selecting') {
+          gameState.handleGuestSelectWord(word.id);
+        }
+      }
+
+      crosswordHook.handleCellClick(row, col);
+      focusInput();
+    },
+    [gameState, notMyTurn, isGuest, store.crossword, store.turnPhase, crosswordHook, focusInput]
+  );
+
+  const handleClueClick = useCallback(
+    (wordId: number) => {
+      if (gameState.isBotTurn || notMyTurn) return;
+
+      if (isGuest && store.turnPhase === 'selecting') {
+        gameState.handleGuestSelectWord(wordId);
+      }
+
+      crosswordHook.handleClueClick(wordId);
+      focusInput();
+    },
+    [gameState, notMyTurn, isGuest, store.turnPhase, crosswordHook, focusInput]
+  );
+
+  const handleExit = async () => {
     store.resetGame();
     store.setScreen('welcome');
   };
@@ -185,6 +258,12 @@ export function GameScreen() {
       if (gameState.isBotThinking) return t('game.botTurnThinking');
       return t('game.opponentTurn');
     }
+    if (isOnline) {
+      if (gameState.isMyTurn) {
+        return t('game.yourTurnHint');
+      }
+      return t('game.opponentTurnHint');
+    }
     const currentPlayer = store.players[gameState.currentPlayerIndex];
     if (store.mode === 'multiplayer') {
       return t('game.playerTurnHint', { name: currentPlayer.name });
@@ -194,7 +273,6 @@ export function GameScreen() {
 
   return (
     <div data-testid="game-screen" className="min-h-screen bg-mesh-game relative overflow-hidden flex flex-col">
-      {/* Subtle background blobs */}
       <div className="blob blob-green w-80 h-80 -top-32 -right-32 opacity-20" style={{ animationDelay: '-5s' }} />
       <div className="blob blob-purple w-64 h-64 bottom-20 -left-32 opacity-20" style={{ animationDelay: '-12s' }} />
 
@@ -203,10 +281,20 @@ export function GameScreen() {
         <Button variant="ghost" size="sm" onClick={() => setShowExitConfirm(true)}>
           {t('game.exit')}
         </Button>
-        <h1 className="font-title text-sm sm:text-base font-bold text-forest-green truncate mx-2">
+        <h1 className="font-title text-base font-bold text-forest-green truncate mx-2">
           {store.crossword.title}
         </h1>
-        <div className="w-8" />
+        {/* Connection indicator for online games */}
+        {isOnline ? (
+          <div className="flex items-center gap-1.5">
+            <span className={`w-2 h-2 rounded-full ${gameState.online.isConnected ? 'bg-forest-green' : 'bg-crimson animate-pulse'}`} />
+            <span className="text-sm text-warm-brown/60 font-medium">
+              {gameState.online.isConnected ? t('game.connected') : t('game.disconnected')}
+            </span>
+          </div>
+        ) : (
+          <div className="w-8" />
+        )}
       </header>
 
       {/* Scoreboard */}
@@ -229,7 +317,7 @@ export function GameScreen() {
                 `}
               >
                 <div className="min-w-0">
-                  <p className={`text-xs font-bold truncate text-${colorClass}`}>
+                  <p className={`text-sm font-bold truncate text-${colorClass}`}>
                     {player.name}
                   </p>
                   <p className={`font-mono text-xl sm:text-2xl font-extrabold text-${colorClass}`}>
@@ -246,20 +334,20 @@ export function GameScreen() {
       {/* Turn indicator pill + hint button */}
       <div className="flex items-center justify-center gap-3 px-3 py-1.5 relative z-10">
         <motion.div
-          animate={!gameState.isBotTurn ? { boxShadow: ['0 0 10px rgba(88,156,72,0.2)', '0 0 20px rgba(88,156,72,0.4)', '0 0 10px rgba(88,156,72,0.2)'] } : {}}
+          animate={gameState.isMyTurn && !gameState.isBotTurn ? { boxShadow: ['0 0 10px rgba(88,156,72,0.2)', '0 0 20px rgba(88,156,72,0.4)', '0 0 10px rgba(88,156,72,0.2)'] } : {}}
           transition={{ repeat: Infinity, duration: 2 }}
           className={`
-            inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-bold
-            ${gameState.isBotTurn
+            inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-base font-bold
+            ${!gameState.isMyTurn || gameState.isBotTurn
               ? 'bg-night-blue/15 text-night-blue border border-night-blue/20'
               : 'bg-forest-green/15 text-forest-green border border-forest-green/20'
             }
           `}
         >
-          <span className={`w-2 h-2 rounded-full ${gameState.isBotTurn ? 'bg-night-blue' : 'bg-forest-green'} ${gameState.isBotThinking ? 'animate-pulse' : ''}`} />
+          <span className={`w-2 h-2 rounded-full ${!gameState.isMyTurn || gameState.isBotTurn ? 'bg-night-blue' : 'bg-forest-green'} ${gameState.isBotThinking ? 'animate-pulse' : ''}`} />
           {getTurnText()}
         </motion.div>
-        {!gameState.isBotTurn && store.turnPhase === 'typing' && crosswordHook.selectedWord && (
+        {gameState.isMyTurn && !gameState.isBotTurn && store.turnPhase === 'typing' && crosswordHook.selectedWord && (
           <motion.button
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -267,7 +355,7 @@ export function GameScreen() {
             onClick={handleHint}
             disabled={store.players[gameState.currentPlayerIndex].score < HINT_LETTER_COST}
             className={`
-              px-3 py-1.5 rounded-full text-xs font-bold transition-all
+              px-3 py-1.5 rounded-full text-sm font-bold transition-all
               ${store.players[gameState.currentPlayerIndex].score >= HINT_LETTER_COST
                 ? 'bg-white/50 backdrop-blur-sm text-warm-brown border border-warm-brown/20 hover:bg-white/70 cursor-pointer'
                 : 'bg-warm-brown/10 text-warm-brown/30 border border-warm-brown/10 cursor-not-allowed'
@@ -279,7 +367,7 @@ export function GameScreen() {
         )}
       </div>
 
-      {/* Bot question display */}
+      {/* Bot question display (solo mode) */}
       <AnimatePresence>
         {gameState.isBotThinking && gameState.botQuestionDisplay && (
           <motion.div
@@ -289,12 +377,12 @@ export function GameScreen() {
             className="px-4 py-3 relative z-10"
           >
             <div className="max-w-lg mx-auto glass rounded-2xl p-4">
-              <p className="text-xs text-night-blue font-semibold mb-1">{t('game.botQuestion')}</p>
-              <p className="text-sm text-warm-brown font-medium mb-2">
+              <p className="text-sm text-night-blue font-semibold mb-1">{t('game.botQuestion')}</p>
+              <p className="text-base text-warm-brown font-medium mb-2">
                 {gameState.botQuestionDisplay.question}
               </p>
               {gameState.botQuestionDisplay.answer && (
-                <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-xs">
+                <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-sm">
                   <span className="text-night-blue/80">{t('game.botAnswered')}: </span>
                   <strong className={gameState.botQuestionDisplay.isCorrect ? 'text-forest-green' : 'text-crimson'}>
                     {gameState.botQuestionDisplay.answer}
@@ -307,12 +395,61 @@ export function GameScreen() {
         )}
       </AnimatePresence>
 
+      {/* Spectator question display (online multiplayer — opponent's turn) */}
+      <AnimatePresence>
+        {isOnline && !gameState.isMyTurn && (store.turnPhase === 'question' || store.turnPhase === 'feedback') && store.currentQuestion && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="px-4 py-3 relative z-10"
+          >
+            <div className="max-w-lg mx-auto glass rounded-2xl p-4">
+              <p className="text-sm text-night-blue font-semibold mb-1">
+                {t('game.opponentQuestion', { name: store.players[gameState.currentPlayerIndex].name })}
+              </p>
+              <p className="text-base text-warm-brown font-medium mb-2">
+                {store.currentQuestion.question}
+              </p>
+
+              {store.turnPhase === 'question' && (
+                <motion.p
+                  animate={{ opacity: [0.4, 1, 0.4] }}
+                  transition={{ repeat: Infinity, duration: 1.5 }}
+                  className="text-sm text-night-blue/60 italic"
+                >
+                  {t('game.opponentAnswering')}
+                </motion.p>
+              )}
+
+              {store.turnPhase === 'feedback' && store.lastFeedback && (
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-1">
+                  <p className="text-sm">
+                    <strong className={store.lastFeedback.isCorrect ? 'text-forest-green' : 'text-crimson'}>
+                      {store.lastFeedback.isCorrect
+                        ? t('game.opponentGotIt', { name: store.players[gameState.currentPlayerIndex].name })
+                        : t('game.opponentMissed', { name: store.players[gameState.currentPlayerIndex].name })
+                      }
+                    </strong>
+                  </p>
+                  {!store.lastFeedback.isCorrect && (
+                    <p className="text-sm text-warm-brown/70">
+                      {t('game.correctAnswerWas', { answer: store.currentQuestion.answer })}
+                    </p>
+                  )}
+                </motion.div>
+              )}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Main content */}
       <div className="flex-1 flex flex-col lg:flex-row gap-3 p-3 overflow-auto max-w-4xl mx-auto w-full relative z-10">
         {/* Crossword Grid */}
         <div className="flex-1 flex flex-col items-center">
-          {store.turnPhase === 'selecting' && !gameState.isBotTurn && (
-            <p className="text-base sm:text-xs text-warm-brown/70 mb-2 font-medium">{t('game.selectWord')}</p>
+          {store.turnPhase === 'selecting' && gameState.isMyTurn && !gameState.isBotTurn && (
+            <p className="text-base text-warm-brown/70 mb-2 font-medium">{t('game.selectWord')}</p>
           )}
 
           {/* Hidden input for mobile keyboard */}
@@ -335,7 +472,7 @@ export function GameScreen() {
             onClick={focusInput}
             className={`inline-grid gap-[1px] bg-warm-brown/15 rounded-lg overflow-hidden shadow-lg shadow-black/5 outline-none transition-opacity duration-300 ${
               wrongWordShake ? 'animate-[shake_0.5s_ease-in-out]' : ''
-            } ${gameState.isBotTurn ? 'opacity-60 pointer-events-none' : ''}`}
+            } ${(gameState.isBotTurn || notMyTurn) ? 'opacity-60 pointer-events-none' : ''}`}
             style={{
               gridTemplateColumns: `repeat(${grid.cols}, minmax(0, 1fr))`,
             }}
@@ -368,12 +505,7 @@ export function GameScreen() {
                 return (
                   <div
                     key={key}
-                    onClick={() => {
-                      if (!gameState.isBotTurn) {
-                        crosswordHook.handleCellClick(row, col);
-                        focusInput();
-                      }
-                    }}
+                    onClick={() => handleCellClick(row, col)}
                     className={`
                       relative w-8 h-8 sm:w-8 sm:h-8 md:w-9 md:h-9 flex items-center justify-center
                       text-sm sm:text-sm font-mono font-bold transition-all duration-150 select-none
@@ -399,7 +531,7 @@ export function GameScreen() {
           </div>
 
           {/* Submit button */}
-          {crosswordHook.isCurrentWordFilled && !gameState.isBotTurn && store.turnPhase === 'typing' && (
+          {crosswordHook.isCurrentWordFilled && gameState.isMyTurn && !gameState.isBotTurn && store.turnPhase === 'typing' && (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -416,10 +548,10 @@ export function GameScreen() {
         <div className="w-full lg:w-64 space-y-3">
           {directions.map((dir) => (
             <div key={dir} className="glass rounded-2xl p-3">
-              <h3 className="font-title text-base sm:text-xs font-bold text-forest-green mb-2 uppercase tracking-wider">
+              <h3 className="font-title text-base font-bold text-forest-green mb-2 uppercase tracking-wider">
                 {t(`game.${dir}`)}
               </h3>
-              <ul className="space-y-1 sm:space-y-0.5">
+              <ul className="space-y-1">
                 {store.crossword!.words
                   .filter((w) => w.direction === dir)
                   .sort((a, b) => a.id - b.id)
@@ -430,14 +562,9 @@ export function GameScreen() {
                     return (
                       <li
                         key={word.id}
-                        onClick={() => {
-                          if (!gameState.isBotTurn) {
-                            crosswordHook.handleClueClick(word.id);
-                            focusInput();
-                          }
-                        }}
+                        onClick={() => handleClueClick(word.id)}
                         className={`
-                          text-base sm:text-xs px-3 py-2.5 sm:px-2.5 sm:py-1.5 rounded-lg cursor-pointer transition-all leading-snug
+                          text-base px-3 py-2.5 rounded-lg cursor-pointer transition-all leading-snug
                           ${isCompleted ? 'line-through text-warm-brown/50' : 'text-warm-brown hover:bg-white/40'}
                           ${isActive ? 'bg-terracotta/10 font-semibold text-warm-brown ring-1 ring-terracotta/20' : ''}
                         `}
@@ -454,8 +581,8 @@ export function GameScreen() {
         </div>
       </div>
 
-      {/* Question Modal - only show for the active player, not during bot turns */}
-      {!gameState.isBotTurn && store.turnPhase === 'question' && store.currentQuestion && crosswordHook.selectedWord && (
+      {/* Question Modal - only show for the active player */}
+      {gameState.isMyTurn && !gameState.isBotTurn && store.turnPhase === 'question' && store.currentQuestion && crosswordHook.selectedWord && (
         <QuestionModal
           question={store.currentQuestion}
           word={crosswordHook.selectedWord}
@@ -487,6 +614,29 @@ export function GameScreen() {
           </div>
         </div>
       </Modal>
+
+      {/* Opponent Disconnected Modal */}
+      {isOnline && (
+        <Modal isOpen={showDisconnect} onClose={() => setShowDisconnect(false)}>
+          <div className="glass-strong rounded-3xl p-6 text-center">
+            <div className="text-4xl mb-3">📡</div>
+            <h3 className="font-title text-lg font-extrabold text-crimson mb-2">
+              {t('game.opponentDisconnected')}
+            </h3>
+            <p className="text-warm-brown text-base mb-4">
+              {t('game.opponentDisconnectedDesc')}
+            </p>
+            <div className="flex gap-3 justify-center">
+              <Button variant="ghost" onClick={() => setShowDisconnect(false)}>
+                {t('game.waitForReconnect')}
+              </Button>
+              <Button variant="danger" onClick={handleExit}>
+                {t('game.leaveGame')}
+              </Button>
+            </div>
+          </div>
+        </Modal>
+      )}
     </div>
   );
 }

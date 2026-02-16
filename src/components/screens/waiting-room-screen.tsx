@@ -1,42 +1,82 @@
-import { useState } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGameStore } from '../../store/game-store';
+import { useRoom } from '../../hooks/use-room';
 import { useSound } from '../../hooks/use-sound';
 import { Button } from '../ui/button';
-import { getRandomCrossword } from '../../lib/data-loader';
 
 export function WaitingRoomScreen() {
   const { t } = useTranslation();
-  const {
-    players,
-    selectedCategories,
-    language,
-    startGame,
-    setScreen,
-  } = useGameStore();
-  const [countdown, setCountdown] = useState<number | null>(null);
+  const store = useGameStore();
+  const room = useRoom();
   const { play } = useSound();
+  const [countdown, setCountdown] = useState<number | null>(null);
+  const [copied, setCopied] = useState(false);
+  const countdownRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-  const canStart = players[0].name.trim().length > 0 && players[1].name.trim().length > 0;
+  const isHost = store.playerRole === 'host';
+  const isGuest = store.playerRole === 'guest';
+  const guestHasJoined = room.guestName !== null || isGuest || (isHost && store.players[1].name.trim().length > 0);
 
-  const handleStart = () => {
+  const canStart = isHost && guestHasJoined;
+
+  const handleCopyCode = useCallback(async () => {
+    if (!store.roomCode) return;
+    try {
+      await navigator.clipboard.writeText(store.roomCode);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      // Fallback: select text
+    }
+  }, [store.roomCode]);
+
+  // Shared countdown logic used by both host and guest
+  const startCountdown = useCallback(() => {
+    if (countdown !== null) return; // already running
     setCountdown(3);
     play('countdown-tick');
-    const interval = setInterval(() => {
+    countdownRef.current = setInterval(() => {
       setCountdown((prev) => {
         if (prev === null || prev <= 1) {
-          clearInterval(interval);
+          if (countdownRef.current) clearInterval(countdownRef.current);
           play('countdown-go');
-          const crossword = getRandomCrossword(language);
-          startGame(crossword);
-          setScreen('game');
+          room.navigateToGame();
           return null;
         }
         play('countdown-tick');
         return prev - 1;
       });
     }, 1000);
+  }, [countdown, play, room]);
+
+  // Host: prepare game, then start countdown
+  const handleStart = async () => {
+    if (!canStart) return;
+    // Sync initial state to Supabase first — this triggers the guest's countdown
+    await room.prepareOnlineGame();
+    startCountdown();
+  };
+
+  // Guest: start countdown when room status becomes 'countdown'
+  useEffect(() => {
+    if (isGuest && room.roomStatus === 'countdown') {
+      startCountdown();
+    }
+  }, [isGuest, room.roomStatus, startCountdown]);
+
+  // Cleanup interval on unmount
+  useEffect(() => {
+    return () => {
+      if (countdownRef.current) clearInterval(countdownRef.current);
+    };
+  }, []);
+
+  const handleLeave = async () => {
+    if (countdownRef.current) clearInterval(countdownRef.current);
+    await room.leaveRoom();
+    store.resetGame();
   };
 
   return (
@@ -47,6 +87,7 @@ export function WaitingRoomScreen() {
       <div className="blob blob-green w-64 h-64 -top-20 -left-20 opacity-25" style={{ animationDelay: '-4s' }} />
       <div className="blob blob-purple w-56 h-56 bottom-10 -right-16 opacity-25" style={{ animationDelay: '-9s' }} />
 
+      {/* Countdown overlay */}
       <AnimatePresence>
         {countdown !== null && (
           <motion.div
@@ -65,22 +106,76 @@ export function WaitingRoomScreen() {
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-center mb-8 relative z-10"
+        className="text-center mb-6 relative z-10"
       >
         <h2 className="font-title text-3xl font-extrabold text-forest-green mb-2">
-          {t('waitingRoom.readyTitle')}
+          {isHost
+            ? (guestHasJoined ? t('waitingRoom.readyTitle') : t('waitingRoom.roomCode'))
+            : t('waitingRoom.readyTitle')
+          }
         </h2>
-        <p className="text-sm text-warm-brown/80">{t('waitingRoom.readySubtitle')}</p>
+        <p className="text-base text-warm-brown/80">
+          {isHost
+            ? (guestHasJoined ? t('waitingRoom.readySubtitle') : t('waitingRoom.shareCode'))
+            : t('waitingRoom.waitingForHost')
+          }
+        </p>
       </motion.div>
 
-      <div className="flex flex-col sm:flex-row items-center gap-4 w-full max-w-md mb-8 relative z-10">
+      {/* Room code display (host) */}
+      {isHost && store.roomCode && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="mb-6 relative z-10"
+        >
+          <div className="glass-strong rounded-3xl p-6 text-center">
+            <p className="text-sm text-warm-brown/70 font-semibold mb-2">{t('waitingRoom.roomCode')}</p>
+            <div className="flex items-center justify-center gap-3">
+              <span
+                data-testid="room-code"
+                className="font-mono text-5xl font-extrabold text-forest-green tracking-[0.3em] select-all"
+              >
+                {store.roomCode}
+              </span>
+            </div>
+            <motion.button
+              whileTap={{ scale: 0.95 }}
+              onClick={handleCopyCode}
+              className="mt-3 px-4 py-1.5 rounded-full text-sm font-bold bg-forest-green/10 text-forest-green border border-forest-green/20 hover:bg-forest-green/20 transition-colors"
+            >
+              {copied ? t('waitingRoom.copied') : t('waitingRoom.copyCode')}
+            </motion.button>
+          </div>
+        </motion.div>
+      )}
+
+      {/* Guest: show connected room */}
+      {isGuest && store.roomCode && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="mb-6 relative z-10"
+        >
+          <div className="glass-strong rounded-3xl p-6 text-center">
+            <p className="text-sm text-warm-brown/70 font-semibold mb-1">{t('waitingRoom.connectedTo')}</p>
+            <span className="font-mono text-3xl font-extrabold text-night-blue tracking-[0.2em]">
+              {store.roomCode}
+            </span>
+          </div>
+        </motion.div>
+      )}
+
+      {/* Players */}
+      <div className="flex flex-col sm:flex-row items-center gap-4 w-full max-w-md mb-6 relative z-10">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           className="flex-1 glass-strong rounded-2xl p-5 text-center"
         >
-          <p className="text-xs text-warm-brown/70 font-semibold mb-1">{t('waitingRoom.player1')}</p>
-          <p className="font-title font-extrabold text-forest-green text-lg">{players[0].name || '—'}</p>
+          <p className="text-sm text-warm-brown/70 font-semibold mb-1">{t('waitingRoom.player1')}</p>
+          <p className="font-title font-extrabold text-forest-green text-lg">{store.players[0].name || '—'}</p>
+          {isHost && <span className="text-sm text-forest-green/60 font-medium">HOST</span>}
         </motion.div>
 
         <div className="text-warm-brown font-title font-extrabold text-xl">VS</div>
@@ -90,23 +185,38 @@ export function WaitingRoomScreen() {
           animate={{ opacity: 1, x: 0 }}
           className="flex-1 glass-strong rounded-2xl p-5 text-center"
         >
-          <p className="text-xs text-warm-brown/70 font-semibold mb-1">{t('waitingRoom.player2')}</p>
-          <p className="font-title font-extrabold text-night-blue text-lg">{players[1].name || '—'}</p>
+          <p className="text-sm text-warm-brown/70 font-semibold mb-1">{t('waitingRoom.player2')}</p>
+          {guestHasJoined ? (
+            <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }}>
+              <p className="font-title font-extrabold text-night-blue text-lg">
+                {isHost ? (room.guestName || store.players[1].name) : store.players[1].name}
+              </p>
+            </motion.div>
+          ) : (
+            <motion.p
+              animate={{ opacity: [0.4, 1, 0.4] }}
+              transition={{ repeat: Infinity, duration: 2 }}
+              className="text-base text-warm-brown/50 italic"
+            >
+              {t('waitingRoom.waitingForOpponent')}
+            </motion.p>
+          )}
         </motion.div>
       </div>
 
+      {/* Categories */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}
-        className="mb-8 relative z-10"
+        className="mb-6 relative z-10"
       >
-        <p className="text-xs text-warm-brown/70 font-semibold mb-2 text-center">{t('waitingRoom.selectedCategories')}</p>
+        <p className="text-sm text-warm-brown/70 font-semibold mb-2 text-center">{t('waitingRoom.selectedCategories')}</p>
         <div className="flex flex-wrap gap-2 justify-center">
-          {selectedCategories.map((cat) => (
+          {store.selectedCategories.map((cat) => (
             <span
               key={cat}
-              className="px-3 py-1 bg-forest-green/15 text-forest-green text-sm font-semibold rounded-full backdrop-blur-sm"
+              className="px-3 py-1 bg-forest-green/15 text-forest-green text-base font-semibold rounded-full backdrop-blur-sm"
             >
               {t(`config.${cat}`)}
             </span>
@@ -114,15 +224,37 @@ export function WaitingRoomScreen() {
         </div>
       </motion.div>
 
+      {/* Guest joined notification (host only) */}
+      <AnimatePresence>
+        {isHost && room.guestName && (
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            className="mb-4 relative z-10"
+          >
+            <p className="text-base text-forest-green font-semibold">
+              {room.guestName} {t('waitingRoom.guestJoined')}
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Action buttons */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.3 }}
-        className="relative z-10"
+        className="flex gap-3 relative z-10"
       >
-        <Button disabled={!canStart} onClick={handleStart}>
-          {t('waitingRoom.startGame')}
+        <Button variant="ghost" onClick={handleLeave}>
+          {t('waitingRoom.back')}
         </Button>
+        {isHost && (
+          <Button disabled={!canStart} onClick={handleStart}>
+            {t('waitingRoom.startGame')}
+          </Button>
+        )}
       </motion.div>
     </div>
   );

@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useGameStore } from '../../store/game-store';
+import { useRoom } from '../../hooks/use-room';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
 import { LanguageSelector } from '../ui/language-selector';
@@ -30,6 +32,10 @@ export function ConfigScreen() {
     startGame,
   } = useGameStore();
 
+  const room = useRoom();
+  const [joinCode, setJoinCode] = useState('');
+  const [isJoining, setIsJoining] = useState(false);
+
   const toggleCategory = (cat: Category) => {
     if (selectedCategories.includes(cat)) {
       setSelectedCategories(selectedCategories.filter((c) => c !== cat));
@@ -38,20 +44,40 @@ export function ConfigScreen() {
     }
   };
 
-  const canContinue =
-    players[0].name.trim().length > 0 &&
-    selectedCategories.length >= 1 &&
-    (mode === 'solo' || players[1].name.trim().length > 0);
+  // Solo: name + categories required
+  // Multiplayer create: name + categories required
+  // Multiplayer join: name + code required (no categories needed)
+  const canCreateRoom =
+    players[0].name.trim().length > 0 && selectedCategories.length >= 1;
 
-  const handleContinue = () => {
-    if (!canContinue) return;
+  const canJoinRoom =
+    players[0].name.trim().length > 0 && joinCode.trim().length === 4;
 
-    if (mode === 'solo') {
-      useGameStore.getState().setPlayerName(1, BOT_NAME);
-      const crossword = getRandomCrossword(language);
-      startGame(crossword);
-      setScreen('game');
-    } else {
+  const canContinueSolo =
+    players[0].name.trim().length > 0 && selectedCategories.length >= 1;
+
+  const handleSoloContinue = () => {
+    if (!canContinueSolo) return;
+    useGameStore.getState().setPlayerName(1, BOT_NAME);
+    const crossword = getRandomCrossword(language);
+    startGame(crossword);
+    setScreen('game');
+  };
+
+  const handleCreateRoom = async () => {
+    if (!canCreateRoom) return;
+    const code = await room.createRoom(players[0].name, selectedCategories, language);
+    if (code) {
+      setScreen('waiting-room');
+    }
+  };
+
+  const handleJoinRoom = async () => {
+    if (!canJoinRoom) return;
+    setIsJoining(true);
+    const success = await room.joinRoom(joinCode.toUpperCase(), players[0].name);
+    setIsJoining(false);
+    if (success) {
       setScreen('waiting-room');
     }
   };
@@ -75,12 +101,13 @@ export function ConfigScreen() {
       </motion.h1>
 
       <div className="w-full max-w-md space-y-6 relative z-10">
+        {/* Player name */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           className="glass-strong rounded-2xl p-5"
         >
-          <label className="block text-sm font-bold text-warm-brown mb-2">
+          <label className="block text-base font-bold text-warm-brown mb-2">
             {t('config.playerName')}
           </label>
           <Input
@@ -93,77 +120,124 @@ export function ConfigScreen() {
           />
         </motion.div>
 
-        {mode === 'multiplayer' && (
+        {/* Categories (shown for solo and multiplayer create) */}
+        {(mode === 'solo' || mode === 'multiplayer') && (
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.1 }}
+            transition={{ delay: 0.2 }}
             className="glass-strong rounded-2xl p-5"
           >
-            <label className="block text-sm font-bold text-warm-brown mb-2">
-              {t('waitingRoom.player2')}
+            <label className="block text-base font-bold text-warm-brown mb-2">
+              {t('config.categories')}
             </label>
-            <Input
-              value={players[1].name}
-              onChange={(val) => setPlayerName(1, val)}
-              placeholder={t('config.namePlaceholder')}
-              maxLength={20}
-            />
+            <p className="text-sm text-warm-brown/70 mb-3">{t('config.categoriesHint')}</p>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {CATEGORIES.map((cat) => {
+                const isSelected = selectedCategories.includes(cat);
+                return (
+                  <motion.div
+                    key={cat}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => toggleCategory(cat)}
+                    className={`
+                      text-center py-3 px-2 rounded-xl cursor-pointer transition-all
+                      ${isSelected
+                        ? 'bg-forest-green/15 ring-2 ring-forest-green shadow-md shadow-forest-green/15'
+                        : 'bg-white/60 hover:bg-white/80 border border-warm-brown/15 shadow-sm'
+                      }
+                    `}
+                  >
+                    <div className="text-2xl mb-1">{CATEGORY_ICONS[cat]}</div>
+                    <span className={`text-base font-semibold ${isSelected ? 'text-forest-green' : 'text-warm-brown'}`}>
+                      {t(`config.${cat}`)}
+                    </span>
+                  </motion.div>
+                );
+              })}
+            </div>
           </motion.div>
         )}
 
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.2 }}
-          className="glass-strong rounded-2xl p-5"
-        >
-          <label className="block text-sm font-bold text-warm-brown mb-2">
-            {t('config.categories')}
-          </label>
-          <p className="text-xs text-warm-brown/70 mb-3">{t('config.categoriesHint')}</p>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-            {CATEGORIES.map((cat) => {
-              const isSelected = selectedCategories.includes(cat);
-              return (
-                <motion.div
-                  key={cat}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => toggleCategory(cat)}
-                  className={`
-                    text-center py-3 px-2 rounded-xl cursor-pointer transition-all
-                    ${isSelected
-                      ? 'bg-forest-green/15 ring-2 ring-forest-green shadow-md shadow-forest-green/15'
-                      : 'bg-white/60 hover:bg-white/80 border border-warm-brown/15 shadow-sm'
-                    }
-                  `}
-                >
-                  <div className="text-2xl mb-1">{CATEGORY_ICONS[cat]}</div>
-                  <span className={`text-sm font-semibold ${isSelected ? 'text-forest-green' : 'text-warm-brown'}`}>
-                    {t(`config.${cat}`)}
-                  </span>
-                </motion.div>
-              );
-            })}
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4 }}
-        >
-          <Button
-            fullWidth
-            disabled={!canContinue}
-            onClick={handleContinue}
-            data-testid="continue-button"
+        {/* Solo: continue button */}
+        {mode === 'solo' && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.4 }}
           >
-            {t('config.continue')}
-          </Button>
-        </motion.div>
+            <Button
+              fullWidth
+              disabled={!canContinueSolo}
+              onClick={handleSoloContinue}
+              data-testid="continue-button"
+            >
+              {t('config.continue')}
+            </Button>
+          </motion.div>
+        )}
+
+        {/* Multiplayer: Create or Join */}
+        {mode === 'multiplayer' && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+            >
+              <Button
+                fullWidth
+                disabled={!canCreateRoom || room.roomStatus === 'creating'}
+                onClick={handleCreateRoom}
+                data-testid="create-room-button"
+              >
+                {room.roomStatus === 'creating' ? t('common.loading') : t('config.createRoom')}
+              </Button>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.5 }}
+              className="glass-strong rounded-2xl p-5"
+            >
+              <label className="block text-base font-bold text-warm-brown mb-1">
+                {t('config.orJoinRoom')}
+              </label>
+              <p className="text-sm text-warm-brown/70 mb-3">{t('config.enterCode')}</p>
+              <Input
+                value={joinCode}
+                onChange={(val) => setJoinCode(val.toUpperCase().slice(0, 4))}
+                placeholder={t('config.roomCodePlaceholder')}
+                maxLength={4}
+                data-testid="join-code-input"
+              />
+              <div className="mt-3">
+                <Button
+                  fullWidth
+                  variant="secondary"
+                  disabled={!canJoinRoom || isJoining}
+                  onClick={handleJoinRoom}
+                  data-testid="join-room-button"
+                >
+                  {isJoining ? t('common.loading') : t('config.joinRoom')}
+                </Button>
+              </div>
+            </motion.div>
+
+            {room.error && (
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-crimson text-base text-center font-medium"
+              >
+                {room.error}
+              </motion.p>
+            )}
+          </>
+        )}
       </div>
     </div>
   );
