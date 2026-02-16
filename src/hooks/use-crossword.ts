@@ -21,7 +21,6 @@ export function useCrossword() {
   const selectedWordId = useGameStore((s) => s.selectedWordId);
   const cellInputs = useGameStore((s) => s.cellInputs);
   const completedWords = useGameStore((s) => s.completedWords);
-  const selectedCell = useGameStore((s) => s.selectedCell);
   const selectWord = useGameStore((s) => s.selectWord);
   const setCellInput = useGameStore((s) => s.setCellInput);
   const setSelectedCell = useGameStore((s) => s.setSelectedCell);
@@ -116,17 +115,27 @@ export function useCrossword() {
 
   const handleKeyDown = useCallback(
     (e: React.KeyboardEvent | KeyboardEvent) => {
-      if (!crossword || !selectedWord || !selectedCell) return;
+      if (!crossword) return;
+
+      // Read fresh state from store to avoid stale closures on rapid mobile input
+      const currentState = useGameStore.getState();
+      const cell = currentState.selectedCell;
+      const inputs = currentState.cellInputs;
+      const wordId = currentState.selectedWordId;
+      if (!cell || wordId === null) return;
+
+      const word = crossword.words.find((w) => w.id === wordId);
+      if (!word) return;
 
       const grid = crossword.grid;
 
       if (e.key === 'Backspace') {
         e.preventDefault();
-        const key = cellKey(selectedCell.row, selectedCell.col);
-        if (cellInputs[key]) {
+        const key = cellKey(cell.row, cell.col);
+        if (inputs[key]) {
           setCellInput(key, '');
         } else {
-          const prev = getPreviousCell(selectedCell, selectedWord);
+          const prev = getPreviousCell(cell, word);
           if (prev) {
             setSelectedCell(prev);
             const prevKey = cellKey(prev.row, prev.col);
@@ -140,7 +149,7 @@ export function useCrossword() {
 
       if (e.key === 'Tab') {
         e.preventDefault();
-        const currentIdx = availableWords.findIndex((w) => w.id === selectedWord.id);
+        const currentIdx = availableWords.findIndex((w) => w.id === word.id);
         if (currentIdx !== -1 && availableWords.length > 1) {
           const nextIdx = (currentIdx + 1) % availableWords.length;
           const nextWord = availableWords[nextIdx];
@@ -152,16 +161,16 @@ export function useCrossword() {
 
       if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
         e.preventDefault();
-        const cells = getWordCells(selectedWord);
-        const idx = cells.findIndex((c) => c.row === selectedCell.row && c.col === selectedCell.col);
+        const cells = getWordCells(word);
+        const idx = cells.findIndex((c) => c.row === cell.row && c.col === cell.col);
         if (idx === -1) return;
 
         let newIdx = idx;
-        if ((e.key === 'ArrowRight' && selectedWord.direction === 'across') ||
-            (e.key === 'ArrowDown' && selectedWord.direction === 'down')) {
+        if ((e.key === 'ArrowRight' && word.direction === 'across') ||
+            (e.key === 'ArrowDown' && word.direction === 'down')) {
           newIdx = Math.min(idx + 1, cells.length - 1);
-        } else if ((e.key === 'ArrowLeft' && selectedWord.direction === 'across') ||
-                   (e.key === 'ArrowUp' && selectedWord.direction === 'down')) {
+        } else if ((e.key === 'ArrowLeft' && word.direction === 'across') ||
+                   (e.key === 'ArrowUp' && word.direction === 'down')) {
           newIdx = Math.max(idx - 1, 0);
         }
         if (newIdx !== idx) {
@@ -172,21 +181,21 @@ export function useCrossword() {
 
       if (/^[a-zA-ZñÑ]$/.test(e.key)) {
         e.preventDefault();
-        const prefilled = getPrefilledLetter(grid, selectedCell.row, selectedCell.col);
+        const prefilled = getPrefilledLetter(grid, cell.row, cell.col);
         if (prefilled) {
-          const next = getNextCell(selectedCell, selectedWord.direction, selectedWord);
+          const next = getNextCell(cell, word.direction, word);
           if (next) setSelectedCell(next);
           return;
         }
 
-        setCellInput(cellKey(selectedCell.row, selectedCell.col), e.key);
-        const next = getNextCell(selectedCell, selectedWord.direction, selectedWord);
+        setCellInput(cellKey(cell.row, cell.col), e.key);
+        const next = getNextCell(cell, word.direction, word);
         if (next) {
           setSelectedCell(next);
         }
       }
     },
-    [crossword, selectedWord, selectedCell, cellInputs, availableWords, setCellInput, setSelectedCell, selectWord]
+    [crossword, availableWords, setCellInput, setSelectedCell, selectWord]
   );
 
   const handleSubmitWord = useCallback((): { isValid: boolean; word: Word } | null => {
