@@ -113,5 +113,1034 @@
       {"id": 11, "word": "CORAL", "clue": "Marine organisms forming reef structures", "category": "science", "direction": "across", "row": 8, "col": 7},
       {"id": 12, "word": "LOGOS", "clue": "Greek concept: reason, word, principle", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
     ]
+  },
+  {
+    "id": 4,
+    "title": "Cerebral Circuit",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 0, "col": 3, "letter": "R"},
+        {"row": 8, "col": 1, "letter": "A"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "NEURON", "clue": "Nerve cell that transmits electrical signals", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "DELTA", "clue": "Fan-shaped deposit at a river mouth", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "PROSE", "clue": "Written language without verse structure", "category": "language", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "MOSAIC", "clue": "Picture made from small colored pieces", "category": "art", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "IRONY", "clue": "Expression meaning opposite of literal words", "category": "language", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "KNIGHT", "clue": "Medieval mounted warrior in armor", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "TRUTH", "clue": "That which is in accord with reality", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "CANYON", "clue": "Deep gorge carved by a river", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "FLUTE", "clue": "Woodwind instrument played sideways", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "CARBON", "clue": "Element forming basis of organic chemistry", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "SIEGE", "clue": "Military blockade of a fortified place", "category": "history", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "FAITH", "clue": "Complete trust in something unseen", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Sapient Trail",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 2, "col": 0, "letter": "B"},
+        {"row": 6, "col": 4, "letter": "A"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "ENZYME", "clue": "Protein that catalyzes biochemical reactions", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "MARSH", "clue": "Wetland with grassy vegetation", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "FABLE", "clue": "Short story with a moral lesson", "category": "language", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "BALLET", "clue": "Classical dance form with precise movements", "category": "art", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "GUILD", "clue": "Medieval association of craftsmen", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "PLAGUE", "clue": "Devastating epidemic in medieval times", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "DOUBT", "clue": "Feeling of uncertainty about something", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "SYNTAX", "clue": "Rules governing sentence structure", "category": "language", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "INLET", "clue": "Narrow body of water between shores", "category": "geography", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "PLASMA", "clue": "Fourth state of matter, ionized gas", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "EASEL", "clue": "Stand for supporting a painter's canvas", "category": "art", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "MERIT", "clue": "Quality of being worthy of praise", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Horizon Puzzle",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 0, "col": 0, "letter": "Q"},
+        {"row": 6, "col": 2, "letter": "S"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "QUARTZ", "clue": "Hard crystalline mineral of silicon dioxide", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "BASIN", "clue": "Depression in Earth's surface", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "IDIOM", "clue": "Phrase with a non-literal meaning", "category": "language", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "STATUE", "clue": "Carved or molded figure of a person", "category": "art", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "BARON", "clue": "Lowest rank of the feudal nobility", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "COLONY", "clue": "Territory under political control of a state", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "ETHOS", "clue": "Guiding beliefs of a community", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "DESERT", "clue": "Arid region with scarce rainfall", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "DRAMA", "clue": "Genre of theater and storytelling", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "THORAX", "clue": "Part of the body between neck and abdomen", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "TROPE", "clue": "Common theme or device in literature", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "KARMA", "clue": "Consequence of actions in Hindu belief", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Nexus of Ideas",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 4, "col": 0, "letter": "F"},
+        {"row": 8, "col": 10, "letter": "T"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "RETINA", "clue": "Light-sensitive layer at the back of the eye", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "FJORD", "clue": "Narrow inlet between steep cliffs", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "CHANT", "clue": "Rhythmic speaking or singing", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "ACCENT", "clue": "Distinctive way of pronouncing words", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "RELIC", "clue": "Object surviving from an earlier time", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "FEUDAL", "clue": "System of land-based obligations", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "AXIOM", "clue": "Self-evident truth needing no proof", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "ISLAND", "clue": "Land completely surrounded by water", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "TENOR", "clue": "Highest natural adult male singing voice", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "COBALT", "clue": "Blue metallic element used in alloys", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "MOTTO", "clue": "Short sentence expressing a principle", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "UNITY", "clue": "State of being one or whole", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Lexicon Arena",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 0, "col": 4, "letter": "O"},
+        {"row": 9, "col": 8, "letter": "O"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "PHENOL", "clue": "Carbolic acid compound used as antiseptic", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "GORGE", "clue": "Narrow valley between steep cliffs", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "ELEGY", "clue": "Poem of mourning for the dead", "category": "language", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "SKETCH", "clue": "Quick rough drawing", "category": "art", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "ABBOT", "clue": "Head of a monastery of monks", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "THRONE", "clue": "Ceremonial seat of a monarch", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "CREED", "clue": "Statement of fundamental beliefs", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "VALLEY", "clue": "Low area between hills or mountains", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "WALTZ", "clue": "Elegant dance in triple time", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "HELIUM", "clue": "Second lightest element, used in balloons", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "VOICE", "clue": "Sound produced by vocal cords", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "LOGIC", "clue": "Study of valid reasoning and inference", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Epoch Decoder",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 2, "col": 3, "letter": "T"},
+        {"row": 8, "col": 0, "letter": "S"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "BOTANY", "clue": "Study of plant biology", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "CLIFF", "clue": "Steep rock face by the sea", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "ESSAY", "clue": "Short piece of writing on a subject", "category": "language", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "PASTEL", "clue": "Soft pale color or drawing medium", "category": "art", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "COUNT", "clue": "European nobleman of middle rank", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "ARMADA", "clue": "Fleet of warships sailing together", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "TENET", "clue": "Principle held as true by a group", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "STEPPE", "clue": "Vast treeless grassland plain", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "CAROL", "clue": "Joyful song, often for Christmas", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "SULFUR", "clue": "Yellow element essential for life", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "GLYPH", "clue": "Carved symbol or character", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "VALOR", "clue": "Great courage in the face of danger", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Paradigm Quest",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 0, "col": 1, "letter": "A"},
+        {"row": 6, "col": 0, "letter": "C"},
+        {"row": 9, "col": 11, "letter": "G"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "RADIUM", "clue": "Radioactive element discovered by the Curies", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "RIDGE", "clue": "Long narrow hilltop or mountain crest", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "ADAGE", "clue": "Traditional saying expressing common truth", "category": "language", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "RELIEF", "clue": "Sculpture projecting from a flat surface", "category": "art", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "FRIAR", "clue": "Member of a mendicant religious order", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "SENTRY", "clue": "Guard keeping watch at a post", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "PIETY", "clue": "Devout religious observance", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "CRATER", "clue": "Bowl-shaped depression from impact", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "MOTIF", "clue": "Recurring theme or design element", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "LICHEN", "clue": "Composite organism of fungus and algae", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "MAXIM", "clue": "Short statement of a general truth", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "BEING", "clue": "Existence or nature of a person", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 11,
+    "title": "Cosmos Weave",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 4, "col": 2, "letter": "R"},
+        {"row": 8, "col": 3, "letter": "V"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "OSMIUM", "clue": "Densest naturally occurring element", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "ATOLL", "clue": "Ring-shaped coral reef island", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "RUNES", "clue": "Ancient Germanic alphabet characters", "category": "language", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "STANZA", "clue": "Group of lines forming a unit in a poem", "category": "art", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "EDICT", "clue": "Official decree issued by authority", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "SCROLL", "clue": "Roll of paper used for writing", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "CHAOS", "clue": "Complete disorder and confusion", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "LAGOON", "clue": "Shallow body of water near the sea", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "ETUDE", "clue": "Musical composition for practicing technique", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "KELVIN", "clue": "Unit of absolute temperature", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "TENSE", "clue": "Form of verb indicating time", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "MORAL", "clue": "Lesson about right and wrong", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 12,
+    "title": "Riddle Matrix",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 0, "col": 5, "letter": "T"},
+        {"row": 6, "col": 1, "letter": "T"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "INSECT", "clue": "Six-legged arthropod creature", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "COAST", "clue": "Land bordering the sea", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "TRUCE", "clue": "Temporary ceasefire agreement", "category": "history", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "CHORUS", "clue": "Group of singers performing together", "category": "art", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "BLURB", "clue": "Short promotional text about a book", "category": "language", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "LEGION", "clue": "Large division of the Roman army", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "VIGOR", "clue": "Physical and mental strength", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "STRAIT", "clue": "Narrow passage of water between lands", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "GENRE", "clue": "Category of artistic composition", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "PHOTON", "clue": "Particle of light energy", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "EPICS", "clue": "Long narrative poems of heroic deeds", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "DEIST", "clue": "Believer in God but not revelation", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 13,
+    "title": "Athenian Grid",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 2, "col": 0, "letter": "C"},
+        {"row": 8, "col": 4, "letter": "E"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "MUSSEL", "clue": "Bivalve mollusk living in clusters", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "PLAIN", "clue": "Large flat area of land", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "CAMEO", "clue": "Small carved relief portrait", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "CIPHER", "clue": "Secret code or zero symbol", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "EXILE", "clue": "Forced absence from one's country", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "PIRATE", "clue": "Sea-going robber and outlaw", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "HONOR", "clue": "High respect and integrity", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "CAVERN", "clue": "Large natural underground chamber", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "VIOLA", "clue": "String instrument larger than a violin", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "OXYGEN", "clue": "Gas essential for breathing", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "LINGO", "clue": "Special vocabulary of a group", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "DOGMA", "clue": "Set of principles held as authority", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 14,
+    "title": "Spartan Vault",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 0, "col": 0, "letter": "F"},
+        {"row": 6, "col": 3, "letter": "R"},
+        {"row": 9, "col": 10, "letter": "I"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "FERRIC", "clue": "Relating to iron compounds", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "KNOLL", "clue": "Small rounded hill", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "IVORY", "clue": "Creamy-white material from tusks", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "SCRIPT", "clue": "Written text for a performance", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "LANCE", "clue": "Long weapon used by mounted knights", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "SULTAN", "clue": "Muslim ruler of a kingdom", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "GRACE", "clue": "Elegance and beauty of form", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "SIERRA", "clue": "Chain of mountains with jagged peaks", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "BRASS", "clue": "Yellow alloy used in instruments", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "MATRIX", "clue": "Environment in which something develops", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "CANTO", "clue": "Major division of a long poem", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "ETHIC", "clue": "System of moral principles", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 15,
+    "title": "Oracle Path",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 4, "col": 1, "letter": "R"},
+        {"row": 8, "col": 5, "letter": "A"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "KIDNEY", "clue": "Organ that filters blood", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "DUNES", "clue": "Hills of sand shaped by wind", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "FUGUE", "clue": "Complex musical form with interweaving voices", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "CLAUSE", "clue": "Group of words with subject and verb", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "ARMOR", "clue": "Protective covering worn in battle", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "ARCHER", "clue": "Person who shoots with bow and arrows", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "QUEST", "clue": "Search for truth or meaning", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "TROPIC", "clue": "Region near Earth's equator", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "BRUSH", "clue": "Tool for applying paint", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "STIGMA", "clue": "Part of flower that receives pollen", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "PSALM", "clue": "Sacred song or hymn from the Bible", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "SENSE", "clue": "Faculty of perception or sound judgment", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 16,
+    "title": "Mnemonic Web",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 0, "col": 2, "letter": "B"},
+        {"row": 4, "col": 4, "letter": "L"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "ALBEDO", "clue": "Fraction of light reflected by a surface", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "CREEK", "clue": "Small narrow stream", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "CHOIR", "clue": "Organized group of singers", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "JARGON", "clue": "Specialized vocabulary of a profession", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "NOBLE", "clue": "Person of high social rank", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "SHIELD", "clue": "Broad piece of armor for defense", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "PRIDE", "clue": "Feeling of self-respect or satisfaction", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "BOREAL", "clue": "Relating to the northern regions", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "SAMBA", "clue": "Lively Brazilian dance of African origin", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "MAGNET", "clue": "Object that attracts iron", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "DIRGE", "clue": "Funeral song or lament", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "TRUST", "clue": "Firm belief in reliability of something", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 17,
+    "title": "Minerva's Forge",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 2, "col": 1, "letter": "I"},
+        {"row": 6, "col": 0, "letter": "R"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "PHYLUM", "clue": "Major taxonomic grouping of organisms", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "SWAMP", "clue": "Wetland with standing water and trees", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "BANJO", "clue": "Stringed instrument with circular body", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "SIMILE", "clue": "Figure of speech using 'like' or 'as'", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "MANOR", "clue": "Large country house with an estate", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "TYRANT", "clue": "Cruel and oppressive ruler", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "CAUSE", "clue": "Principle or aim one advocates", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "RAVINE", "clue": "Deep narrow gorge in the earth", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "SCALE", "clue": "Graduated range of musical notes", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "COPPER", "clue": "Reddish metallic element used in wiring", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "QUOTE", "clue": "Repeated words from another source", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "GUILT", "clue": "Feeling of having done wrong", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 18,
+    "title": "Pythian Cipher",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 4, "col": 3, "letter": "A"},
+        {"row": 6, "col": 0, "letter": "J"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "RETORT", "clue": "Glass vessel with long neck for distilling", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "BLUFF", "clue": "Steep cliff or riverbank", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "POLKA", "clue": "Lively dance of Bohemian origin", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "ADVERB", "clue": "Word modifying a verb or adjective", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "CROWN", "clue": "Royal headpiece worn by monarchs", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "HERALD", "clue": "Official messenger or announcer", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "RIGHT", "clue": "Moral entitlement or correctness", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "JUNGLE", "clue": "Dense tropical forest", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "TEMPO", "clue": "Speed at which music is played", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "SODIUM", "clue": "Soft metallic element in table salt", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "BABEL", "clue": "Confusion of voices or languages", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "POISE", "clue": "Composure and self-assured dignity", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 19,
+    "title": "Meridian Code",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 0, "col": 5, "letter": "A"},
+        {"row": 8, "col": 2, "letter": "D"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "FIBULA", "clue": "Outer bone of the lower leg", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "SHORE", "clue": "Edge of a body of water", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "FORTE", "clue": "Musical passage played loudly", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "PREFIX", "clue": "Letter group added before a word", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "LAIRD", "clue": "Scottish landowner of an estate", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "LEGACY", "clue": "Something handed down from the past", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "MIRTH", "clue": "Gladness and amusement", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "SUMMIT", "clue": "Highest point of a mountain", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "OCTET", "clue": "Musical composition for eight performers", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "IODINE", "clue": "Chemical element used as antiseptic", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "LEXIS", "clue": "Total vocabulary of a language", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "AMITY", "clue": "Friendly relations and goodwill", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 20,
+    "title": "Agora Lattice",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 0, "col": 0, "letter": "R"},
+        {"row": 6, "col": 5, "letter": "C"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "RADIUS", "clue": "Line from center to edge of a circle", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "BAYOU", "clue": "Marshy outlet of a lake or river", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "RONDO", "clue": "Musical form with recurring theme", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "SUFFIX", "clue": "Letter group added after a word root", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "MOGUL", "clue": "Powerful ruler or business magnate", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "NOBLES", "clue": "People of high social rank", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "OUGHT", "clue": "Moral obligation or duty", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "ARCTIC", "clue": "Region around the North Pole", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "TANGO", "clue": "Argentine ballroom dance for couples", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "LARYNX", "clue": "Voice box in the throat", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "SLANG", "clue": "Informal vocabulary used by a group", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "PIOUS", "clue": "Devoutly religious and faithful", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 21,
+    "title": "Scholar's Forge",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 0, "col": 4, "letter": "E"},
+        {"row": 8, "col": 0, "letter": "P"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "CORNEA", "clue": "Transparent front part of the eye", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "GULLY", "clue": "Narrow channel cut by running water", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "CELLO", "clue": "Large bowed string instrument", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "VERBAL", "clue": "Relating to words, spoken or written", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "STEED", "clue": "Horse ridden in battle or ceremony", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "ARMORY", "clue": "Place where weapons are stored", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "TABOO", "clue": "Social prohibition or restriction", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "GRAVEL", "clue": "Mix of small stones and pebbles", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "STRUM", "clue": "Sweep fingers across guitar strings", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "PELVIS", "clue": "Basin-shaped skeletal structure of the hip", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "VOWEL", "clue": "Speech sound A, E, I, O, or U", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "ANGST", "clue": "Deep feeling of anxiety about life", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 22,
+    "title": "Theorem Trail",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 2, "col": 2, "letter": "A"},
+        {"row": 6, "col": 4, "letter": "E"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "SPLEEN", "clue": "Organ that filters blood and fights infection", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "MOUNT", "clue": "A mountain or high hill", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "GESSO", "clue": "White paint mixture used as canvas primer", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "DIALOG", "clue": "Conversation between two or more people", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "ROYAL", "clue": "Relating to a king or queen", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "SENATE", "clue": "Assembly forming a legislative body", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "ENNUI", "clue": "Feeling of weariness and dissatisfaction", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "HAMLET", "clue": "Small village or settlement", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "PAINT", "clue": "Material for applying color to a surface", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "TENDON", "clue": "Cord connecting muscle to bone", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "DRAWL", "clue": "Slow, elongated way of speaking", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "GUILE", "clue": "Sly or cunning intelligence", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 23,
+    "title": "Vanguard Arch",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 0, "col": 3, "letter": "L"},
+        {"row": 8, "col": 0, "letter": "S"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "REFLEX", "clue": "Automatic response to a stimulus", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "OASIS", "clue": "Fertile spot in a desert", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "OCHRE", "clue": "Earthy pigment used in painting", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "PLURAL", "clue": "Form indicating more than one", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "LIEGE", "clue": "Feudal lord entitled to allegiance", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "REVOLT", "clue": "Uprising against authority", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "WRATH", "clue": "Intense anger, one of the seven deadly sins", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "TUNDRA", "clue": "Treeless Arctic region with permafrost", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "CHALK", "clue": "Soft white substance used for drawing", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "SILVER", "clue": "Precious metallic element", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "TWANG", "clue": "Sharp nasal tone in speech", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "FOLLY", "clue": "Lack of good sense or foolishness", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 24,
+    "title": "Lodestar Map",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 0, "col": 0, "letter": "N"},
+        {"row": 4, "col": 9, "letter": "I"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "NICKEL", "clue": "Metallic element used in coins", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "BROOK", "clue": "Small natural stream of water", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "HYMNS", "clue": "Songs of praise and worship", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "PHRASE", "clue": "Small group of words forming a unit", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "EPOCH", "clue": "Significant period in history", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "VASSAL", "clue": "Feudal servant bound to a lord", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "DEITY", "clue": "A god or supreme being", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "FOREST", "clue": "Large area covered with trees", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "RUMBA", "clue": "Cuban dance with complex rhythms", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "NEURAL", "clue": "Relating to the nervous system", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "TOPIC", "clue": "Subject of a discussion or text", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "BLISS", "clue": "State of supreme happiness", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 25,
+    "title": "Cartographer's Dream",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 0, "col": 4, "letter": "E"},
+        {"row": 6, "col": 1, "letter": "E"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "VORTEX", "clue": "Whirling mass of fluid or air", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "ISLET", "clue": "Very small island", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "SALSA", "clue": "Spicy Latin American dance and music", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "TONGUE", "clue": "Language or organ of taste", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "DRUID", "clue": "Celtic priest of ancient Britain", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "BATTLE", "clue": "Large-scale armed conflict", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "ATONE", "clue": "Make amends for wrongdoing", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "MEADOW", "clue": "Field of grass and wildflowers", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "GLAZE", "clue": "Thin coating applied to pottery", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "NEBULA", "clue": "Cloud of gas and dust in space", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "FOLIO", "clue": "Sheet of paper folded once for a book", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "CREDO", "clue": "Statement of beliefs or principles", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 26,
+    "title": "Titan's Compass",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 0, "col": 0, "letter": "G"},
+        {"row": 8, "col": 3, "letter": "R"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "GEYSER", "clue": "Hot spring that erupts periodically", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "LEDGE", "clue": "Narrow horizontal shelf on a cliff", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "DECOR", "clue": "Decorative style of a room", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "RIDDLE", "clue": "Puzzling question or statement", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "RAJAH", "clue": "Indian king or prince", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "VOYAGE", "clue": "Long journey by sea", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "AGONY", "clue": "Extreme physical or mental suffering", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "RAPIDS", "clue": "Section of river with fast turbulent water", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "BATIK", "clue": "Wax-resist fabric dyeing technique", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "HYBRID", "clue": "Offspring of two different species", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "ARGOT", "clue": "Slang or jargon of a particular group", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "TELOS", "clue": "Ultimate purpose or end goal", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 27,
+    "title": "Olympian Puzzle",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 4, "col": 1, "letter": "R"},
+        {"row": 8, "col": 4, "letter": "Y"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "TORQUE", "clue": "Rotational force applied to an object", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "BUTTE", "clue": "Isolated flat-topped hill", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "MOTET", "clue": "Choral composition for church use", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "BALLAD", "clue": "Narrative poem often set to music", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "PAGAN", "clue": "Person following a polytheistic religion", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "TREATY", "clue": "Formal agreement between nations", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "ORDER", "clue": "Systematic arrangement or harmony", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "STREAM", "clue": "Small river or flowing body of water", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "FRAME", "clue": "Border structure surrounding a picture", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "EMBRYO", "clue": "Early stage of development of an organism", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "STYLE", "clue": "Manner of writing or expression", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "CANON", "clue": "Standard by which things are judged", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 28,
+    "title": "Symposium Grid",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 0, "col": 2, "letter": "C"},
+        {"row": 6, "col": 5, "letter": "G"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "COCOON", "clue": "Protective covering of a larva", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "LEVEE", "clue": "Embankment to prevent river flooding", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "PIANO", "clue": "Keyboard instrument with hammered strings", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "SATIRE", "clue": "Use of humor to criticize", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "THANE", "clue": "Anglo-Saxon lord or land holder", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "SQUIRE", "clue": "Young man training to be a knight", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "PEACE", "clue": "Freedom from disturbance or conflict", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "SPRING", "clue": "Natural source of water from the ground", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "PRINT", "clue": "Image made by pressing inked surface", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "THYMUS", "clue": "Immune system organ in the chest", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "GLOSS", "clue": "Explanation or translation of a word", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "AEGIS", "clue": "Protection under a patron's sponsorship", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 29,
+    "title": "Pantheon Riddle",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 0, "col": 1, "letter": "Y"},
+        {"row": 8, "col": 8, "letter": "E"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "ZYGOTE", "clue": "Fertilized cell that becomes an organism", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "SCREE", "clue": "Loose rocks at base of a cliff", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "COLOR", "clue": "Visual property from reflected light", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "VOWELS", "clue": "Speech sounds A, E, I, O, and U", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "PAPAL", "clue": "Relating to the Pope of Rome", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "BANNER", "clue": "Flag bearing a coat of arms", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "WORTH", "clue": "Value or merit of something", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "ARROYO", "clue": "Steep-sided gully formed by flash floods", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "HENNA", "clue": "Plant-based dye used for body art", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "ANTHER", "clue": "Pollen-bearing part of a flower", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "DITTY", "clue": "Short simple song or rhyme", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "MONAD", "clue": "Fundamental indivisible unit of reality", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 30,
+    "title": "Labyrinth of Thought",
+    "grid": {
+      "rows": 10,
+      "cols": 12,
+      "blackCells": [
+        [0,6],
+        [1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],
+        [2,6],[2,7],[2,8],[2,9],[2,10],[2,11],
+        [3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],
+        [4,6],
+        [5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],
+        [6,6],
+        [7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],
+        [8,6],
+        [9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]
+      ],
+      "prefilled": [
+        {"row": 0, "col": 2, "letter": "M"},
+        {"row": 6, "col": 0, "letter": "M"},
+        {"row": 4, "col": 11, "letter": "D"}
+      ]
+    },
+    "words": [
+      {"id": 1, "word": "GAMETE", "clue": "Reproductive cell such as egg or sperm", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "SHOAL", "clue": "Shallow area in a body of water", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "CARVE", "clue": "Shape by cutting material away", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "MEMOIR", "clue": "Written account of personal experiences", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "ENVOY", "clue": "Diplomatic messenger or representative", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "REGENT", "clue": "Person ruling on behalf of a monarch", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "VALID", "clue": "Sound and well-founded in reasoning", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "MARINA", "clue": "Harbor for small boats and yachts", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "COMIC", "clue": "Sequential art combining images and text", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "STAMEN", "clue": "Male reproductive part of a flower", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "STORY", "clue": "Narrative account of events", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "CIVIC", "clue": "Relating to duties of citizenship", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
   }
 ]

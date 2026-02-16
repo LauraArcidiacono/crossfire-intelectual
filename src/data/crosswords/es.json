@@ -113,5 +113,518 @@
       {"id": 11, "word": "FLORA", "clue": "Conjunto de plantas de una region", "category": "science", "direction": "across", "row": 8, "col": 7},
       {"id": 12, "word": "SABIO", "clue": "Persona de gran conocimiento y prudencia", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
     ]
+  },
+  {
+    "id": 4,
+    "title": "Circuito Cerebral",
+    "grid": {"rows": 10, "cols": 12, "blackCells": [[0,6],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[4,6],[5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],[6,6],[7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],[8,6],[9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]], "prefilled": [{"row": 0, "col": 3, "letter": "S"}, {"row": 8, "col": 1, "letter": "E"}]},
+    "words": [
+      {"id": 1, "word": "PLASMA", "clue": "Estado de la materia a muy alta temperatura", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "BAHIA", "clue": "Entrada de mar en la costa", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "OPERA", "clue": "Genero musical dramatico con canto", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "NOVELA", "clue": "Obra literaria extensa de ficcion", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "SIGLO", "clue": "Periodo de cien anos", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "TEMPLO", "clue": "Edificio sagrado destinado al culto", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "ETHOS", "clue": "Conjunto de rasgos de una comunidad", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "MESETA", "clue": "Llanura elevada sobre el nivel del mar", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "RITMO", "clue": "Patron de sonidos y silencios en la musica", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "NERVIO", "clue": "Fibra que transmite impulsos al cerebro", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "CIFRA", "clue": "Simbolo que representa un numero", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "VALOR", "clue": "Cualidad de coraje y determinacion", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Sendero Sapiente",
+    "grid": {"rows": 10, "cols": 12, "blackCells": [[0,6],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[4,6],[5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],[6,6],[7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],[8,6],[9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]], "prefilled": [{"row": 0, "col": 0, "letter": "E"}, {"row": 6, "col": 3, "letter": "B"}]},
+    "words": [
+      {"id": 1, "word": "ENZIMA", "clue": "Proteina que acelera reacciones quimicas", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "COSTA", "clue": "Franja de tierra junto al mar", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "MURAL", "clue": "Gran pintura aplicada a una pared", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "RELATO", "clue": "Narracion breve de hechos reales o ficticios", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "NOBLE", "clue": "Persona de alto rango social", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "LEGADO", "clue": "Herencia dejada por generaciones pasadas", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "DOGMA", "clue": "Principio aceptado como verdad absoluta", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "CUMBRE", "clue": "Punto mas alto de una montana", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "PIANO", "clue": "Instrumento de teclas y cuerdas percutidas", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "CUARZO", "clue": "Mineral cristalino compuesto de silice", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "LETRA", "clue": "Signo grafico que representa un sonido", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "DEBER", "clue": "Obligacion moral de una persona", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Enigma del Horizonte",
+    "grid": {"rows": 10, "cols": 12, "blackCells": [[0,6],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[4,6],[5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],[6,6],[7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],[8,6],[9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]], "prefilled": [{"row": 0, "col": 0, "letter": "C"}, {"row": 6, "col": 2, "letter": "G"}]},
+    "words": [
+      {"id": 1, "word": "CARBON", "clue": "Elemento base de la quimica organica", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "GOLFO", "clue": "Gran porcion de mar entre dos cabos", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "POLCA", "clue": "Danza vivaz de origen bohemio", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "IDIOMA", "clue": "Lengua de una comunidad o pais", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "DUQUE", "clue": "Titulo nobiliario de alta jerarquia", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "ESCUDO", "clue": "Arma defensiva portada en el brazo", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "IDEAL", "clue": "Modelo perfecto al que se aspira", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "LAGUNA", "clue": "Deposito natural de agua dulce", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "VIOLA", "clue": "Instrumento de cuerda mayor que el violin", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "HUESOS", "clue": "Piezas duras que forman el esqueleto", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "TRAMA", "clue": "Argumento o hilo conductor de una obra", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "KARMA", "clue": "Ley de causa y efecto espiritual", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Nexo de Ideas",
+    "grid": {"rows": 10, "cols": 12, "blackCells": [[0,6],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[4,6],[5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],[6,6],[7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],[8,6],[9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]], "prefilled": [{"row": 0, "col": 4, "letter": "N"}, {"row": 8, "col": 0, "letter": "A"}]},
+    "words": [
+      {"id": 1, "word": "RETINA", "clue": "Capa sensible a la luz en el ojo", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "LLANO", "clue": "Terreno extenso y plano sin elevaciones", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "CORAL", "clue": "Composicion musical para coro", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "ACENTO", "clue": "Enfasis en una silaba al hablar", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "TUMBA", "clue": "Sepulcro donde yacen restos mortales", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "PIRATA", "clue": "Bandido que asaltaba navios en el mar", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "CULPA", "clue": "Sentimiento por haber obrado mal", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "SIERRA", "clue": "Cadena de montanas con crestas", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "TRAZO", "clue": "Linea dibujada con un instrumento", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "AZUFRE", "clue": "Elemento amarillo con olor caracteristico", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "VERBO", "clue": "Palabra que expresa accion o estado", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "HONOR", "clue": "Cualidad de integridad y respeto", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Arena del Saber",
+    "grid": {"rows": 10, "cols": 12, "blackCells": [[0,6],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[4,6],[5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],[6,6],[7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],[8,6],[9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]], "prefilled": [{"row": 0, "col": 1, "letter": "S"}, {"row": 6, "col": 0, "letter": "E"}]},
+    "words": [
+      {"id": 1, "word": "ESPINA", "clue": "Estructura rigida y puntiaguda de las plantas", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "VALLE", "clue": "Depresion alargada entre montanas", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "SALSA", "clue": "Genero musical y danza latina", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "LEXICO", "clue": "Conjunto de palabras de un idioma", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "FEUDO", "clue": "Tierra concedida por un senor feudal", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "TIRANO", "clue": "Gobernante que ejerce el poder con crueldad", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "CAUSA", "clue": "Motivo u origen de algo", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "ESTEPA", "clue": "Llanura extensa sin arboles", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "FRISO", "clue": "Banda decorativa en un edificio", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "PROTON", "clue": "Particula subatomica con carga positiva", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "COPLA", "clue": "Estrofa popular de cuatro versos", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "NORMA", "clue": "Regla que guia la conducta", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 9,
+    "title": "Brujula Intelectual",
+    "grid": {"rows": 10, "cols": 12, "blackCells": [[0,6],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[4,6],[5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],[6,6],[7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],[8,6],[9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]], "prefilled": [{"row": 0, "col": 2, "letter": "G"}, {"row": 8, "col": 0, "letter": "H"}]},
+    "words": [
+      {"id": 1, "word": "HIGADO", "clue": "Organo que filtra toxinas de la sangre", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "CERRO", "clue": "Elevacion de terreno menor que una montana", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "ARTES", "clue": "Manifestaciones creativas del ser humano", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "CUENTO", "clue": "Narracion breve de ficcion", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "TRONO", "clue": "Asiento ceremonial del monarca", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "ARMADA", "clue": "Flota de buques de guerra", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "ETICA", "clue": "Estudio de la conducta correcta", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "COLINA", "clue": "Elevacion suave del terreno", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "MOLDE", "clue": "Pieza hueca para dar forma a objetos", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "HIERRO", "clue": "Metal fuerte usado desde la antiguedad", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "RIMAS", "clue": "Coincidencia de sonidos al final de versos", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "ORDEN", "clue": "Disposicion armoniosa de las cosas", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 10,
+    "title": "Sendero de Atenea",
+    "grid": {"rows": 10, "cols": 12, "blackCells": [[0,6],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[4,6],[5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],[6,6],[7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],[8,6],[9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]], "prefilled": [{"row": 0, "col": 0, "letter": "P"}, {"row": 6, "col": 4, "letter": "A"}]},
+    "words": [
+      {"id": 1, "word": "PERONE", "clue": "Hueso delgado de la pierna", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "DELTA", "clue": "Terreno triangular en la desembocadura", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "TALLA", "clue": "Obra esculpida en madera o piedra", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "ENSAYO", "clue": "Texto que analiza un tema con profundidad", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "MOROS", "clue": "Pueblo del norte de Africa medieval", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "SULTAN", "clue": "Soberano de un estado musulman", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "MENTE", "clue": "Conjunto de facultades intelectuales", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "VOLCAN", "clue": "Montana que expulsa lava y cenizas", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "BARDO", "clue": "Poeta y cantor de la antiguedad", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "FISION", "clue": "Division del nucleo de un atomo", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "HABLA", "clue": "Uso individual de la lengua", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "DICHA", "clue": "Estado de felicidad plena", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 11,
+    "title": "Trama Cosmica",
+    "grid": {"rows": 10, "cols": 12, "blackCells": [[0,6],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[4,6],[5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],[6,6],[7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],[8,6],[9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]], "prefilled": [{"row": 0, "col": 1, "letter": "U"}, {"row": 8, "col": 4, "letter": "S"}]},
+    "words": [
+      {"id": 1, "word": "NUCLEO", "clue": "Centro de un atomo o celula", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "SELVA", "clue": "Bosque tropical denso y humedo", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "TANGO", "clue": "Danza argentina de pareja enlazada", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "SATIRA", "clue": "Genero que usa el humor para criticar", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "PAPAL", "clue": "Relativo al Papa de Roma", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "LEGION", "clue": "Gran division del ejercito romano", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "CANON", "clue": "Regla o norma fundamental", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "ARROYO", "clue": "Corriente pequena de agua natural", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "MAMBO", "clue": "Danza cubana de ritmo alegre", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "MEDUSA", "clue": "Animal marino gelatinoso con tentaculos", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "SIGNO", "clue": "Representacion que comunica un significado", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "CALMA", "clue": "Estado de serenidad y tranquilidad", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 12,
+    "title": "Matriz de Enigmas",
+    "grid": {"rows": 10, "cols": 12, "blackCells": [[0,6],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[4,6],[5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],[6,6],[7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],[8,6],[9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]], "prefilled": [{"row": 0, "col": 3, "letter": "R"}, {"row": 6, "col": 0, "letter": "I"}]},
+    "words": [
+      {"id": 1, "word": "OVARIO", "clue": "Organo reproductor femenino", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "PLAYA", "clue": "Zona arenosa junto al mar", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "RUMBA", "clue": "Danza afrocubana de ritmo animado", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "CODIGO", "clue": "Sistema de signos para comunicarse", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "CONDE", "clue": "Titulo nobiliario entre marques y vizconde", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "SENADO", "clue": "Asamblea legislativa de una nacion", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "LIBRE", "clue": "Estado de no estar sujeto a restricciones", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "ISLOTE", "clue": "Isla pequena y despoblada", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "SAMBA", "clue": "Danza brasilena de origen africano", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "CUERPO", "clue": "Estructura fisica de un ser vivo", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "MITOS", "clue": "Relatos fantasticos de dioses y heroes", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "GENIO", "clue": "Capacidad excepcional de la inteligencia", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 13,
+    "title": "Atenea Dorada",
+    "grid": {"rows": 10, "cols": 12, "blackCells": [[0,6],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[4,6],[5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],[6,6],[7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],[8,6],[9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]], "prefilled": [{"row": 2, "col": 0, "letter": "F"}, {"row": 8, "col": 4, "letter": "T"}]},
+    "words": [
+      {"id": 1, "word": "ORGANO", "clue": "Parte del cuerpo con funcion especifica", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "OASIS", "clue": "Lugar fertil en medio del desierto", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "TECLA", "clue": "Pieza que se pulsa en un instrumento", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "FABULA", "clue": "Relato corto con ensenanza moral", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "CLERO", "clue": "Conjunto de sacerdotes y religiosos", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "NACION", "clue": "Comunidad de personas con identidad comun", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "SUENO", "clue": "Vision o aspiracion profunda del ser", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "BOSQUE", "clue": "Terreno extenso poblado de arboles", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "BAILE", "clue": "Expresion artistica mediante el movimiento", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "GAMETO", "clue": "Celula reproductora de los seres vivos", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "CLAVE", "clue": "Sistema de signos para descifrar mensajes", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "GUSTO", "clue": "Sentido estetico para apreciar lo bello", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 14,
+    "title": "Boveda Espartana",
+    "grid": {"rows": 10, "cols": 12, "blackCells": [[0,6],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[4,6],[5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],[6,6],[7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],[8,6],[9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]], "prefilled": [{"row": 0, "col": 0, "letter": "C"}, {"row": 6, "col": 2, "letter": "B"}]},
+    "words": [
+      {"id": 1, "word": "CIGOTO", "clue": "Celula formada al unirse ovulo y espermatozoide", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "PRADO", "clue": "Terreno verde con hierba natural", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "CHELO", "clue": "Instrumento musical de cuerda frotada", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "SILABA", "clue": "Unidad fonetica de una palabra", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "GODOS", "clue": "Pueblo germanico que invadio Roma", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "DUCADO", "clue": "Territorio gobernado por un duque", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "TESIS", "clue": "Proposicion que se defiende con argumentos", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "RIBERA", "clue": "Franja de tierra junto a un rio", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "CAMEO", "clue": "Relieve tallado en una piedra preciosa", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "GLUTEN", "clue": "Proteina presente en cereales como el trigo", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "LATIN", "clue": "Lengua clasica del Imperio Romano", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "CREDO", "clue": "Declaracion de principios y creencias", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 15,
+    "title": "Oraculo del Verbo",
+    "grid": {"rows": 10, "cols": 12, "blackCells": [[0,6],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[4,6],[5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],[6,6],[7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],[8,6],[9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]], "prefilled": [{"row": 4, "col": 1, "letter": "L"}, {"row": 8, "col": 0, "letter": "T"}]},
+    "words": [
+      {"id": 1, "word": "TENDON", "clue": "Fibra que une musculo con hueso", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "LOMAS", "clue": "Colinas bajas y suaves del terreno", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "TAPIZ", "clue": "Tejido decorativo que cubre una pared", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "ENIGMA", "clue": "Dicho o frase de sentido oculto", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "HEROE", "clue": "Persona admirada por sus hazanas", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "FLECHA", "clue": "Proyectil lanzado con arco en batallas", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "SABER", "clue": "Conocimiento adquirido por la experiencia", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "CANTON", "clue": "Division territorial administrativa", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "HIMNO", "clue": "Composicion solemne de alabanza", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "TEJIDO", "clue": "Grupo de celulas con funcion comun", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "AUTOR", "clue": "Persona que escribe una obra literaria", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "CULTO", "clue": "Relativo al cultivo del espiritu", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 16,
+    "title": "Red Mnemonica",
+    "grid": {"rows": 10, "cols": 12, "blackCells": [[0,6],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[4,6],[5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],[6,6],[7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],[8,6],[9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]], "prefilled": [{"row": 0, "col": 2, "letter": "P"}, {"row": 8, "col": 3, "letter": "V"}]},
+    "words": [
+      {"id": 1, "word": "ESPORA", "clue": "Celula reproductora de hongos y plantas", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "FONDO", "clue": "Parte mas profunda del mar o un lago", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "VALSE", "clue": "Danza elegante en compas de tres tiempos", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "REFRAN", "clue": "Dicho popular que contiene una ensenanza", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "VISIR", "clue": "Consejero principal en gobiernos musulmanes", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "MONEDA", "clue": "Pieza metalica usada como dinero", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "FUERO", "clue": "Derecho o privilegio otorgado por la ley", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "ARTICO", "clue": "Region polar del hemisferio norte", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "ZAMBA", "clue": "Danza folclorica argentina de pareja", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "PELVIS", "clue": "Estructura osea de la cadera", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "JERGA", "clue": "Vocabulario especial de un grupo social", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "LUCHA", "clue": "Esfuerzo constante por alcanzar una meta", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 17,
+    "title": "Forja de Minerva",
+    "grid": {"rows": 10, "cols": 12, "blackCells": [[0,6],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[4,6],[5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],[6,6],[7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],[8,6],[9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]], "prefilled": [{"row": 2, "col": 1, "letter": "I"}, {"row": 8, "col": 0, "letter": "C"}]},
+    "words": [
+      {"id": 1, "word": "VENENO", "clue": "Sustancia toxica que causa dano al organismo", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "PAMPA", "clue": "Llanura extensa de Sudamerica", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "DRAMA", "clue": "Genero teatral de tema serio", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "LIRICA", "clue": "Genero poetico de expresion personal", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "MANDO", "clue": "Autoridad o poder de dirigir", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "HEROES", "clue": "Personas admiradas por grandes hazanas", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "DUELO", "clue": "Dolor profundo por una perdida", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "CANADA", "clue": "Paso estrecho entre montanas", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "MARCO", "clue": "Estructura que rodea una pintura", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "CALCIO", "clue": "Elemento esencial para huesos y dientes", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "DICHO", "clue": "Frase popular que expresa una ensenanza", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "REGLA", "clue": "Principio que dirige la conducta", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 18,
+    "title": "Cifra Pitagorica",
+    "grid": {"rows": 10, "cols": 12, "blackCells": [[0,6],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[4,6],[5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],[6,6],[7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],[8,6],[9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]], "prefilled": [{"row": 0, "col": 4, "letter": "E"}, {"row": 6, "col": 0, "letter": "T"}]},
+    "words": [
+      {"id": 1, "word": "CORNEA", "clue": "Capa transparente en la parte frontal del ojo", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "CAUCE", "clue": "Lecho por donde corre un rio", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "GESTO", "clue": "Movimiento expresivo del cuerpo o rostro", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "GENERO", "clue": "Categoria que clasifica obras literarias", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "MOTIN", "clue": "Rebelion contra la autoridad establecida", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "GALEON", "clue": "Gran nave de vela de los siglos XVI y XVII", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "ANIMO", "clue": "Fortaleza interior ante las adversidades", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "TUNDRA", "clue": "Region fria sin arboles cerca del Artico", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "ARCOS", "clue": "Elementos curvos usados en arquitectura", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "PULMON", "clue": "Organo respiratorio que intercambia gases", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "VOCAL", "clue": "Sonido del habla producido sin obstruccion", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "DIGNO", "clue": "Merecedor de respeto y estima", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 19,
+    "title": "Meridiano del Pensamiento",
+    "grid": {"rows": 10, "cols": 12, "blackCells": [[0,6],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[4,6],[5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],[6,6],[7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],[8,6],[9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]], "prefilled": [{"row": 0, "col": 5, "letter": "A"}, {"row": 8, "col": 2, "letter": "I"}]},
+    "words": [
+      {"id": 1, "word": "TOXINA", "clue": "Sustancia venenosa producida por organismos", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "DUNAS", "clue": "Colinas de arena formadas por el viento", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "BUSTO", "clue": "Escultura de la cabeza y el torso", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "POESIA", "clue": "Arte de componer obras en verso", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "VIAJE", "clue": "Expedicion a tierras lejanas", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "JINETE", "clue": "Guerrero que combatia a caballo", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "VICIO", "clue": "Habito contrario a la virtud", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "SABANA", "clue": "Llanura tropical con escasa vegetacion", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "CIRCO", "clue": "Espectaculo con acrobacias y payasos", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "RAICES", "clue": "Partes de la planta que absorben agua", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "GUION", "clue": "Texto escrito para una obra o pelicula", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "PODER", "clue": "Capacidad de influir o dominar", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 20,
+    "title": "Atalaya del Cosmos",
+    "grid": {"rows": 10, "cols": 12, "blackCells": [[0,6],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[4,6],[5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],[6,6],[7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],[8,6],[9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]], "prefilled": [{"row": 0, "col": 0, "letter": "R"}, {"row": 6, "col": 5, "letter": "A"}]},
+    "words": [
+      {"id": 1, "word": "RESINA", "clue": "Sustancia pegajosa que segregan los arboles", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "CIMAS", "clue": "Puntos mas altos de las montanas", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "PLUMA", "clue": "Instrumento de escritura usado por artistas", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "TITULO", "clue": "Nombre que encabeza una obra", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "CELTA", "clue": "Pueblo antiguo de Europa occidental", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "ALIADO", "clue": "Nacion unida a otra para un fin comun", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "ACTOS", "clue": "Acciones sujetas a evaluacion moral", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "LADERA", "clue": "Pendiente lateral de una montana", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "TINTE", "clue": "Sustancia para colorear telas o materiales", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "FIBRAS", "clue": "Estructuras filamentosas en tejidos vivos", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "ARGOT", "clue": "Lenguaje especial de un grupo social", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "FINES", "clue": "Metas ultimas a las que aspira el ser", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 21,
+    "title": "Pergamino Estelar",
+    "grid": {"rows": 10, "cols": 12, "blackCells": [[0,6],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[4,6],[5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],[6,6],[7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],[8,6],[9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]], "prefilled": [{"row": 0, "col": 3, "letter": "A"}, {"row": 8, "col": 0, "letter": "G"}]},
+    "words": [
+      {"id": 1, "word": "PETALO", "clue": "Hoja coloreada que forma la flor", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "RISCO", "clue": "Penasco alto y escarpado", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "OLEOS", "clue": "Pinturas realizadas con pigmentos al aceite", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "ENSAYO", "clue": "Texto reflexivo que examina un tema", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "PLAZA", "clue": "Espacio publico centro de la vida social", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "COLONO", "clue": "Persona que se establece en tierras nuevas", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "ALMAS", "clue": "Esencias inmateriales del ser humano", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "ESTERO", "clue": "Terreno pantanoso junto a la costa", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "TINTA", "clue": "Liquido coloreado usado para escribir", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "GERMEN", "clue": "Microorganismo que causa enfermedades", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "SIGLA", "clue": "Palabra formada por iniciales de un nombre", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "FORMA", "clue": "Esencia o estructura fundamental de las cosas", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 22,
+    "title": "Senda del Teorema",
+    "grid": {"rows": 10, "cols": 12, "blackCells": [[0,6],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[4,6],[5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],[6,6],[7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],[8,6],[9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]], "prefilled": [{"row": 0, "col": 5, "letter": "O"}, {"row": 4, "col": 0, "letter": "N"}]},
+    "words": [
+      {"id": 1, "word": "CARBONO", "clue": "Elemento quimico base de la vida organica", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "MONTE", "clue": "Elevacion natural del terreno cubierta de vegetacion", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "DANZA", "clue": "Movimiento artistico al compas de la musica", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "CRONICA", "clue": "Relato historico ordenado cronologicamente", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "MONJE", "clue": "Religioso que vive en un monasterio", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "NACION", "clue": "Comunidad con identidad cultural propia", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "GRACIA", "clue": "Elegancia y belleza en el movimiento", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "VOLCAN", "clue": "Abertura en la tierra que expulsa magma", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "LIENZO", "clue": "Superficie de tela para pintar al oleo", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "MUSCULO", "clue": "Tejido que permite el movimiento del cuerpo", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "MATIZ", "clue": "Variacion sutil en el significado de algo", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "TEMOR", "clue": "Miedo ante lo desconocido o peligroso", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 23,
+    "title": "Arco de Vanguardia",
+    "grid": {"rows": 10, "cols": 12, "blackCells": [[0,6],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[4,6],[5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],[6,6],[7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],[8,6],[9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]], "prefilled": [{"row": 0, "col": 0, "letter": "E"}, {"row": 8, "col": 5, "letter": "O"}]},
+    "words": [
+      {"id": 1, "word": "EMBRIO", "clue": "Fase inicial del desarrollo de un ser vivo", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "LAGO", "clue": "Gran masa de agua dulce en tierra firme", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "PINCEL", "clue": "Herramienta de cerdas para aplicar pintura", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "DIALOGO", "clue": "Conversacion entre dos o mas personas", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "VASALLO", "clue": "Sirviente feudal obligado a su senor", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "CRUZADO", "clue": "Guerrero cristiano de las Cruzadas medievales", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "VERDAD", "clue": "Conformidad de lo que se dice con la realidad", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "PRADERA", "clue": "Terreno extenso cubierto de hierba", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "BOCETO", "clue": "Dibujo rapido de una idea artistica", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "CELESTE", "clue": "Relativo al cielo o los astros", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "PROSA", "clue": "Forma natural del lenguaje escrito", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "PIEDAD", "clue": "Compasion y misericordia hacia el projimo", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 24,
+    "title": "Mapa Estelar",
+    "grid": {"rows": 10, "cols": 12, "blackCells": [[0,6],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[4,6],[5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],[6,6],[7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],[8,6],[9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]], "prefilled": [{"row": 0, "col": 3, "letter": "R"}, {"row": 8, "col": 0, "letter": "M"}]},
+    "words": [
+      {"id": 1, "word": "CORTEX", "clue": "Capa externa del cerebro", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "BAHIA", "clue": "Entrada de mar entre dos cabos", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "ESCENA", "clue": "Parte de una obra teatral", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "MEMORIA", "clue": "Facultad de recordar el pasado", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "DRUIDA", "clue": "Sacerdote celta de la antigua Bretana", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "BATALLA", "clue": "Combate armado entre dos ejercitos", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "BONDAD", "clue": "Cualidad de ser bueno y generoso", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "GLACIAR", "clue": "Masa de hielo que se desplaza lentamente", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "PASTEL", "clue": "Tecnica de dibujo con barras de pigmento", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "MICROBO", "clue": "Organismo invisible al ojo humano", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "VERSO", "clue": "Cada linea de un poema", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "UTOPIA", "clue": "Sociedad ideal e inalcanzable", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 25,
+    "title": "Brujula del Cartografo",
+    "grid": {"rows": 10, "cols": 12, "blackCells": [[0,6],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[4,6],[5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],[6,6],[7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],[8,6],[9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]], "prefilled": [{"row": 0, "col": 4, "letter": "N"}, {"row": 6, "col": 1, "letter": "O"}]},
+    "words": [
+      {"id": 1, "word": "ALBINO", "clue": "Organismo sin pigmentacion en su piel", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "GOLFO", "clue": "Extension de mar que entra en la tierra", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "HIMNO", "clue": "Canto solemne que simboliza una nacion", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "ACENTO", "clue": "Relieve en la pronunciacion de una silaba", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "EDILES", "clue": "Magistrados de la antigua Roma", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "VIRREY", "clue": "Gobernante que representaba al rey", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "LOGICA", "clue": "Ciencia del razonamiento correcto", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "BOSQUE", "clue": "Gran extension de terreno arbolado", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "LIRICA", "clue": "Poesia que expresa sentimientos intimos", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "MUSGO", "clue": "Planta pequena que crece en lugares humedos", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "IDIOMA", "clue": "Sistema linguistico de una comunidad", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "METODO", "clue": "Procedimiento ordenado para lograr un fin", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 26,
+    "title": "Compas del Titan",
+    "grid": {"rows": 10, "cols": 12, "blackCells": [[0,6],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[4,6],[5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],[6,6],[7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],[8,6],[9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]], "prefilled": [{"row": 0, "col": 0, "letter": "L"}, {"row": 8, "col": 3, "letter": "B"}]},
+    "words": [
+      {"id": 1, "word": "LITIO", "clue": "Elemento quimico mas ligero de los metales", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "COSTA", "clue": "Zona donde la tierra se encuentra con el mar", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "FLAUTA", "clue": "Instrumento de viento de sonido agudo", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "CUENTO", "clue": "Relato breve de hechos imaginarios", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "FARAON", "clue": "Rey del antiguo Egipto", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "ESCUDO", "clue": "Simbolo heraldico de una familia o nacion", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "TEORIA", "clue": "Explicacion sistematica de un fenomeno", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "SELVA", "clue": "Bosque tropical exuberante y denso", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "MUSICA", "clue": "Arte de combinar sonidos armoniosamente", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "AMBAR", "clue": "Resina fosil de color dorado", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "NOVELA", "clue": "Obra narrativa extensa de ficcion", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "DILEMA", "clue": "Situacion con dos opciones dificiles", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 27,
+    "title": "Rompecabezas Olimpico",
+    "grid": {"rows": 10, "cols": 12, "blackCells": [[0,6],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[4,6],[5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],[6,6],[7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],[8,6],[9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]], "prefilled": [{"row": 4, "col": 1, "letter": "E"}, {"row": 8, "col": 4, "letter": "N"}]},
+    "words": [
+      {"id": 1, "word": "ESPECIE", "clue": "Grupo de organismos que pueden reproducirse entre si", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "CERRO", "clue": "Elevacion del terreno mas baja que una montana", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "BOLERO", "clue": "Genero musical romantico de ritmo lento", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "SILABA", "clue": "Unidad minima de pronunciacion", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "PACTO", "clue": "Acuerdo formal entre partes", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "LEGADO", "clue": "Lo que se deja a las futuras generaciones", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "NOCION", "clue": "Idea general o concepto basico", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "MESETA", "clue": "Planicie elevada y extensa", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "DIBUJO", "clue": "Representacion grafica hecha con trazos", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "OXIGENO", "clue": "Gas esencial para la respiracion", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "REFRAN", "clue": "Dicho breve de sabiduria popular", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "DEBATE", "clue": "Discusion formal de ideas opuestas", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 28,
+    "title": "Simposio del Saber",
+    "grid": {"rows": 10, "cols": 12, "blackCells": [[0,6],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[4,6],[5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],[6,6],[7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],[8,6],[9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]], "prefilled": [{"row": 0, "col": 2, "letter": "B"}, {"row": 6, "col": 5, "letter": "A"}]},
+    "words": [
+      {"id": 1, "word": "COBALTO", "clue": "Metal azulado usado en aleaciones y pinturas", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "LLANO", "clue": "Terreno sin elevaciones ni depresiones", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "MARFIL", "clue": "Material blanco obtenido de colmillos", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "CODIGO", "clue": "Conjunto de normas o reglas sistematicas", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "SAMURAI", "clue": "Guerrero noble del Japon feudal", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "IMPERIO", "clue": "Vasto territorio bajo un solo gobernante", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "PIEDAD", "clue": "Sentimiento de compasion y misericordia", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "LAGUNA", "clue": "Pequeno lago de agua dulce o salada", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "ESTILO", "clue": "Manera particular de hacer arte", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "CELESTE", "clue": "Perteneciente al firmamento o los astros", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "ENSAYO", "clue": "Escrito que reflexiona sobre un tema", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "VIRTUD", "clue": "Disposicion habitual hacia el bien", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 29,
+    "title": "Panteon del Enigma",
+    "grid": {"rows": 10, "cols": 12, "blackCells": [[0,6],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[4,6],[5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],[6,6],[7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],[8,6],[9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]], "prefilled": [{"row": 0, "col": 1, "letter": "O"}, {"row": 8, "col": 8, "letter": "A"}]},
+    "words": [
+      {"id": 1, "word": "FOSIL", "clue": "Resto petrificado de un ser vivo antiguo", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "VALLE", "clue": "Llanura entre cadenas montanosas", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "MOSAICO", "clue": "Obra decorativa hecha con pequenas piezas", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "FABULA", "clue": "Cuento con moraleja protagonizado por animales", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "PAPAL", "clue": "Perteneciente a la autoridad del Papa", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "TRATADO", "clue": "Acuerdo formal entre naciones", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "RAZON", "clue": "Facultad de pensar con logica", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "ARROYO", "clue": "Corriente de agua pequena y natural", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "BALLET", "clue": "Danza clasica de origen europeo", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "SEMILLA", "clue": "Estructura que origina una nueva planta", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "DIARIO", "clue": "Escrito personal donde se registran vivencias", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "DESTINO", "clue": "Fuerza que determina los acontecimientos", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
+  },
+  {
+    "id": 30,
+    "title": "Laberinto del Pensador",
+    "grid": {"rows": 10, "cols": 12, "blackCells": [[0,6],[1,0],[1,1],[1,2],[1,3],[1,4],[1,5],[1,6],[2,6],[2,7],[2,8],[2,9],[2,10],[2,11],[3,0],[3,1],[3,2],[3,3],[3,4],[3,5],[3,6],[4,6],[5,0],[5,1],[5,2],[5,3],[5,4],[5,5],[5,6],[5,7],[5,8],[5,9],[5,10],[5,11],[6,6],[7,0],[7,1],[7,2],[7,3],[7,4],[7,5],[7,6],[7,7],[7,8],[7,9],[7,10],[7,11],[8,6],[9,0],[9,1],[9,2],[9,3],[9,4],[9,5],[9,6]], "prefilled": [{"row": 0, "col": 2, "letter": "N"}, {"row": 6, "col": 0, "letter": "C"}, {"row": 4, "col": 11, "letter": "R"}]},
+    "words": [
+      {"id": 1, "word": "MINERAL", "clue": "Sustancia inorganica natural con estructura cristalina", "category": "science", "direction": "across", "row": 0, "col": 0},
+      {"id": 2, "word": "OASIS", "clue": "Zona fertil en medio del desierto", "category": "geography", "direction": "across", "row": 0, "col": 7},
+      {"id": 3, "word": "GUITARRA", "clue": "Instrumento de cuerda pulsada muy popular", "category": "art", "direction": "across", "row": 1, "col": 7},
+      {"id": 4, "word": "REFRANES", "clue": "Dichos populares llenos de sabiduria", "category": "language", "direction": "across", "row": 2, "col": 0},
+      {"id": 5, "word": "TEMPLO", "clue": "Edificio sagrado para ceremonias religiosas", "category": "history", "direction": "across", "row": 3, "col": 7},
+      {"id": 6, "word": "SENADOR", "clue": "Miembro de una camara legislativa alta", "category": "history", "direction": "across", "row": 4, "col": 0},
+      {"id": 7, "word": "ESPIRITU", "clue": "Esencia inmaterial del ser humano", "category": "philosophy", "direction": "across", "row": 4, "col": 7},
+      {"id": 8, "word": "CUMBRE", "clue": "Cima de una montana o punto mas alto", "category": "geography", "direction": "across", "row": 6, "col": 0},
+      {"id": 9, "word": "GRABADO", "clue": "Tecnica artistica de incision sobre una superficie", "category": "art", "direction": "across", "row": 6, "col": 7},
+      {"id": 10, "word": "VOLCAN", "clue": "Formacion geologica que expulsa magma", "category": "science", "direction": "across", "row": 8, "col": 0},
+      {"id": 11, "word": "TEXTO", "clue": "Conjunto coherente de palabras escritas", "category": "language", "direction": "across", "row": 8, "col": 7},
+      {"id": 12, "word": "JUSTICIA", "clue": "Principio de dar a cada uno lo que merece", "category": "philosophy", "direction": "across", "row": 9, "col": 7}
+    ]
   }
 ]
