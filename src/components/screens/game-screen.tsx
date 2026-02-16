@@ -32,20 +32,51 @@ export function GameScreen() {
   const gridRef = useRef<HTMLDivElement>(null);
   const hiddenInputRef = useRef<HTMLInputElement>(null);
 
+  const handleTurnTimeoutWithSound = useCallback(() => {
+    play('timeout');
+    gameState.handleTurnTimeout();
+  }, [play, gameState]);
+
   const turnTimer = useTimer({
     initialTime: TURN_TIMER,
     autoStart: true,
-    onExpire: gameState.handleTurnTimeout,
+    onExpire: handleTurnTimeoutWithSound,
   });
 
+  // Pause/resume timer and play phase-specific sounds
+  const prevTurnPhaseRef = useRef(store.turnPhase);
+  const prevTurnRef = useRef(store.currentTurn);
+
   useEffect(() => {
+    const prevPhase = prevTurnPhaseRef.current;
+    const prevTurn = prevTurnRef.current;
+    prevTurnPhaseRef.current = store.turnPhase;
+    prevTurnRef.current = store.currentTurn;
+
     if (store.turnPhase === 'question' || store.turnPhase === 'feedback') {
       turnTimer.pause();
     } else if (store.turnPhase === 'selecting' || store.turnPhase === 'typing') {
       turnTimer.reset();
       turnTimer.start();
     }
+
+    // Sound: question modal opens
+    if (store.turnPhase === 'question' && prevPhase !== 'question') {
+      play('question');
+    }
+
+    // Sound: turn changed
+    if (store.turnPhase === 'selecting' && prevTurn !== store.currentTurn) {
+      play('turn');
+    }
   }, [store.turnPhase, store.currentTurn]);
+
+  // Sound: correct/incorrect answer feedback
+  useEffect(() => {
+    if (store.turnPhase === 'feedback' && store.lastFeedback) {
+      play(store.lastFeedback.isCorrect ? 'correct' : 'incorrect');
+    }
+  }, [store.turnPhase, store.lastFeedback]);
 
   useEffect(() => {
     gameState.syncTurnTimer(turnTimer.timeRemaining);
@@ -112,7 +143,7 @@ export function GameScreen() {
     if (!hint) return;
     store.setCellInput(cellKey(hint.row, hint.col), hint.letter);
     store.updateScore(gameState.currentPlayerIndex, -HINT_LETTER_COST);
-    play('click');
+    play('reveal');
   }, [store, crosswordHook.selectedWord, gameState.currentPlayerIndex, play]);
 
   const handleAnswerSubmitted = useCallback(
@@ -175,12 +206,7 @@ export function GameScreen() {
         <h1 className="font-title text-sm sm:text-base font-bold text-forest-green truncate mx-2">
           {store.crossword.title}
         </h1>
-        <button
-          onClick={() => store.setSoundEnabled(!store.soundEnabled)}
-          className="text-warm-brown/80 hover:text-warm-brown cursor-pointer text-lg"
-        >
-          {store.soundEnabled ? '🔊' : '🔇'}
-        </button>
+        <div className="w-8" />
       </header>
 
       {/* Scoreboard */}

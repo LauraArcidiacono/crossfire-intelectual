@@ -1,14 +1,21 @@
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useGameStore } from '../../store/game-store';
 import { getWinner } from '../../lib/game-logic';
 import { getRandomCrossword } from '../../lib/data-loader';
+import { useSound } from '../../hooks/use-sound';
 import { Button } from '../ui/button';
 import { Confetti } from '../ui/confetti';
 
 export function VictoryScreen() {
   const { t } = useTranslation();
   const store = useGameStore();
+  const { play } = useSound();
+
+  useEffect(() => {
+    play('victory');
+  }, []);
   const winner = getWinner(store.players);
   const isTie = winner === null;
 
