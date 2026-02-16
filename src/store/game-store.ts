@@ -17,6 +17,39 @@ import type {
 } from '../types/game.types';
 import { TURN_TIMER } from '../constants/game-config';
 
+const SESSION_KEY = 'crossfire-game-session';
+
+function saveSession(state: GameSlice & UISlice) {
+  if (state.status !== 'playing') {
+    sessionStorage.removeItem(SESSION_KEY);
+    return;
+  }
+  try {
+    const serializable = {
+      ...state,
+      usedQuestionIds: Array.from(state.usedQuestionIds),
+    };
+    sessionStorage.setItem(SESSION_KEY, JSON.stringify(serializable));
+  } catch {
+    // Storage full or unavailable — ignore
+  }
+}
+
+function loadSession(): Partial<GameSlice & UISlice> | null {
+  try {
+    const raw = sessionStorage.getItem(SESSION_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (parsed.status !== 'playing') return null;
+    return {
+      ...parsed,
+      usedQuestionIds: new Set(parsed.usedQuestionIds || []),
+    };
+  } catch {
+    return null;
+  }
+}
+
 interface GameSlice {
   status: GameStatus;
   mode: GameMode;
@@ -125,9 +158,12 @@ const initialUIState: UISlice = {
   volume: 0.7,
 };
 
+const restoredSession = loadSession();
+
 export const useGameStore = create<GameStore>((set) => ({
   ...initialGameState,
   ...initialUIState,
+  ...(restoredSession || {}),
 
   startGame: (crossword) =>
     set((state) => ({
@@ -270,5 +306,13 @@ export const useGameStore = create<GameStore>((set) => ({
       triviaTimeRemaining: state.triviaTimeRemaining,
     }),
 
-  resetGame: () => set({ ...initialGameState, ...initialUIState }),
+  resetGame: () => {
+    sessionStorage.removeItem(SESSION_KEY);
+    return set({ ...initialGameState, ...initialUIState });
+  },
 }));
+
+// Auto-save session on every state change during active games
+useGameStore.subscribe((state) => {
+  saveSession(state);
+});

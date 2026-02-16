@@ -20,12 +20,26 @@ const screens = {
 
 function App() {
   const currentScreen = useGameStore((state) => state.currentScreen);
+  const status = useGameStore((state) => state.status);
   const soundEnabled = useGameStore((state) => state.soundEnabled);
   const setSoundEnabled = useGameStore((state) => state.setSoundEnabled);
   const { playMusic, stopMusic } = useSound();
   const ScreenComponent = screens[currentScreen];
   const screensWithMusic = currentScreen === 'game' || currentScreen === 'victory';
   const desiredMusic = currentScreen === 'victory' ? 'music-victory' as const : 'music-game' as const;
+
+  // Warn before leaving when game is active
+  useEffect(() => {
+    const isGameActive = status === 'playing' && (currentScreen === 'game' || currentScreen === 'waiting-room');
+    if (!isGameActive) return;
+
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      e.preventDefault();
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => window.removeEventListener('beforeunload', handleBeforeUnload);
+  }, [status, currentScreen]);
 
   // Play/stop music based on screen and sound toggle
   useEffect(() => {
