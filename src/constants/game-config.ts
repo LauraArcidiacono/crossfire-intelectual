@@ -14,8 +14,8 @@ export const GRID_COLS = 12;
 export const ROOM_CODE_LENGTH = 4;
 
 export const BOT_NAME = 'Socrates';
-export const BOT_THINK_MIN = 8000;
-export const BOT_THINK_MAX = 15000;
+export const BOT_THINK_MIN = 3000;
+export const BOT_THINK_MAX = 8000;
 export const BOT_ACCURACY = 0.7;
 
 export const CATEGORIES = [
