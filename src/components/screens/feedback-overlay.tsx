@@ -72,7 +72,7 @@ export function FeedbackOverlay({ feedback }: FeedbackOverlayProps) {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="mt-4 text-sm text-warm-brown"
+              className="mt-4 text-base text-warm-brown"
             >
               {t('feedback.theAnswerWas')}: <strong className="text-forest-green">{feedback.correctAnswer}</strong>
             </motion.p>

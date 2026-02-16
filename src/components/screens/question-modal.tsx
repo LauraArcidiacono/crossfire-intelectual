@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Modal } from '../ui/modal';
@@ -48,6 +48,16 @@ export function QuestionModal({ question, word, onAnswer, onTimeout }: QuestionM
     onAnswer(answer, usedHint);
   };
 
+  const inputRef = useRef<HTMLInputElement>(null);
+  const isTouchDevice = typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0);
+
+  // Only auto-focus on desktop to avoid keyboard covering the modal on mobile
+  useEffect(() => {
+    if (!isTouchDevice && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isTouchDevice]);
+
   const canRequestOptions = currentPlayerScore >= TRIVIA_HINT_COST;
 
   const handleRequestOptions = () => {
@@ -76,13 +86,13 @@ export function QuestionModal({ question, word, onAnswer, onTimeout }: QuestionM
         </div>
 
         <div className="flex items-center gap-3 mb-3">
-          <span className="text-sm text-warm-brown/80">
+          <span className="text-base text-warm-brown/80">
             {t('question.completedWord')}: <strong className="text-forest-green font-bold">{word.word}</strong>
           </span>
           <Badge category={word.category} variant="category">{word.category}</Badge>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2 mb-5 text-xs">
+        <div className="flex flex-wrap items-center gap-2 mb-5 text-sm">
           <span className="px-2.5 py-1 rounded-full bg-forest-green/15 text-forest-green font-bold">{basePoints} {t('question.basePoints')}</span>
           {!usedHint ? (
             <span className="px-2.5 py-1 rounded-full bg-terracotta text-white font-bold">{basePoints * 2} {t('question.doublePoints')}</span>
@@ -109,7 +119,7 @@ export function QuestionModal({ question, word, onAnswer, onTimeout }: QuestionM
         </div>
 
         <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-4 mb-5 border border-white/50">
-          <p className="text-warm-brown font-semibold">{question.question}</p>
+          <p className="text-base text-warm-brown font-semibold">{question.question}</p>
         </div>
 
         {showAsMultipleChoice ? (
@@ -124,7 +134,7 @@ export function QuestionModal({ question, word, onAnswer, onTimeout }: QuestionM
                   onAnswer(option, usedHint);
                 }}
                 className={`
-                  px-3 py-2.5 rounded-xl text-sm font-semibold transition-all cursor-pointer
+                  px-3 py-2.5 rounded-xl text-base font-semibold transition-all cursor-pointer
                   ${answer === option
                     ? 'btn-gradient-green text-white shadow-md'
                     : 'bg-white/50 backdrop-blur-sm text-warm-brown border border-white/40 hover:bg-white/70'
@@ -138,6 +148,7 @@ export function QuestionModal({ question, word, onAnswer, onTimeout }: QuestionM
         ) : (
           <div className="space-y-3">
             <Input
+              ref={inputRef}
               value={answer}
               onChange={setAnswer}
               placeholder={t('question.answerPlaceholder')}
@@ -148,7 +159,6 @@ export function QuestionModal({ question, word, onAnswer, onTimeout }: QuestionM
                   handleSubmit();
                 }
               }}
-              autoFocus
             />
             <Button fullWidth onClick={handleSubmit} disabled={!answer.trim()}>
               {t('question.submitAnswer')} ↵

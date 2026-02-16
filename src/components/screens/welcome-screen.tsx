@@ -39,7 +39,7 @@ export function WelcomeScreen() {
         transition={{ duration: 0.6 }}
         className="text-center mb-12 relative z-10"
       >
-        <h1 className="font-title text-5xl md:text-7xl font-extrabold text-forest-green mb-3 tracking-tight drop-shadow-sm">
+        <h1 className="font-title text-3xl md:text-5xl font-extrabold text-forest-green mb-3 tracking-tight drop-shadow-sm">
           {t('welcome.title')}
         </h1>
         <p className="font-body text-base md:text-lg text-warm-brown/80 font-medium">

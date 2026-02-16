@@ -6,7 +6,7 @@
     "playMulti": "MULTIPLAYER",
     "tutorial": "HOW TO PLAY",
     "soloDescription": "Challenge Socrates, the philosophical bot",
-    "multiDescription": "Play against a friend on the same device"
+    "multiDescription": "Play against a friend online in real-time"
   },
   "tutorial": {
     "step1Title": "1. COMPLETE WORDS",
@@ -17,6 +17,13 @@
     "step3Desc": "If you answer correctly, you earn double points. If you asked for options, you earn a bit less (x1.5 instead of x2).",
     "step4Title": "4. REACH 150 POINTS",
     "step4Desc": "You and your rival take turns. The first to reach 150 points wins the game.",
+    "multiTitle": "MULTIPLAYER MODE",
+    "multi1Title": "1. CREATE A ROOM",
+    "multi1Desc": "Choose your name, select categories and tap CREATE ROOM. You'll get a 4-letter code.",
+    "multi2Title": "2. SHARE THE CODE",
+    "multi2Desc": "Send the code to your opponent. When they join, you'll see their name in the waiting room.",
+    "multi3Title": "3. JOIN A ROOM",
+    "multi3Desc": "If someone shared a code with you, choose your name, enter the code and tap JOIN ROOM.",
     "seeExample": "BACK",
     "gotIt": "GOT IT - START"
   },
@@ -35,7 +42,9 @@
     "philosophy": "Philosophy",
     "art": "Art",
     "geography": "Geography",
-    "continue": "CONTINUE"
+    "continue": "CONTINUE",
+    "orJoinRoom": "Or join an existing room",
+    "enterCode": "Enter the 4-letter room code"
   },
   "waitingRoom": {
     "readyTitle": "Ready to play!",
@@ -43,7 +52,16 @@
     "player1": "Player 1",
     "player2": "Player 2",
     "selectedCategories": "Selected categories",
-    "startGame": "START GAME"
+    "startGame": "START GAME",
+    "roomCode": "Room Code",
+    "shareCode": "Share this code with your opponent",
+    "waitingForOpponent": "Waiting for opponent to join...",
+    "waitingForHost": "Waiting for host to start...",
+    "connectedTo": "Connected to room",
+    "guestJoined": "joined the room!",
+    "copyCode": "COPY",
+    "copied": "COPIED!",
+    "back": "LEAVE ROOM"
   },
   "game": {
     "yourTurn": "YOUR TURN",
@@ -61,6 +79,7 @@
     "botTurnThinking": "Socrates' turn... thinking",
     "yourTurnHint": "Your turn! Pick a word",
     "playerTurnHint": "{{name}}'s turn! Pick a word",
+    "opponentTurnHint": "Opponent's turn...",
     "botQuestion": "Socrates answers:",
     "botAnswered": "Answered",
     "selectWord": "Select a word to begin",
@@ -69,7 +88,18 @@
     "opponentTurn": "Opponent's turn",
     "hint": "HINT",
     "hintCost": "-{{cost}} pts",
-    "noHintsLeft": "No hints left"
+    "noHintsLeft": "No hints left",
+    "connected": "Connected",
+    "disconnected": "Disconnected",
+    "opponentDisconnected": "Opponent disconnected",
+    "opponentDisconnectedDesc": "Your opponent lost connection. You can wait for them to reconnect or leave the game.",
+    "waitForReconnect": "WAIT",
+    "leaveGame": "LEAVE",
+    "opponentQuestion": "{{name}} must answer:",
+    "opponentAnswering": "Answering...",
+    "opponentGotIt": "{{name}} answered correctly!",
+    "opponentMissed": "{{name}} answered incorrectly",
+    "correctAnswerWas": "Correct answer: {{answer}}"
   },
   "question": {
     "title": "KNOWLEDGE QUESTION",

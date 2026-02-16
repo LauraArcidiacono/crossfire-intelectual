@@ -17,9 +17,9 @@ const categoryColors: Record<Category, string> = {
 };
 
 const variantStyles: Record<string, string> = {
-  category: 'text-xs px-2.5 py-0.5',
-  turn: 'text-sm px-3 py-1 bg-gold/20 text-gold font-bold border border-gold/30',
-  points: 'text-sm px-2.5 py-0.5 bg-forest-green/15 text-forest-green font-mono border border-forest-green/20',
+  category: 'text-sm px-2.5 py-0.5',
+  turn: 'text-base px-3 py-1 bg-gold/20 text-gold font-bold border border-gold/30',
+  points: 'text-base px-2.5 py-0.5 bg-forest-green/15 text-forest-green font-mono border border-forest-green/20',
 };
 
 export function Badge({ children, variant = 'category', category, pulse = false }: BadgeProps) {
@@ -27,7 +27,7 @@ export function Badge({ children, variant = 'category', category, pulse = false 
     ? categoryColors[category]
     : variantStyles[variant];
 
-  const sizeClass = variant === 'category' ? 'text-xs px-2.5 py-0.5' : '';
+  const sizeClass = variant === 'category' ? 'text-sm px-2.5 py-0.5' : '';
 
   return (
     <span

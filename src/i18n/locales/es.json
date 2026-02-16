@@ -6,7 +6,7 @@
     "playMulti": "MULTIJUGADOR",
     "tutorial": "CÓMO JUGAR",
     "soloDescription": "Desafía a Sócrates, el bot filosófico",
-    "multiDescription": "Juega contra un amigo en el mismo dispositivo"
+    "multiDescription": "Juega contra un amigo online en tiempo real"
   },
   "tutorial": {
     "step1Title": "1. COMPLETA PALABRAS",
@@ -17,6 +17,13 @@
     "step3Desc": "Si respondés bien, ganás el doble de puntos. Si pediste opciones, ganás un poco menos (x1.5 en vez de x2).",
     "step4Title": "4. LLEGÁ A 150 PUNTOS",
     "step4Desc": "Se turnan vos y tu rival. El primero en llegar a 150 puntos gana la partida.",
+    "multiTitle": "MODO MULTIJUGADOR",
+    "multi1Title": "1. CREÁ UNA SALA",
+    "multi1Desc": "Elegí tu nombre, seleccioná las categorías y tocá CREAR SALA. Recibirás un código de 4 letras.",
+    "multi2Title": "2. COMPARTÍ EL CÓDIGO",
+    "multi2Desc": "Enviá el código a tu oponente. Cuando se una, verás su nombre en la sala de espera.",
+    "multi3Title": "3. UNÍTE A UNA SALA",
+    "multi3Desc": "Si te compartieron un código, elegí tu nombre, ingresá el código y tocá UNIRSE A SALA.",
     "seeExample": "VOLVER",
     "gotIt": "ENTENDIDO - EMPEZAR"
   },
@@ -35,7 +42,9 @@
     "philosophy": "Filosofía",
     "art": "Arte",
     "geography": "Geografía",
-    "continue": "CONTINUAR"
+    "continue": "CONTINUAR",
+    "orJoinRoom": "O unirse a una sala existente",
+    "enterCode": "Ingresa el código de 4 letras"
   },
   "waitingRoom": {
     "readyTitle": "¡Listos para jugar!",
@@ -43,7 +52,16 @@
     "player1": "Jugador 1",
     "player2": "Jugador 2",
     "selectedCategories": "Categorías seleccionadas",
-    "startGame": "INICIAR PARTIDA"
+    "startGame": "INICIAR PARTIDA",
+    "roomCode": "Código de Sala",
+    "shareCode": "Compartí este código con tu oponente",
+    "waitingForOpponent": "Esperando a que se una un oponente...",
+    "waitingForHost": "Esperando a que el host inicie...",
+    "connectedTo": "Conectado a la sala",
+    "guestJoined": "se unió a la sala!",
+    "copyCode": "COPIAR",
+    "copied": "¡COPIADO!",
+    "back": "SALIR DE SALA"
   },
   "game": {
     "yourTurn": "TU TURNO",
@@ -61,6 +79,7 @@
     "botTurnThinking": "Turno de Sócrates... pensando",
     "yourTurnHint": "¡Tu turno! Elige una palabra",
     "playerTurnHint": "¡Turno de {{name}}! Elige una palabra",
+    "opponentTurnHint": "Turno del oponente...",
     "botQuestion": "Sócrates responde:",
     "botAnswered": "Respondió",
     "selectWord": "Selecciona una palabra para comenzar",
@@ -69,7 +88,18 @@
     "opponentTurn": "Turno del oponente",
     "hint": "PISTA",
     "hintCost": "-{{cost}} pts",
-    "noHintsLeft": "Sin pistas"
+    "noHintsLeft": "Sin pistas",
+    "connected": "Conectado",
+    "disconnected": "Desconectado",
+    "opponentDisconnected": "Oponente desconectado",
+    "opponentDisconnectedDesc": "Tu oponente perdió la conexión. Podés esperar a que se reconecte o salir de la partida.",
+    "waitForReconnect": "ESPERAR",
+    "leaveGame": "SALIR",
+    "opponentQuestion": "{{name}} debe responder:",
+    "opponentAnswering": "Respondiendo...",
+    "opponentGotIt": "{{name}} respondió correctamente!",
+    "opponentMissed": "{{name}} respondió incorrectamente",
+    "correctAnswerWas": "Respuesta correcta: {{answer}}"
   },
   "question": {
     "title": "PREGUNTA DE CONOCIMIENTO",
