@@ -22,6 +22,14 @@ export function useSound() {
     soundManager.play(name);
   }, []);
 
+  const playMusic = useCallback((name: Parameters<typeof soundManager.playMusic>[0]) => {
+    soundManager.playMusic(name);
+  }, []);
+
+  const stopMusic = useCallback(() => {
+    soundManager.stopMusic();
+  }, []);
+
   const setEnabled = useCallback((enabled: boolean) => {
     soundManager.setEnabled(enabled);
   }, []);
@@ -30,5 +38,5 @@ export function useSound() {
     soundManager.setVolume(vol);
   }, []);
 
-  return { play, setEnabled, setVolume };
+  return { play, playMusic, stopMusic, setEnabled, setVolume };
 }
