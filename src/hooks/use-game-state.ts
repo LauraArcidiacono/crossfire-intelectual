@@ -2,12 +2,14 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { useGameStore } from '../store/game-store';
 import { calculateScore, checkVictoryCondition, validateAnswer } from '../lib/game-logic';
 import { botAnswerQuestion, botSelectWord, getBotThinkDelay } from '../lib/bot';
-import { cellKey, getWordCells } from '../lib/crossword';
+import { cellKey, getHintCell, getWordCells } from '../lib/crossword';
 import { getRandomQuestion } from '../lib/data-loader';
-import type { Word } from '../types/game.types';
+import { useOnlineGame } from './use-online-game';
+import type { GameMove, Word } from '../types/game.types';
 import {
   FEEDBACK_CORRECT_DURATION,
   FEEDBACK_INCORRECT_DURATION,
+  HINT_LETTER_COST,
   TRIVIA_TIMER,
 } from '../constants/game-config';
 
@@ -19,22 +21,32 @@ interface BotQuestionDisplay {
 
 export function useGameState() {
   const store = useGameStore();
+  const online = useOnlineGame();
   const [isBotThinking, setIsBotThinking] = useState(false);
   const [botQuestionDisplay, setBotQuestionDisplay] = useState<BotQuestionDisplay | null>(null);
   const botTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
 
   const currentPlayerIndex = (store.currentTurn === 1 ? 0 : 1) as 0 | 1;
-  const isMyTurn = store.mode === 'solo' ? store.currentTurn === 1 : true;
-  const isBotTurn = store.mode === 'solo' && store.currentTurn === 2;
 
-  const handleWordSubmitted = useCallback(
-    (word: Word, isValid: boolean) => {
+  // Determine if it's the local player's turn
+  const isMyTurn = (() => {
+    if (store.mode === 'solo') return store.currentTurn === 1;
+    if (store.playerRole === 'host') return store.currentTurn === 1;
+    if (store.playerRole === 'guest') return store.currentTurn === 2;
+    return true; // fallback
+  })();
+
+  const isBotTurn = store.mode === 'solo' && store.currentTurn === 2;
+  const isGuestTurn = online.isOnline && store.currentTurn === 2;
+
+  // Host processes a word submission (works for both host's own turn and guest moves)
+  const processWordSubmitted = useCallback(
+    (word: Word, isValid: boolean, playerIdx: 0 | 1) => {
       if (!isValid) return;
 
       store.completeWord(word.id);
-      store.incrementWordStats(currentPlayerIndex);
+      store.incrementWordStats(playerIdx);
 
-      // Fill in all cells for the completed word
       if (store.crossword) {
         const cells = getWordCells(word);
         cells.forEach((c, i) => {
@@ -42,9 +54,8 @@ export function useGameState() {
         });
       }
 
-      // Get a question for this word's category
       const question = getRandomQuestion(
-        [word.category],
+        store.selectedCategories,
         store.language,
         store.usedQuestionIds
       );
@@ -55,19 +66,19 @@ export function useGameState() {
         store.setTriviaTimeRemaining(TRIVIA_TIMER);
         store.setTurnPhase('question');
       } else {
-        // No question available, just award base points
         const points = calculateScore(word, false);
-        store.updateScore(currentPlayerIndex, points);
+        store.updateScore(playerIdx, points);
         store.setLastFeedback({ isCorrect: false, pointsEarned: points });
-        store.recordWordCompletion({ wordId: word.id, playerIndex: currentPlayerIndex, points });
+        store.recordWordCompletion({ wordId: word.id, playerIndex: playerIdx, points });
         store.setTurnPhase('feedback');
       }
     },
-    [store, currentPlayerIndex]
+    [store]
   );
 
-  const handleAnswerSubmitted = useCallback(
-    (answer: string, usedHint = false) => {
+  // Host processes an answer submission
+  const processAnswerSubmitted = useCallback(
+    (answer: string, usedHint: boolean, playerIdx: 0 | 1) => {
       if (!store.currentQuestion || !store.selectedWordId || !store.crossword) return;
 
       const word = store.crossword.words.find((w) => w.id === store.selectedWordId);
@@ -76,16 +87,15 @@ export function useGameState() {
       const isCorrect = validateAnswer(store.currentQuestion, answer);
       let points: number;
       if (isCorrect && usedHint) {
-        // Hint penalty: base + bonus*0.5 = base * 1.5
         const base = calculateScore(word, false);
         points = Math.floor(base * 1.5);
       } else {
         points = calculateScore(word, isCorrect);
       }
 
-      store.updateScore(currentPlayerIndex, points);
+      store.updateScore(playerIdx, points);
       if (isCorrect) {
-        store.incrementAnswerStats(currentPlayerIndex);
+        store.incrementAnswerStats(playerIdx);
       }
 
       store.setLastFeedback({
@@ -93,19 +103,53 @@ export function useGameState() {
         pointsEarned: points,
         correctAnswer: isCorrect ? undefined : store.currentQuestion.answer,
       });
-      store.recordWordCompletion({ wordId: word.id, playerIndex: currentPlayerIndex, points });
+      store.recordWordCompletion({ wordId: word.id, playerIndex: playerIdx, points });
       store.setTurnPhase('feedback');
     },
-    [store, currentPlayerIndex]
+    [store]
+  );
+
+  // Public handlers: called by UI or forwarded from guest moves
+  const handleWordSubmitted = useCallback(
+    (word: Word, isValid: boolean) => {
+      // Guest sends move to host instead of processing locally
+      if (online.isGuest) {
+        if (isValid) {
+          online.sendGameMove({ type: 'submit-word', wordId: word.id });
+        }
+        return;
+      }
+      processWordSubmitted(word, isValid, currentPlayerIndex);
+    },
+    [online.isGuest, online.sendGameMove, processWordSubmitted, currentPlayerIndex]
+  );
+
+  const handleAnswerSubmitted = useCallback(
+    (answer: string, usedHint = false) => {
+      if (online.isGuest) {
+        online.sendGameMove({ type: 'submit-answer', answer, usedHint });
+        return;
+      }
+      processAnswerSubmitted(answer, usedHint, currentPlayerIndex);
+    },
+    [online.isGuest, online.sendGameMove, processAnswerSubmitted, currentPlayerIndex]
   );
 
   const handleTurnTimeout = useCallback(() => {
+    if (online.isGuest) {
+      online.sendGameMove({ type: 'timeout' });
+      return;
+    }
     store.switchTurn();
-  }, [store]);
+  }, [store, online.isGuest, online.sendGameMove]);
 
   const handleTriviaTimeout = useCallback(() => {
-    if (!store.selectedWordId || !store.crossword) return;
+    if (online.isGuest) {
+      online.sendGameMove({ type: 'timeout' });
+      return;
+    }
 
+    if (!store.selectedWordId || !store.crossword) return;
     const word = store.crossword.words.find((w) => w.id === store.selectedWordId);
     if (!word) return;
 
@@ -118,10 +162,12 @@ export function useGameState() {
     });
     store.recordWordCompletion({ wordId: word.id, playerIndex: currentPlayerIndex, points });
     store.setTurnPhase('feedback');
-  }, [store, currentPlayerIndex]);
+  }, [store, currentPlayerIndex, online.isGuest, online.sendGameMove]);
 
   const handleFeedbackComplete = useCallback(() => {
     if (!store.crossword) return;
+    // Guest doesn't process feedback completion — host does
+    if (online.isGuest) return;
 
     const result = checkVictoryCondition(store.players, store.completedWords, store.crossword);
 
@@ -136,11 +182,86 @@ export function useGameState() {
     }
 
     store.switchTurn();
-  }, [store]);
+  }, [store, online.isGuest]);
+
+  // Guest word selection: send to host
+  const handleGuestSelectWord = useCallback(
+    (wordId: number) => {
+      if (!online.isGuest) return;
+      online.sendGameMove({ type: 'select-word', wordId });
+    },
+    [online.isGuest, online.sendGameMove]
+  );
+
+  const handleGuestCellInput = useCallback(
+    (key: string, letter: string) => {
+      if (!online.isGuest) return;
+      online.sendGameMove({ type: 'cell-input', key, letter });
+    },
+    [online.isGuest, online.sendGameMove]
+  );
+
+  const handleGuestHint = useCallback(() => {
+    if (!online.isGuest) return;
+    online.sendGameMove({ type: 'hint' });
+  }, [online.isGuest, online.sendGameMove]);
+
+  // Host: listen for guest moves and process them
+  useEffect(() => {
+    if (!online.isHost || !online.isOnline) return;
+
+    online.onGuestMove((move: GameMove) => {
+      const guestIdx = 1 as const;
+
+      switch (move.type) {
+        case 'select-word': {
+          store.selectWord(move.wordId);
+          const word = store.crossword?.words.find((w) => w.id === move.wordId);
+          if (word) {
+            store.setSelectedCell({ row: word.row, col: word.col });
+          }
+          break;
+        }
+        case 'cell-input': {
+          store.setCellInput(move.key, move.letter);
+          break;
+        }
+        case 'submit-word': {
+          const word = store.crossword?.words.find((w) => w.id === move.wordId);
+          if (word) {
+            processWordSubmitted(word, true, guestIdx);
+          }
+          break;
+        }
+        case 'submit-answer': {
+          processAnswerSubmitted(move.answer, move.usedHint, guestIdx);
+          break;
+        }
+        case 'hint': {
+          if (!store.crossword) break;
+          const selectedWord = store.crossword.words.find((w) => w.id === store.selectedWordId);
+          if (!selectedWord) break;
+          if (store.players[guestIdx].score < HINT_LETTER_COST) break;
+          const hint = getHintCell(selectedWord, store.cellInputs, store.crossword.grid);
+          if (hint) {
+            store.setCellInput(cellKey(hint.row, hint.col), hint.letter);
+            store.updateScore(guestIdx, -HINT_LETTER_COST);
+          }
+          break;
+        }
+        case 'timeout': {
+          store.switchTurn();
+          break;
+        }
+      }
+    });
+  }, [online.isHost, online.isOnline, online.onGuestMove, store, processWordSubmitted, processAnswerSubmitted]);
 
   // Auto-close feedback after duration
   useEffect(() => {
     if (store.turnPhase !== 'feedback' || !store.lastFeedback) return;
+    // Guest doesn't auto-close feedback (host handles it and syncs)
+    if (online.isGuest) return;
 
     const duration = store.lastFeedback.isCorrect
       ? FEEDBACK_CORRECT_DURATION
@@ -151,7 +272,7 @@ export function useGameState() {
     }, duration);
 
     return () => clearTimeout(timer);
-  }, [store.turnPhase, store.lastFeedback, handleFeedbackComplete]);
+  }, [store.turnPhase, store.lastFeedback, handleFeedbackComplete, online.isGuest]);
 
   // Clear bot question display on turn switch
   useEffect(() => {
@@ -160,7 +281,7 @@ export function useGameState() {
     }
   }, [isBotTurn]);
 
-  // Bot turn simulation - slower with visible feedback
+  // Bot turn simulation (solo mode only)
   useEffect(() => {
     if (!isBotTurn || store.status !== 'playing') return;
 
@@ -180,7 +301,6 @@ export function useGameState() {
         store.selectWord(word.id);
         store.setSelectedCell({ row: word.row, col: word.col });
 
-        // Bot "types" the correct word letter by letter
         if (store.crossword) {
           const cells = getWordCells(word);
           cells.forEach((c, i) => {
@@ -190,11 +310,10 @@ export function useGameState() {
           });
         }
 
-        // Auto-submit the word after typing animation
         const typingDuration = (getWordCells(word).length * 300) + 800;
         setTimeout(() => {
           setIsBotThinking(false);
-          handleWordSubmitted(word, true);
+          processWordSubmitted(word, true, 1);
         }, typingDuration);
       }, delay);
 
@@ -207,7 +326,6 @@ export function useGameState() {
       setIsBotThinking(true);
       const questionText = store.currentQuestion.question;
 
-      // Show the question first
       setBotQuestionDisplay({ question: questionText, answer: null, isCorrect: false });
 
       const thinkDelay = getBotThinkDelay();
@@ -215,14 +333,12 @@ export function useGameState() {
       botTimeoutRef.current = setTimeout(() => {
         const { answer, isCorrect } = botAnswerQuestion(store.currentQuestion!);
 
-        // Show the answer for a moment
         setBotQuestionDisplay({ question: questionText, answer, isCorrect });
 
-        // Wait a bit then submit
         setTimeout(() => {
           setIsBotThinking(false);
           setBotQuestionDisplay(null);
-          handleAnswerSubmitted(answer);
+          processAnswerSubmitted(answer, false, 1);
         }, 2000);
       }, thinkDelay);
 
@@ -244,11 +360,18 @@ export function useGameState() {
     isBotTurn,
     isBotThinking,
     botQuestionDisplay,
+    isGuestTurn,
     handleWordSubmitted,
     handleAnswerSubmitted,
     handleTurnTimeout,
     handleTriviaTimeout,
     handleFeedbackComplete,
     syncTurnTimer,
+    // Online-specific handlers for guest UI
+    handleGuestSelectWord,
+    handleGuestCellInput,
+    handleGuestHint,
+    // Online state
+    online,
   };
 }
