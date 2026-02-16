@@ -69,7 +69,7 @@ export function ConfigScreen() {
       <motion.h1
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="font-title text-3xl font-extrabold text-forest-green mb-8 relative z-10"
+        className="font-title text-3xl font-extrabold text-forest-green mb-8 mt-8 relative z-10 text-center"
       >
         {mode === 'solo' ? t('welcome.playSolo') : t('welcome.playMulti')}
       </motion.h1>

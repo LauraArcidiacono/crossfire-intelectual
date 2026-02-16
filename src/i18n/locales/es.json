@@ -28,7 +28,7 @@
     "roomCode": "Código de sala",
     "roomCodePlaceholder": "Ej: K7P2",
     "categories": "Categorías",
-    "categoriesHint": "Selecciona al menos 1 categoría",
+    "categoriesHint": "Selecciona al menos 1 categoría para la trivia",
     "history": "Historia",
     "language": "Lengua",
     "science": "Ciencia",

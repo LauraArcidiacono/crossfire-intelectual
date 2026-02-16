@@ -28,7 +28,7 @@
     "roomCode": "Room code",
     "roomCodePlaceholder": "Ex: K7P2",
     "categories": "Categories",
-    "categoriesHint": "Select at least 1 category",
+    "categoriesHint": "Select at least 1 category for the trivia",
     "history": "History",
     "language": "Language",
     "science": "Science",
