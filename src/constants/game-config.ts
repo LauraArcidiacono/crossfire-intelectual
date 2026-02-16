@@ -28,7 +28,7 @@ export const CATEGORIES = [
 ] as const;
 
 export const FEEDBACK_CORRECT_DURATION = 2000;
-export const FEEDBACK_INCORRECT_DURATION = 3000;
+export const FEEDBACK_INCORRECT_DURATION = 4000;
 
 export const HINT_LETTER_COST = 3;
 export const TRIVIA_HINT_COST = 5;

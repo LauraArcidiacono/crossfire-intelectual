@@ -1,3 +1,5 @@
+import { forwardRef } from 'react';
+
 interface InputProps {
   value: string;
   onChange: (value: string) => void;
@@ -10,19 +12,23 @@ interface InputProps {
   'data-testid'?: string;
 }
 
-export function Input({
-  value,
-  onChange,
-  placeholder,
-  required = false,
-  maxLength,
-  className = '',
-  autoFocus,
-  onKeyDown,
-  ...props
-}: InputProps) {
+export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
+  {
+    value,
+    onChange,
+    placeholder,
+    required = false,
+    maxLength,
+    className = '',
+    autoFocus,
+    onKeyDown,
+    ...props
+  },
+  ref
+) {
   return (
     <input
+      ref={ref}
       type="text"
       value={value}
       onChange={(e) => onChange(e.target.value)}
@@ -32,7 +38,7 @@ export function Input({
       maxLength={maxLength}
       autoFocus={autoFocus}
       className={`
-        w-full px-4 py-2.5 rounded-xl font-body text-warm-brown
+        w-full px-4 py-2.5 rounded-xl font-body text-base text-warm-brown
         bg-white/80 backdrop-blur-sm border border-warm-brown/20
         placeholder:text-warm-brown/50
         focus:outline-none focus:ring-2 focus:ring-forest-green/60 focus:border-transparent
@@ -42,4 +48,4 @@ export function Input({
       data-testid={props['data-testid']}
     />
   );
-}
+});
