@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useGameStore } from '../../store/game-store';
+import { useSound } from '../../hooks/use-sound';
 import { Button } from '../ui/button';
 import { getRandomCrossword } from '../../lib/data-loader';
 
@@ -15,20 +16,24 @@ export function WaitingRoomScreen() {
     setScreen,
   } = useGameStore();
   const [countdown, setCountdown] = useState<number | null>(null);
+  const { play } = useSound();
 
   const canStart = players[0].name.trim().length > 0 && players[1].name.trim().length > 0;
 
   const handleStart = () => {
     setCountdown(3);
+    play('countdown-tick');
     const interval = setInterval(() => {
       setCountdown((prev) => {
         if (prev === null || prev <= 1) {
           clearInterval(interval);
+          play('countdown-go');
           const crossword = getRandomCrossword(language);
           startGame(crossword);
           setScreen('game');
           return null;
         }
+        play('countdown-tick');
         return prev - 1;
       });
     }, 1000);
