@@ -85,3 +85,45 @@ export interface WordCompletion {
   playerIndex: 0 | 1;
   points: number;
 }
+
+// Online multiplayer types
+export type PlayerRole = 'host' | 'guest';
+export type RoomStatus = 'waiting' | 'playing' | 'finished';
+
+export interface Room {
+  id: string;
+  code: string;
+  hostName: string;
+  guestName: string | null;
+  categories: Category[];
+  crosswordId: number | null;
+  status: RoomStatus;
+  language: 'es' | 'en';
+}
+
+// Subset of game state synced from host → guest via Supabase
+export interface SyncableGameState {
+  currentTurn: 1 | 2;
+  players: [Player, Player];
+  completedWords: number[];
+  turnPhase: TurnPhase;
+  currentQuestion: Question | null;
+  lastFeedback: LastFeedback | null;
+  selectedWordId: number | null;
+  cellInputs: Record<string, string>;
+  status: GameStatus;
+  gameStats: GameStats;
+  wordCompletions: WordCompletion[];
+  crosswordId: number;
+  timeRemaining: number;
+  triviaTimeRemaining: number;
+}
+
+// Guest → host actions sent via Realtime broadcast
+export type GameMove =
+  | { type: 'select-word'; wordId: number }
+  | { type: 'cell-input'; key: string; letter: string }
+  | { type: 'submit-word'; wordId: number }
+  | { type: 'submit-answer'; answer: string; usedHint: boolean }
+  | { type: 'timeout' }
+  | { type: 'hint' };

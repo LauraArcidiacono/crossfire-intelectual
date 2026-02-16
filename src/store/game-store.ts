@@ -8,8 +8,10 @@ import type {
   GameStatus,
   LastFeedback,
   Player,
+  PlayerRole,
   Question,
   Screen,
+  SyncableGameState,
   TurnPhase,
   WordCompletion,
 } from '../types/game.types';
@@ -35,6 +37,9 @@ interface GameSlice {
   wordCompletions: WordCompletion[];
   usedQuestionIds: Set<string>;
   gameStartedAt: number | null;
+  roomId: string | null;
+  roomCode: string | null;
+  playerRole: PlayerRole | null;
 }
 
 interface UISlice {
@@ -72,6 +77,10 @@ interface Actions {
   addUsedQuestionId: (id: string) => void;
   recordWordCompletion: (completion: WordCompletion) => void;
   setGameStats: (stats: GameStats) => void;
+  setRoomId: (id: string | null) => void;
+  setRoomCode: (code: string | null) => void;
+  setPlayerRole: (role: PlayerRole | null) => void;
+  applySyncedState: (state: SyncableGameState) => void;
   resetGame: () => void;
 }
 
@@ -104,6 +113,9 @@ const initialGameState: GameSlice = {
   wordCompletions: [],
   usedQuestionIds: new Set(),
   gameStartedAt: null,
+  roomId: null,
+  roomCode: null,
+  playerRole: null,
 };
 
 const initialUIState: UISlice = {
@@ -236,6 +248,27 @@ export const useGameStore = create<GameStore>((set) => ({
     })),
 
   setGameStats: (stats) => set({ gameStats: stats }),
+
+  setRoomId: (id) => set({ roomId: id }),
+  setRoomCode: (code) => set({ roomCode: code }),
+  setPlayerRole: (role) => set({ playerRole: role }),
+
+  applySyncedState: (state: SyncableGameState) =>
+    set({
+      currentTurn: state.currentTurn,
+      players: state.players,
+      completedWords: state.completedWords,
+      turnPhase: state.turnPhase,
+      currentQuestion: state.currentQuestion,
+      lastFeedback: state.lastFeedback,
+      selectedWordId: state.selectedWordId,
+      cellInputs: state.cellInputs,
+      status: state.status,
+      gameStats: state.gameStats,
+      wordCompletions: state.wordCompletions,
+      timeRemaining: state.timeRemaining,
+      triviaTimeRemaining: state.triviaTimeRemaining,
+    }),
 
   resetGame: () => set({ ...initialGameState, ...initialUIState }),
 }));
