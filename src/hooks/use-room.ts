@@ -60,10 +60,13 @@ export function useRoom() {
 
         // Load crossword if not loaded yet (first sync = game start)
         if (!current.crossword && state.crosswordId) {
-          const crossword = getCrosswordById(state.crosswordId, current.language);
-          if (crossword) {
-            useGameStore.getState().startGame(crossword);
-          }
+          getCrosswordById(state.crosswordId, current.language).then((crossword) => {
+            if (crossword) {
+              useGameStore.getState().startGame(crossword);
+            }
+            useGameStore.getState().applySyncedState(state);
+          });
+          return;
         }
 
         useGameStore.getState().applySyncedState(state);
@@ -150,7 +153,7 @@ export function useRoom() {
     const roomId = s.roomId;
     if (!roomId || s.playerRole !== 'host') return;
 
-    const crossword = getRandomCrossword(s.language);
+    const crossword = await getRandomCrossword(s.language);
     useGameStore.getState().startGame(crossword);
 
     // Sync the initial game state to Supabase so the guest receives it

@@ -19,12 +19,14 @@ export function useOnlineGame() {
   const gameChannelRef = useRef<RealtimeChannel | null>(null);
   const roomChannelRef = useRef<RealtimeChannel | null>(null);
   const moveCallbackRef = useRef<((move: GameMove) => void) | null>(null);
+  const syncTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const prevSyncKeyRef = useRef('');
 
   const isOnline = store.mode === 'multiplayer' && store.roomId !== null;
   const isHost = store.playerRole === 'host';
   const isGuest = store.playerRole === 'guest';
 
-  // Extract syncable state from store for broadcasting
+  // Extract syncable state from store for broadcasting (reads imperatively via getState)
   const extractSyncableState = useCallback((): SyncableGameState | null => {
     const s = useGameStore.getState();
     if (!s.crossword) return null;
@@ -44,22 +46,7 @@ export function useOnlineGame() {
       timeRemaining: s.timeRemaining,
       triviaTimeRemaining: s.triviaTimeRemaining,
     };
-  }, [
-    store.currentTurn,
-    store.players,
-    store.completedWords,
-    store.turnPhase,
-    store.currentQuestion,
-    store.lastFeedback,
-    store.selectedWordId,
-    store.cellInputs,
-    store.status,
-    store.gameStats,
-    store.wordCompletions,
-    store.crossword,
-    store.timeRemaining,
-    store.triviaTimeRemaining,
-  ]);
+  }, []);
 
   // Host: sync state to Supabase after mutations
   const hostSyncState = useCallback(async () => {
@@ -113,10 +100,13 @@ export function useOnlineGame() {
 
           // Load new crossword if ID changed (e.g. rematch)
           if (state.crosswordId && (!current.crossword || current.crossword.id !== state.crosswordId)) {
-            const crossword = getCrosswordById(state.crosswordId, current.language);
-            if (crossword) {
-              useGameStore.getState().startGame(crossword);
-            }
+            getCrosswordById(state.crosswordId, current.language).then((crossword) => {
+              if (crossword) {
+                useGameStore.getState().startGame(crossword);
+              }
+              useGameStore.getState().applySyncedState(state);
+            });
+            return;
           }
 
           useGameStore.getState().applySyncedState(state);
@@ -144,13 +134,34 @@ export function useOnlineGame() {
     };
   }, [isOnline, store.roomId, store.playerRole]);
 
-  // Host: auto-sync state when relevant store values change
+  // Host: auto-sync state when relevant store values change (debounced for cell inputs)
   useEffect(() => {
     if (!isHost || !isOnline || store.status === 'waiting') return;
-    hostSyncState();
+
+    // Detect critical state changes that need immediate sync
+    const criticalKey = `${store.currentTurn}-${store.turnPhase}-${store.status}-${store.lastFeedback?.isCorrect}-${store.selectedWordId}-${store.completedWords.length}-${store.currentQuestion?.id}`;
+    const isCritical = criticalKey !== prevSyncKeyRef.current;
+    prevSyncKeyRef.current = criticalKey;
+
+    if (isCritical) {
+      if (syncTimeoutRef.current) clearTimeout(syncTimeoutRef.current);
+      hostSyncState();
+      return;
+    }
+
+    // Debounced sync for cell inputs and timer updates (300ms)
+    if (syncTimeoutRef.current) clearTimeout(syncTimeoutRef.current);
+    syncTimeoutRef.current = setTimeout(() => {
+      hostSyncState();
+    }, 300);
+
+    return () => {
+      if (syncTimeoutRef.current) clearTimeout(syncTimeoutRef.current);
+    };
   }, [
     isHost,
     isOnline,
+    hostSyncState,
     store.currentTurn,
     store.players,
     store.completedWords,

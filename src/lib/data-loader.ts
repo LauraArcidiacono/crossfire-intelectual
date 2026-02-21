@@ -1,26 +1,29 @@
 import type { Category, Crossword, Question } from '../types/game.types';
-import crosswordsEn from '../data/crosswords/en.json';
-import crosswordsEs from '../data/crosswords/es.json';
-import questionsEn from '../data/questions/en.json';
-import questionsEs from '../data/questions/es.json';
 
 type Language = 'en' | 'es';
 
-const crosswordData: Record<Language, Crossword[]> = {
-  en: crosswordsEn as unknown as Crossword[],
-  es: crosswordsEs as unknown as Crossword[],
-};
+const crosswordCache: Partial<Record<Language, Crossword[]>> = {};
+const questionCache: Partial<Record<Language, Record<string, Question[]>>> = {};
 
-const questionData: Record<Language, Record<string, Question[]>> = {
-  en: questionsEn as unknown as Record<string, Question[]>,
-  es: questionsEs as unknown as Record<string, Question[]>,
-};
+async function loadCrosswords(language: Language): Promise<Crossword[]> {
+  if (crosswordCache[language]) return crosswordCache[language]!;
+  const data = await import(`../data/crosswords/${language}.json`);
+  crosswordCache[language] = data.default as Crossword[];
+  return crosswordCache[language]!;
+}
+
+async function loadQuestions(language: Language): Promise<Record<string, Question[]>> {
+  if (questionCache[language]) return questionCache[language]!;
+  const data = await import(`../data/questions/${language}.json`);
+  questionCache[language] = data.default as Record<string, Question[]>;
+  return questionCache[language]!;
+}
 
 // Track last used crossword to avoid repetition
-let lastCrosswordId: Record<Language, number | null> = { en: null, es: null };
+const lastCrosswordId: Record<Language, number | null> = { en: null, es: null };
 
-export function getRandomCrossword(language: Language): Crossword {
-  const crosswords = crosswordData[language];
+export async function getRandomCrossword(language: Language): Promise<Crossword> {
+  const crosswords = await loadCrosswords(language);
   if (crosswords.length <= 1) return crosswords[0];
 
   // Pick a different crossword than last time
@@ -33,19 +36,21 @@ export function getRandomCrossword(language: Language): Crossword {
   return crosswords[index];
 }
 
-export function getCrosswordById(id: number, language: Language): Crossword | undefined {
-  return crosswordData[language].find((c) => c.id === id);
+export async function getCrosswordById(id: number, language: Language): Promise<Crossword | undefined> {
+  const crosswords = await loadCrosswords(language);
+  return crosswords.find((c) => c.id === id);
 }
 
-export function getRandomQuestion(
+export async function getRandomQuestion(
   categories: Category[],
   language: Language,
   usedIds: Set<string>
-): Question | null {
+): Promise<Question | null> {
+  const questionData = await loadQuestions(language);
   const allQuestions: Question[] = [];
 
   for (const cat of categories) {
-    const catQuestions = questionData[language][cat] || [];
+    const catQuestions = questionData[cat] || [];
     allQuestions.push(...catQuestions.filter((q) => !usedIds.has(q.id)));
   }
 
@@ -55,12 +60,13 @@ export function getRandomQuestion(
   return allQuestions[index];
 }
 
-export function getQuestionForCategory(
+export async function getQuestionForCategory(
   category: Category,
   language: Language,
   usedIds: Set<string>
-): Question | null {
-  const questions = (questionData[language][category] || []).filter(
+): Promise<Question | null> {
+  const questionData = await loadQuestions(language);
+  const questions = (questionData[category] || []).filter(
     (q) => !usedIds.has(q.id)
   );
 

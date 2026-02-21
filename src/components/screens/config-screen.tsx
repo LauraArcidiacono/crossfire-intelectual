@@ -57,10 +57,10 @@ export function ConfigScreen() {
   const canContinueSolo =
     players[0].name.trim().length > 0 && selectedCategories.length >= 1;
 
-  const handleSoloContinue = () => {
+  const handleSoloContinue = async () => {
     if (!canContinueSolo) return;
     useGameStore.getState().setPlayerName(1, BOT_NAME);
-    const crossword = getRandomCrossword(language);
+    const crossword = await getRandomCrossword(language);
     startGame(crossword);
     setScreen('game');
   };

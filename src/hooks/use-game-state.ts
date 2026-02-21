@@ -41,7 +41,7 @@ export function useGameState() {
 
   // Host processes a word submission (works for both host's own turn and guest moves)
   const processWordSubmitted = useCallback(
-    (word: Word, isValid: boolean, playerIdx: 0 | 1) => {
+    async (word: Word, isValid: boolean, playerIdx: 0 | 1) => {
       if (!isValid) return;
 
       store.completeWord(word.id);
@@ -54,7 +54,7 @@ export function useGameState() {
         });
       }
 
-      const question = getRandomQuestion(
+      const question = await getRandomQuestion(
         store.selectedCategories,
         store.language,
         store.usedQuestionIds

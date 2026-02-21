@@ -32,7 +32,7 @@ export function VictoryScreen() {
       room.navigateToGame();
     } else if (!isOnline) {
       // Solo/local: just restart
-      const crossword = getRandomCrossword(store.language);
+      const crossword = await getRandomCrossword(store.language);
       store.startGame(crossword);
       store.setScreen('game');
     }

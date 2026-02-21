@@ -1,13 +1,15 @@
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { useGameStore } from './store/game-store';
 import { useSound } from './hooks/use-sound';
 import { WelcomeScreen } from './components/screens/welcome-screen';
-import { TutorialScreen } from './components/screens/tutorial-screen';
-import { ConfigScreen } from './components/screens/config-screen';
-import { WaitingRoomScreen } from './components/screens/waiting-room-screen';
-import { GameScreen } from './components/screens/game-screen';
-import { VictoryScreen } from './components/screens/victory-screen';
+import { Spinner } from './components/ui/spinner';
+
+const TutorialScreen = lazy(() => import('./components/screens/tutorial-screen').then(m => ({ default: m.TutorialScreen })));
+const ConfigScreen = lazy(() => import('./components/screens/config-screen').then(m => ({ default: m.ConfigScreen })));
+const WaitingRoomScreen = lazy(() => import('./components/screens/waiting-room-screen').then(m => ({ default: m.WaitingRoomScreen })));
+const GameScreen = lazy(() => import('./components/screens/game-screen').then(m => ({ default: m.GameScreen })));
+const VictoryScreen = lazy(() => import('./components/screens/victory-screen').then(m => ({ default: m.VictoryScreen })));
 
 const screens = {
   welcome: WelcomeScreen,
@@ -17,6 +19,14 @@ const screens = {
   game: GameScreen,
   victory: VictoryScreen,
 } as const;
+
+function LoadingFallback() {
+  return (
+    <div className="min-h-screen bg-mesh-vibrant flex items-center justify-center">
+      <Spinner size="md" />
+    </div>
+  );
+}
 
 function App() {
   const currentScreen = useGameStore((state) => state.currentScreen);
@@ -48,7 +58,7 @@ function App() {
     } else {
       stopMusic();
     }
-  }, [currentScreen, soundEnabled]);
+  }, [currentScreen, soundEnabled, screensWithMusic, desiredMusic, playMusic, stopMusic]);
 
   return (
     <>
@@ -60,7 +70,9 @@ function App() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
         >
-          <ScreenComponent />
+          <Suspense fallback={<LoadingFallback />}>
+            <ScreenComponent />
+          </Suspense>
         </motion.div>
       </AnimatePresence>
 
