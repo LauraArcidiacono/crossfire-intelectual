@@ -61,6 +61,8 @@
     "guestJoined": "joined the room!",
     "copyCode": "COPY",
     "copied": "COPIED!",
+    "shareButton": "SHARE",
+    "shareText": "Join my Crossfire Intellectual game! Code: {{code}}",
     "back": "LEAVE ROOM"
   },
   "game": {
@@ -127,6 +129,13 @@
     "backToMenu": "BACK TO MENU",
     "tie": "IT'S A TIE!",
     "statsTitle": "Game Statistics"
+  },
+  "errors": {
+    "room_not_found": "Room not found. Please try again.",
+    "room_full": "This room is already full.",
+    "create_failed": "Could not create room. Please try again.",
+    "code_collision": "Could not create room. Please try again.",
+    "network_error": "Connection error. Please check your internet connection."
   },
   "common": {
     "loading": "Loading...",

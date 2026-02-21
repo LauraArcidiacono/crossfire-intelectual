@@ -5,6 +5,7 @@ import { useGameStore } from '../../store/game-store';
 import { useRoom } from '../../hooks/use-room';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
+import { Spinner } from '../ui/spinner';
 import { LanguageSelector } from '../ui/language-selector';
 import { getRandomCrossword } from '../../lib/data-loader';
 import { BOT_NAME, CATEGORIES } from '../../constants/game-config';
@@ -193,7 +194,11 @@ export function ConfigScreen() {
                 onClick={handleCreateRoom}
                 data-testid="create-room-button"
               >
-                {room.roomStatus === 'creating' ? t('common.loading') : t('config.createRoom')}
+                {room.roomStatus === 'creating' ? (
+                  <span className="inline-flex items-center gap-2">
+                    <Spinner size="sm" /> {t('common.loading')}
+                  </span>
+                ) : t('config.createRoom')}
               </Button>
             </motion.div>
 
@@ -222,19 +227,26 @@ export function ConfigScreen() {
                   onClick={handleJoinRoom}
                   data-testid="join-room-button"
                 >
-                  {isJoining ? t('common.loading') : t('config.joinRoom')}
+                  {isJoining ? (
+                    <span className="inline-flex items-center gap-2">
+                      <Spinner size="sm" /> {t('common.loading')}
+                    </span>
+                  ) : t('config.joinRoom')}
                 </Button>
               </div>
             </motion.div>
 
             {room.error && (
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="text-crimson text-base text-center font-medium"
+              <motion.div
+                initial={{ opacity: 0, y: -5 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="glass-strong rounded-2xl p-4 border border-crimson/20"
               >
-                {room.error}
-              </motion.p>
+                <p className="text-crimson text-base text-center font-medium flex items-center justify-center gap-2">
+                  <span>&#9888;&#65039;</span>
+                  {t(`errors.${room.error}`, { defaultValue: room.error })}
+                </p>
+              </motion.div>
             )}
           </>
         )}

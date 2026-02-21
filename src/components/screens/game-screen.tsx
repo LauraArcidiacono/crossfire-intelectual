@@ -6,6 +6,7 @@ import { useCrossword } from '../../hooks/use-crossword';
 import { useGameState } from '../../hooks/use-game-state';
 import { useTimer } from '../../hooks/use-timer';
 import { useSound } from '../../hooks/use-sound';
+import { useHaptics } from '../../hooks/use-haptics';
 import { Button } from '../ui/button';
 import { TimerDisplay } from '../ui/timer-display';
 import { Modal } from '../ui/modal';
@@ -27,6 +28,7 @@ export function GameScreen() {
   const crosswordHook = useCrossword();
   const gameState = useGameState();
   const { play } = useSound();
+  const { vibrate } = useHaptics();
   const [showExitConfirm, setShowExitConfirm] = useState(false);
   const [showDisconnect, setShowDisconnect] = useState(false);
   const [wrongWordShake, setWrongWordShake] = useState(false);
@@ -140,9 +142,11 @@ export function GameScreen() {
 
     if (result.isValid) {
       play('reveal');
+      vibrate('tap');
       gameState.handleWordSubmitted(result.word, true);
     } else {
       play('incorrect');
+      vibrate('error');
       setWrongWordShake(true);
       setTimeout(() => {
         setWrongWordShake(false);
@@ -157,7 +161,7 @@ export function GameScreen() {
         }
       }, 600);
     }
-  }, [crosswordHook, gameState, play, store]);
+  }, [crosswordHook, gameState, play, vibrate, store]);
 
   const handleHint = useCallback(() => {
     if (!store.crossword || !crosswordHook.selectedWord) return;

@@ -6,6 +6,7 @@ import {
   subscribeToRoom,
   syncGameState,
   leaveRoom as leaveRoomApi,
+  cleanupStaleRooms,
 } from '../lib/networking';
 import { getCrosswordById, getRandomCrossword } from '../lib/data-loader';
 import type { RealtimeChannel } from '@supabase/supabase-js';
@@ -92,10 +93,13 @@ export function useRoom() {
       setRoomStatus('creating');
       setError(null);
 
+      // Opportunistic cleanup of stale rooms (fire-and-forget)
+      cleanupStaleRooms().catch(() => {});
+
       const { room, error: err } = await createRoomApi(name, categories, language);
 
       if (err || !room) {
-        setError(err || 'Failed to create room');
+        setError(err || 'create_failed');
         setRoomStatus('error');
         return null;
       }
@@ -120,7 +124,7 @@ export function useRoom() {
       const { room, error: err } = await joinRoomApi(code, name);
 
       if (err || !room) {
-        setError(err || 'Failed to join room');
+        setError(err || 'room_not_found');
         setRoomStatus('error');
         return false;
       }

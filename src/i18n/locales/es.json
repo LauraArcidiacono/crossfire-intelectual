@@ -61,6 +61,8 @@
     "guestJoined": "se unió a la sala!",
     "copyCode": "COPIAR",
     "copied": "¡COPIADO!",
+    "shareButton": "COMPARTIR",
+    "shareText": "¡Unite a mi partida de Crossfire Intellectual! Código: {{code}}",
     "back": "SALIR DE SALA"
   },
   "game": {
@@ -127,6 +129,13 @@
     "backToMenu": "VOLVER AL MENÚ",
     "tie": "¡EMPATE!",
     "statsTitle": "Estadísticas de la partida"
+  },
+  "errors": {
+    "room_not_found": "Sala no encontrada. Intentá de nuevo.",
+    "room_full": "Esta sala ya está llena.",
+    "create_failed": "No se pudo crear la sala. Intentá de nuevo.",
+    "code_collision": "No se pudo crear la sala. Intentá de nuevo.",
+    "network_error": "Error de conexión. Verificá tu conexión a internet e intenta de nuevo."
   },
   "common": {
     "loading": "Cargando...",

@@ -4,16 +4,22 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useGameStore } from '../../store/game-store';
 import { useRoom } from '../../hooks/use-room';
 import { useSound } from '../../hooks/use-sound';
+import { useHaptics } from '../../hooks/use-haptics';
 import { Button } from '../ui/button';
+import { Spinner } from '../ui/spinner';
 
 export function WaitingRoomScreen() {
   const { t } = useTranslation();
   const store = useGameStore();
   const room = useRoom();
   const { play } = useSound();
+  const { vibrate } = useHaptics();
   const [countdown, setCountdown] = useState<number | null>(null);
   const [copied, setCopied] = useState(false);
+  const [isStarting, setIsStarting] = useState(false);
   const countdownRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  const canShare = typeof navigator !== 'undefined' && 'share' in navigator;
 
   const isHost = store.playerRole === 'host';
   const isGuest = store.playerRole === 'guest';
@@ -32,30 +38,49 @@ export function WaitingRoomScreen() {
     }
   }, [store.roomCode]);
 
+  const handleShare = useCallback(async () => {
+    if (!store.roomCode) return;
+    const text = t('waitingRoom.shareText', { code: store.roomCode });
+    if (canShare) {
+      try {
+        await navigator.share({ title: 'Crossfire Intellectual', text });
+      } catch {
+        // User cancelled
+      }
+    } else {
+      await handleCopyCode();
+    }
+  }, [store.roomCode, t, canShare, handleCopyCode]);
+
   // Shared countdown logic used by both host and guest
   const startCountdown = useCallback(() => {
     if (countdown !== null) return; // already running
     setCountdown(3);
     play('countdown-tick');
+    vibrate('countdown');
     countdownRef.current = setInterval(() => {
       setCountdown((prev) => {
         if (prev === null || prev <= 1) {
           if (countdownRef.current) clearInterval(countdownRef.current);
           play('countdown-go');
+          vibrate('success');
           room.navigateToGame();
           return null;
         }
         play('countdown-tick');
+        vibrate('countdown');
         return prev - 1;
       });
     }, 1000);
-  }, [countdown, play, room]);
+  }, [countdown, play, vibrate, room]);
 
   // Host: prepare game, then start countdown
   const handleStart = async () => {
-    if (!canStart) return;
+    if (!canStart || isStarting) return;
+    setIsStarting(true);
     // Sync initial state to Supabase first — this triggers the guest's countdown
     await room.prepareOnlineGame();
+    setIsStarting(false);
     startCountdown();
   };
 
@@ -139,13 +164,24 @@ export function WaitingRoomScreen() {
                 {store.roomCode}
               </span>
             </div>
-            <motion.button
-              whileTap={{ scale: 0.95 }}
-              onClick={handleCopyCode}
-              className="mt-3 px-4 py-1.5 rounded-full text-sm font-bold bg-forest-green/10 text-forest-green border border-forest-green/20 hover:bg-forest-green/20 transition-colors"
-            >
-              {copied ? t('waitingRoom.copied') : t('waitingRoom.copyCode')}
-            </motion.button>
+            <div className="mt-3 flex items-center justify-center gap-2">
+              <motion.button
+                whileTap={{ scale: 0.95 }}
+                onClick={handleCopyCode}
+                className="px-4 py-1.5 rounded-full text-sm font-bold bg-forest-green/10 text-forest-green border border-forest-green/20 hover:bg-forest-green/20 transition-colors"
+              >
+                {copied ? t('waitingRoom.copied') : t('waitingRoom.copyCode')}
+              </motion.button>
+              {canShare && (
+                <motion.button
+                  whileTap={{ scale: 0.95 }}
+                  onClick={handleShare}
+                  className="px-4 py-1.5 rounded-full text-sm font-bold bg-terracotta/10 text-terracotta border border-terracotta/20 hover:bg-terracotta/20 transition-colors"
+                >
+                  {t('waitingRoom.shareButton')}
+                </motion.button>
+              )}
+            </div>
           </div>
         </motion.div>
       )}
@@ -251,8 +287,12 @@ export function WaitingRoomScreen() {
           {t('waitingRoom.back')}
         </Button>
         {isHost && (
-          <Button disabled={!canStart} onClick={handleStart}>
-            {t('waitingRoom.startGame')}
+          <Button disabled={!canStart || isStarting} onClick={handleStart}>
+            {isStarting ? (
+              <span className="inline-flex items-center gap-2">
+                <Spinner size="sm" /> {t('common.loading')}
+              </span>
+            ) : t('waitingRoom.startGame')}
           </Button>
         )}
       </motion.div>

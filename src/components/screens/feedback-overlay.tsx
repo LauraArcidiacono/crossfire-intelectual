@@ -1,6 +1,8 @@
+import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Confetti } from '../ui/confetti';
+import { useHaptics } from '../../hooks/use-haptics';
 import type { LastFeedback } from '../../types/game.types';
 
 interface FeedbackOverlayProps {
@@ -9,6 +11,11 @@ interface FeedbackOverlayProps {
 
 export function FeedbackOverlay({ feedback }: FeedbackOverlayProps) {
   const { t } = useTranslation();
+  const { vibrate } = useHaptics();
+
+  useEffect(() => {
+    vibrate(feedback.isCorrect ? 'success' : 'error');
+  }, [feedback.isCorrect, vibrate]);
 
   return (
     <>

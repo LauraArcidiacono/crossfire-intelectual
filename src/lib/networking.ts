@@ -51,13 +51,13 @@ export async function createRoom(
     if (error) {
       // Unique constraint violation on code → retry
       if (error.code === '23505') continue;
-      return { room: null, error: error.message };
+      return { room: null, error: 'create_failed' };
     }
 
     return { room: rowToRoom(data), error: null };
   }
 
-  return { room: null, error: 'Failed to generate unique room code' };
+  return { room: null, error: 'code_collision' };
 }
 
 // Join a room (guest)
@@ -75,7 +75,7 @@ export async function joinRoom(
     .single();
 
   if (findError || !existing) {
-    return { room: null, error: 'Room not found or already full' };
+    return { room: null, error: 'room_not_found' };
   }
 
   // Update with guest name
@@ -88,7 +88,7 @@ export async function joinRoom(
     .single();
 
   if (updateError || !updated) {
-    return { room: null, error: 'Room is already full' };
+    return { room: null, error: 'room_full' };
   }
 
   return { room: rowToRoom(updated), error: null };
@@ -205,6 +205,12 @@ export async function leaveRoom(roomId: string): Promise<void> {
       await supabase.removeChannel(ch);
     }
   }
+}
+
+// Delete rooms older than 24 hours (opportunistic cleanup)
+export async function cleanupStaleRooms(): Promise<void> {
+  const cutoff = new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString();
+  await supabase.from('rooms').delete().lt('created_at', cutoff);
 }
 
 // Fetch room by code (for guest before joining)
