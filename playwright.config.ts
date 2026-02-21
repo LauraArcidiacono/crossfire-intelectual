@@ -15,6 +15,13 @@ export default defineConfig({
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
+      testIgnore: /multiplayer-e2e|disconnect/,
+    },
+    {
+      name: 'multiplayer',
+      use: { ...devices['Desktop Chrome'] },
+      testMatch: /multiplayer-e2e|disconnect/,
+      timeout: 120_000,
     },
   ],
   webServer: {

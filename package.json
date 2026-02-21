@@ -9,6 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "playwright test",
+    "test:multiplayer": "playwright test --project=multiplayer",
+    "test:session": "playwright test tests/session-persistence.spec.ts",
     "test:ui": "playwright test --ui",
     "test:report": "playwright show-report"
   },
