@@ -24,7 +24,7 @@
 1. **Pick a word** from the crossword grid and fill in the letters
 2. **Answer a trivia question** that appears after completing the word
 3. **Score points** — correct answers earn double, hints cost points
-4. **Race to 150 points** — take turns against a bot or a real opponent
+4. **Win the match** — reach 150 points or have the highest score when all words are completed
 
 <p align="center">
   <img src="docs/screenshots/01-welcome.png" alt="Welcome screen" width="220" />
