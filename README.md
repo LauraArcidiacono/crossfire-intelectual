@@ -32,7 +32,7 @@
 
 ## Features
 
-- **Solo mode** — Play against Socrates, a philosophical bot that picks words strategically
+- **Solo mode** — Play against Socrates, a philosophical bot with 70% accuracy
 - **Real-time multiplayer** — Create a room, share a 4-letter code, play head-to-head via Supabase Realtime
 - **6 trivia categories** — History, Language, Science, Philosophy, Art, Geography
 - **Bilingual** — Full support for English and Spanish (crosswords + questions + UI)
@@ -44,7 +44,7 @@
 
 | Layer | Technology |
 |-------|-----------|
-| **Framework** | React 19 + TypeScript |
+| **Framework** | React 18 + TypeScript |
 | **Bundler** | Vite with code-splitting and lazy-loaded data |
 | **Styling** | Tailwind CSS 4 with custom glassmorphism theme |
 | **State** | Zustand (single store with session persistence) |
@@ -76,16 +76,16 @@ npm test
 
 ```
 src/
-  components/
-    screens/       # 6 screens (welcome, tutorial, config, waiting-room, game, victory)
-    game/          # Crossword grid, clue panel, trivia, feedback overlay
-    ui/            # Shared components (button, spinner, input)
-  hooks/           # useGameState, useOnlineGame, useRoom, useSound, useHaptics
-  store/           # Zustand store with session persistence
-  lib/             # Networking (Supabase), data-loader, bot-logic
-  data/            # Crossword grids and trivia questions (EN + ES)
-  i18n/            # Translation files
+  components/     # React components (screens/ and ui/)
+  hooks/          # Custom React hooks
+  store/          # Zustand state management
+  lib/            # Game logic, networking, bot, sound
+  constants/      # Game configuration and scoring
+  data/           # Crossword grids and trivia questions (EN + ES)
+  i18n/           # Translation files
 ```
+
+See [ARCHITECTURE.md](ARCHITECTURE.md) for detailed file listings, type contracts, and function signatures.
 
 ## Scripts
 

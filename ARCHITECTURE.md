@@ -1,35 +1,23 @@
 # Crossfire Intellectual - Architecture & Contracts
 
-## 1. Project Overview
+## 1. Tech Stack (with versions)
 
-**Crossfire Intellectual** is a hybrid crossword + trivia game designed for 1-2 players. Players compete to fill in a shared crossword grid by answering trivia questions from six categories. The first player to reach **150 points** wins the match.
-
-**Core loop:** Select a word on the crossword, answer the associated trivia question, and if correct the word is revealed on the grid and points are awarded. Players alternate turns until one reaches the victory threshold.
-
-**Game modes:**
-- **Solo** - Single player vs. a bot opponent
-- **Local** - Two players on the same device
-- **Online** - Two players connected via Supabase Realtime
-
----
-
-## 2. Tech Stack
-
-| Layer | Technology | Purpose |
-|-------|-----------|---------|
-| **Framework** | React 18 + TypeScript | UI and application logic |
-| **Build tool** | Vite | Fast dev server and production bundling |
-| **Styling** | Tailwind CSS | Utility-first CSS framework |
-| **Backend / Realtime** | Supabase | Auth, database, and realtime multiplayer |
-| **State management** | Zustand | Lightweight global state |
-| **Animations** | Framer Motion | Declarative animations and transitions |
-| **Sound** | Howler.js | Cross-browser audio playback |
-| **Internationalization** | react-i18next | Multi-language support (EN/ES) |
-| **E2E Testing** | Playwright | Browser-based end-to-end tests |
+| Layer | Technology | Version | Purpose |
+|-------|-----------|---------|---------|
+| **Framework** | React + TypeScript | ^18.3.1 | UI and application logic |
+| **Build tool** | Vite | ^6.0.0 | Fast dev server and production bundling |
+| **Styling** | Tailwind CSS v4 | ^4.1.18 | Utility-first CSS with `@theme` configuration |
+| **Backend / Realtime** | Supabase | ^2.95.3 | Database and realtime multiplayer |
+| **State management** | Zustand | ^5.0.11 | Single global store with session persistence |
+| **Animations** | Framer Motion | ^12.34.0 | Declarative animations and transitions |
+| **Sound** | Howler.js | ^2.2.4 | Cross-browser audio playback (SFX + music) |
+| **Internationalization** | react-i18next | ^16.5.4 | Multi-language support (EN/ES) |
+| **PWA** | vite-plugin-pwa | ^1.2.0 | Offline support, installable app |
+| **E2E Testing** | Playwright | ^1.58.2 | Browser-based end-to-end tests |
 
 ---
 
-## 3. TypeScript Interfaces
+## 2. TypeScript Interfaces
 
 All shared types live in `src/types/game.types.ts`.
 
@@ -41,6 +29,10 @@ export type QuestionType = 'open' | 'multiple-choice';
 export type Difficulty = 'easy' | 'medium' | 'hard';
 export type Direction = 'across' | 'down';
 export type GameStatus = 'waiting' | 'playing' | 'finished';
+export type GameMode = 'solo' | 'multiplayer';
+export type TurnPhase = 'selecting' | 'typing' | 'submitted' | 'question' | 'feedback';
+export type PlayerRole = 'host' | 'guest';
+export type RoomStatus = 'waiting' | 'playing' | 'finished';
 
 export type Screen =
   | 'welcome'
@@ -51,7 +43,7 @@ export type Screen =
   | 'victory';
 ```
 
-### Player
+### Core Data Types
 
 ```typescript
 export interface Player {
@@ -60,34 +52,14 @@ export interface Player {
   score: number;
   isReady: boolean;
 }
-```
 
-### GameState
-
-```typescript
-export interface GameState {
-  currentTurn: 1 | 2;
-  players: [Player, Player];
-  completedWords: number[];
-  timeRemaining: number;
-  status: GameStatus;
-}
-```
-
-### CrosswordGrid
-
-```typescript
 export interface CrosswordGrid {
   rows: number;
   cols: number;
   blackCells: [number, number][];
   prefilled: { row: number; col: number; letter: string }[];
 }
-```
 
-### Word
-
-```typescript
 export interface Word {
   id: number;
   word: string;
@@ -97,141 +69,342 @@ export interface Word {
   row: number;
   col: number;
 }
-```
 
-### Crossword
-
-```typescript
 export interface Crossword {
   id: number;
   title: string;
   grid: CrosswordGrid;
   words: Word[];
 }
-```
 
-### Question
-
-```typescript
 export interface Question {
   id: string;
   question: string;
   type: QuestionType;
   answer: string;
-  options?: [string, string, string, string];
+  options: [string, string, string, string];
   category: Category;
   difficulty: Difficulty;
 }
 ```
 
----
-
-## 4. Function Signatures
-
-### 4.1 Game Logic (`src/lib/gameLogic.ts`)
+### Game State Types
 
 ```typescript
-function initializeGame(crossword: Crossword, players: [Player, Player]): GameState;
+export interface CellPosition {
+  row: number;
+  col: number;
+}
 
-function selectWord(state: GameState, wordId: number): GameState;
+export interface LastFeedback {
+  isCorrect: boolean;
+  pointsEarned: number;
+  correctAnswer?: string;
+}
 
-function submitAnswer(state: GameState, wordId: number, answer: string): {
-  state: GameState;
-  correct: boolean;
-  pointsAwarded: number;
-};
+export interface GameStats {
+  wordsCompletedByPlayer: [number, number];
+  correctAnswersByPlayer: [number, number];
+  totalTimePlayed: number;
+}
 
-function switchTurn(state: GameState): GameState;
+export interface WordCompletion {
+  wordId: number;
+  playerIndex: 0 | 1;
+  points: number;
+}
 
-function checkVictory(state: GameState): { finished: boolean; winner: Player | null };
+export interface GameState {
+  currentTurn: 1 | 2;
+  players: [Player, Player];
+  completedWords: number[];
+  timeRemaining: number;
+  status: GameStatus;
+}
+```
 
-function calculatePoints(difficulty: Difficulty, timeRemaining: number): number;
+### Multiplayer Types
+
+```typescript
+export interface Room {
+  id: string;
+  code: string;
+  hostName: string;
+  guestName: string | null;
+  categories: Category[];
+  crosswordId: number | null;
+  status: RoomStatus;
+  language: 'es' | 'en';
+}
+
+export interface SyncableGameState {
+  currentTurn: 1 | 2;
+  players: [Player, Player];
+  completedWords: number[];
+  turnPhase: TurnPhase;
+  currentQuestion: Question | null;
+  lastFeedback: LastFeedback | null;
+  selectedWordId: number | null;
+  cellInputs: Record<string, string>;
+  status: GameStatus;
+  gameStats: GameStats;
+  wordCompletions: WordCompletion[];
+  crosswordId: number;
+  timeRemaining: number;
+  triviaTimeRemaining: number;
+}
+
+export type GameMove =
+  | { type: 'select-word'; wordId: number }
+  | { type: 'cell-input'; key: string; letter: string }
+  | { type: 'submit-word'; wordId: number }
+  | { type: 'submit-answer'; answer: string; usedHint: boolean }
+  | { type: 'timeout' }
+  | { type: 'hint' };
+```
+
+---
+
+## 3. Function Signatures
+
+### 3.1 Game Logic (`src/lib/game-logic.ts`)
+
+```typescript
+function validateWord(word: Word, input: string): boolean;
+
+function normalizeForComparison(text: string): string;
+
+function validateAnswer(question: Question, answer: string): boolean;
+
+function calculateScore(word: Word, isCorrect: boolean): number;
 
 function getAvailableWords(crossword: Crossword, completedWords: number[]): Word[];
+
+function checkVictoryCondition(
+  players: [Player, Player],
+  completedWords: number[],
+  crossword: Crossword
+): 'playing' | 'victory' | 'tie';
+
+function getWinner(players: [Player, Player]): Player | null;
 ```
 
-### 4.2 Bot Logic (`src/lib/botLogic.ts`)
+Scoring uses Scrabble letter values (`src/constants/scrabble-values.ts`). Correct trivia answers earn 2x the word's Scrabble score; incorrect answers earn 1x. Answer validation supports exact match, keyword matching, and substring containment for open questions.
+
+### 3.2 Crossword Utilities (`src/lib/crossword.ts`)
 
 ```typescript
-function botSelectWord(availableWords: Word[], difficulty: Difficulty): Word;
+function isBlackCell(grid: CrosswordGrid, row: number, col: number): boolean;
 
-function botAnswerQuestion(question: Question, difficulty: Difficulty): {
-  answer: string;
-  delay: number;
-};
+function getPrefilledLetter(grid: CrosswordGrid, row: number, col: number): string | null;
 
-function getBotAccuracy(difficulty: Difficulty): number;
+function cellKey(row: number, col: number): string;
+
+function getWordCells(word: Word): CellPosition[];
+
+function getWordsAtCell(crossword: Crossword, row: number, col: number): Word[];
+
+function buildWordInput(word: Word, cellInputs: Record<string, string>, grid: CrosswordGrid): string;
+
+function getNextCell(current: CellPosition, direction: Direction, word: Word): CellPosition | null;
+
+function getPreviousCell(current: CellPosition, word: Word): CellPosition | null;
+
+function isWordFullyFilled(word: Word, cellInputs: Record<string, string>, grid: CrosswordGrid): boolean;
+
+function getHintCell(
+  word: Word,
+  cellInputs: Record<string, string>,
+  grid: CrosswordGrid
+): { row: number; col: number; letter: string } | null;
 ```
 
-### 4.3 Networking (`src/lib/networking.ts`)
+### 3.3 Bot Logic (`src/lib/bot.ts`)
 
 ```typescript
-function createRoom(hostPlayer: Player): Promise<string>;
+function botSelectWord(availableWords: Word[]): Word;
 
-function joinRoom(roomCode: string, guestPlayer: Player): Promise<boolean>;
+function botAnswerQuestion(question: Question): { answer: string; isCorrect: boolean };
 
-function subscribeToRoom(roomCode: string, onUpdate: (state: GameState) => void): () => void;
-
-function sendMove(roomCode: string, move: { wordId: number; answer: string }): Promise<void>;
-
-function leaveRoom(roomCode: string, playerId: string): Promise<void>;
+function getBotThinkDelay(): number;
 ```
 
-### 4.4 Data Layer (`src/lib/dataLoader.ts`)
+Bot accuracy is fixed at 70% (`BOT_ACCURACY = 0.7`). Think delay ranges from 3-8 seconds.
+
+### 3.4 Networking (`src/lib/networking.ts`)
 
 ```typescript
-function loadCrossword(crosswordId: number): Promise<Crossword>;
+function generateRoomCode(): string;
 
-function loadQuestions(category: Category, difficulty: Difficulty): Promise<Question[]>;
+function createRoom(
+  hostName: string,
+  categories: Category[],
+  language: 'es' | 'en'
+): Promise<{ room: Room | null; error: string | null }>;
 
-function getRandomCrossword(): Promise<Crossword>;
+function joinRoom(
+  code: string,
+  guestName: string
+): Promise<{ room: Room | null; error: string | null }>;
 
-function getQuestionForWord(wordId: number, category: Category): Promise<Question>;
+function subscribeToRoom(
+  roomId: string,
+  callbacks: {
+    onGuestJoined?: (guestName: string) => void;
+    onStatusChanged?: (status: RoomStatus) => void;
+    onGameStateChanged?: (state: SyncableGameState) => void;
+  }
+): RealtimeChannel;
+
+function updateRoomStatus(roomId: string, status: RoomStatus): Promise<void>;
+
+function syncGameState(roomId: string, state: SyncableGameState): Promise<void>;
+
+function createGameChannel(roomId: string): RealtimeChannel;
+
+function sendMove(channel: RealtimeChannel, move: GameMove): void;
+
+function onMove(channel: RealtimeChannel, callback: (move: GameMove) => void): RealtimeChannel;
+
+function setupPresence(
+  channel: RealtimeChannel,
+  userId: string,
+  onPresenceChange: (presentUsers: string[]) => void
+): void;
+
+function leaveRoom(roomId: string): Promise<void>;
+
+function cleanupStaleRooms(): Promise<void>;
+
+function getRoomByCode(code: string): Promise<{ room: Room | null; error: string | null }>;
+```
+
+Multiplayer uses a host/guest architecture: the host manages game state and syncs it to the `rooms` table via `game_state` JSONB column. The guest sends moves via Realtime broadcast, and receives state updates via postgres_changes subscription. Presence tracking detects disconnections.
+
+### 3.5 Data Layer (`src/lib/data-loader.ts`)
+
+```typescript
+function loadCrosswords(language: Language): Promise<Crossword[]>;
+
+function loadQuestions(language: Language): Promise<Record<string, Question[]>>;
+
+function getRandomCrossword(language: Language): Promise<Crossword>;
+
+function getCrosswordById(id: number, language: Language): Promise<Crossword | undefined>;
+
+function getRandomQuestion(
+  categories: Category[],
+  language: Language,
+  usedIds: Set<string>
+): Promise<Question | null>;
+
+function getQuestionForCategory(
+  category: Category,
+  language: Language,
+  usedIds: Set<string>
+): Promise<Question | null>;
+
+function shuffleOptions(options: string[]): string[];
+```
+
+Data is loaded via dynamic `import()` from `src/data/crosswords/{en,es}.json` and `src/data/questions/{en,es}.json`. Both datasets are cached per language after first load.
+
+### 3.6 Sound Manager (`src/lib/sound.ts`)
+
+```typescript
+class SoundManager {
+  init(): void;
+  play(name: SoundName): void;
+  playMusic(name: MusicName): void;
+  stopMusic(): void;
+  setEnabled(enabled: boolean): void;
+  setVolume(volume: number): void;
+  isEnabled(): boolean;
+  stopAll(): void;
+}
+
+type SoundName = 'click' | 'reveal' | 'question' | 'correct' | 'incorrect'
+               | 'victory' | 'turn' | 'timeout' | 'countdown-tick' | 'countdown-go';
+type MusicName = 'music-game' | 'music-victory';
+```
+
+Singleton instance exported as `soundManager`. Auto-pauses music on tab visibility change.
+
+### 3.7 Supabase Client (`src/lib/supabase.ts`)
+
+```typescript
+const supabase = createClient(
+  import.meta.env.VITE_SUPABASE_URL,
+  import.meta.env.VITE_SUPABASE_ANON_KEY
+);
 ```
 
 ---
 
-## 5. Supabase Database Schema
+## 4. Supabase Database Schema
 
 ### Table: `rooms`
 
 | Column | Type | Constraints | Description |
 |--------|------|-------------|-------------|
 | `id` | `uuid` | PK, default `gen_random_uuid()` | Unique room identifier |
-| `code` | `text` | UNIQUE, NOT NULL | 6-character room code for joining |
-| `host_id` | `text` | NOT NULL | Player ID of the host |
-| `guest_id` | `text` | NULLABLE | Player ID of the guest |
+| `code` | `text` | UNIQUE, NOT NULL | 4-character alphanumeric room code |
+| `host_name` | `text` | NOT NULL | Display name of the host player |
+| `guest_name` | `text` | NULLABLE | Display name of the guest player |
+| `categories` | `jsonb` | NOT NULL | Array of selected trivia categories |
+| `crossword_id` | `integer` | NULLABLE | ID of the crossword being played |
+| `language` | `text` | NOT NULL | Game language: `'en'` or `'es'` |
+| `game_state` | `jsonb` | NULLABLE | Full serialized `SyncableGameState` |
 | `status` | `text` | NOT NULL, default `'waiting'` | Room status: `waiting`, `playing`, `finished` |
-| `created_at` | `timestamptz` | default `now()` | Creation timestamp |
-| `updated_at` | `timestamptz` | default `now()` | Last update timestamp |
-
-### Table: `games`
-
-| Column | Type | Constraints | Description |
-|--------|------|-------------|-------------|
-| `id` | `uuid` | PK, default `gen_random_uuid()` | Unique game identifier |
-| `room_id` | `uuid` | FK -> rooms.id, NOT NULL | Associated room |
-| `crossword_id` | `integer` | NOT NULL | ID of the crossword being played |
-| `state` | `jsonb` | NOT NULL | Full serialized `GameState` |
-| `current_turn` | `integer` | NOT NULL, default `1` | Current turn (1 or 2) |
-| `winner_id` | `text` | NULLABLE | Player ID of the winner |
-| `created_at` | `timestamptz` | default `now()` | Creation timestamp |
-| `updated_at` | `timestamptz` | default `now()` | Last update timestamp |
-
-### Table: `crosswords`
-
-| Column | Type | Constraints | Description |
-|--------|------|-------------|-------------|
-| `id` | `integer` | PK | Crossword identifier |
-| `title` | `text` | NOT NULL | Display title |
-| `grid` | `jsonb` | NOT NULL | Serialized `CrosswordGrid` |
-| `words` | `jsonb` | NOT NULL | Array of serialized `Word` objects |
-| `difficulty` | `text` | NOT NULL | Overall difficulty: `easy`, `medium`, `hard` |
 | `created_at` | `timestamptz` | default `now()` | Creation timestamp |
 
 ### Realtime
 
-Supabase Realtime is enabled on the `rooms` and `games` tables. Clients subscribe to changes on their room's row to receive live game state updates.
+- **postgres_changes**: Clients subscribe to UPDATE events on their room row to receive live game state updates.
+- **broadcast**: Guest-to-host move communication via `game:${roomId}` channel.
+- **presence**: Disconnect detection via `game:${roomId}` channel presence tracking.
+
+Stale rooms (>24h) are opportunistically cleaned up by `cleanupStaleRooms()`.
+
+---
+
+## 5. State Management
+
+Single Zustand store (`src/store/game-store.ts`) combining game state and UI state:
+
+```typescript
+// UI state (persisted via i18next localStorage)
+interface UISlice {
+  currentScreen: Screen;
+  language: 'es' | 'en';
+  soundEnabled: boolean;
+  volume: number;
+}
+
+// Game state (persisted to sessionStorage during active games)
+interface GameSlice {
+  status: GameStatus;
+  mode: GameMode;
+  currentTurn: 1 | 2;
+  players: [Player, Player];
+  completedWords: number[];
+  timeRemaining: number;
+  selectedCategories: Category[];
+  crossword: Crossword | null;
+  currentQuestion: Question | null;
+  selectedWordId: number | null;
+  cellInputs: Record<string, string>;
+  selectedCell: CellPosition | null;
+  turnPhase: TurnPhase;
+  lastFeedback: LastFeedback | null;
+  gameStats: GameStats;
+  wordCompletions: WordCompletion[];
+  usedQuestionIds: Set<string>;
+  // ... multiplayer fields: roomId, roomCode, playerRole
+}
+```
+
+Session persistence: active game state is saved to `sessionStorage` on every state change and restored on page reload.
 
 ---
 
@@ -239,51 +412,57 @@ Supabase Realtime is enabled on the `rooms` and `games` tables. Clients subscrib
 
 | Element | Convention | Example |
 |---------|-----------|---------|
-| **Variables & functions** | camelCase | `currentTurn`, `submitAnswer` |
-| **Components** | PascalCase | `GameBoard`, `QuestionModal` |
-| **Files (components)** | kebab-case | `game-board.tsx`, `question-modal.tsx` |
-| **Files (hooks)** | camelCase with `use` prefix | `useGameState.ts`, `useTimer.ts` |
+| **Variables & functions** | camelCase | `currentTurn`, `validateAnswer` |
+| **Components** | PascalCase | `GameScreen`, `QuestionModal` |
+| **Files (components)** | kebab-case | `game-screen.tsx`, `question-modal.tsx` |
+| **Files (hooks)** | kebab-case with `use-` prefix | `use-game-state.ts`, `use-timer.ts` |
+| **Files (lib)** | kebab-case | `game-logic.ts`, `data-loader.ts` |
 | **Files (types)** | kebab-case with `.types` suffix | `game.types.ts` |
-| **Files (constants)** | kebab-case | `colors.ts`, `scoring.ts` |
-| **CSS classes** | Tailwind utilities | `bg-forest-green text-cream` |
-| **Zustand stores** | camelCase with `use` prefix + `Store` suffix | `useGameStore`, `useSettingsStore` |
-| **Supabase tables** | snake_case | `rooms`, `games`, `crosswords` |
-| **Supabase columns** | snake_case | `host_id`, `current_turn` |
+| **Files (constants)** | kebab-case | `game-config.ts`, `scrabble-values.ts` |
+| **CSS classes** | Tailwind utilities + custom `.glass-*`, `.bg-mesh-*` | `bg-forest-green text-cream glass` |
+| **Zustand store** | `useGameStore` (single store) | `useGameStore()` |
+| **Supabase tables** | snake_case | `rooms` |
+| **Supabase columns** | snake_case | `host_name`, `game_state` |
 | **Enums / union types** | kebab-case strings | `'multiple-choice'`, `'waiting-room'` |
 | **i18n keys** | dot-separated namespaces | `game.score`, `welcome.startButton` |
-| **Test files** | same name + `.test` suffix | `game-board.test.tsx` |
+| **Test files** | kebab-case with `.spec.ts` suffix | `e2e-solo.spec.ts`, `disconnect.spec.ts` |
 
 ---
 
-## 7. Color Palette - "Modern Library"
+## 7. Color Palette
 
-| Name | Hex | Usage |
-|------|-----|-------|
-| **Forest Green** | `#2C5530` | Primary buttons, active states, success indicators |
-| **Terracotta** | `#C65D3B` | Accent, wrong-answer feedback, highlights |
-| **Cream** | `#F5E6D3` | Background, card surfaces |
-| **Gold** | `#B8860B` | Points display, achievements, star ratings |
-| **Night Blue** | `#1E3A5F` | Headers, dark-mode backgrounds, player 2 accent |
-| **Sage Green** | `#5E7C61` | Secondary buttons, subtle borders, hover states |
-| **Warm Brown** | `#8B4513` | Text on light backgrounds, crossword grid lines |
-| **Crimson** | `#DC143C` | Error states, timer warnings, critical alerts |
+| Name | CSS Variable | Hex | Usage |
+|------|-------------|-----|-------|
+| **Forest Green** | `--color-forest-green` | `#589C48` | Primary buttons, active states, success |
+| **Terracotta** | `--color-terracotta` | `#F58024` | Accent, orange highlights |
+| **Cream** | `--color-cream` | `#F0F4F0` | Card surfaces, light backgrounds |
+| **Gold** | `--color-gold` | `#FBB149` | Points display, achievements |
+| **Night Blue** | `--color-night-blue` | `#733381` | Purple accent (despite name), opponent highlights |
+| **Sage Green** | `--color-sage-green` | `#7BB662` | Secondary green, hover states |
+| **Warm Brown** | `--color-warm-brown` | `#3A3A3A` | Primary text color |
+| **Crimson** | `--color-crimson` | `#DC143C` | Error states, timer warnings |
+| **Light Purple** | `--color-light-purple` | `#9B64A7` | Secondary purple accent |
 
-### Tailwind Configuration
+### Tailwind CSS v4 Configuration
 
-These colors should be registered in `tailwind.config.ts` under `theme.extend.colors`:
+Colors and fonts are defined in `src/index.css` using the `@theme` directive (no `tailwind.config.ts`):
 
-```typescript
-colors: {
-  'forest-green': '#2C5530',
-  'terracotta': '#C65D3B',
-  'cream': '#F5E6D3',
-  'gold': '#B8860B',
-  'night-blue': '#1E3A5F',
-  'sage-green': '#5E7C61',
-  'warm-brown': '#8B4513',
-  'crimson': '#DC143C',
+```css
+@import "tailwindcss";
+
+@theme {
+  --color-forest-green: #589C48;
+  --color-terracotta: #F58024;
+  --color-cream: #F0F4F0;
+  /* ... */
+
+  --font-title: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 }
 ```
+
+Custom CSS utility classes: `.glass`, `.glass-strong`, `.glass-dark` (glassmorphism), `.bg-mesh-green`, `.bg-mesh-game`, `.bg-mesh-vibrant` (gradient backgrounds), `.blob-*` (animated background blobs), `.glow-*` (box-shadow effects), `.btn-gradient-*` (button gradients).
 
 ---
 
@@ -291,26 +470,61 @@ colors: {
 
 | Role | Font Family | Weight | Usage |
 |------|------------|--------|-------|
-| **Titles** | Playfair Display | 700 (Bold) | Page headings, game title, victory screen |
-| **Body** | Inter | 400 (Regular), 600 (Semi-Bold) | Paragraphs, buttons, labels, questions |
-| **Monospace** | JetBrains Mono | 400 (Regular) | Crossword cells, timer display, room codes |
+| **Titles** | Plus Jakarta Sans | 400–800 | Page headings, game title, victory screen |
+| **Body** | Inter | 400–800 | Paragraphs, buttons, labels, questions |
+| **Monospace** | JetBrains Mono | 400–700 | Crossword cells, timer display, room codes |
 
-### Font Loading
+Fonts loaded via Google Fonts in `index.html`.
 
-Fonts are loaded via Google Fonts in `index.html`:
+---
 
-```html
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=JetBrains+Mono&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+## 9. Project Structure
+
+```
+src/
+  components/
+    screens/       # welcome, tutorial, config, waiting-room, game, victory
+                   # + question-modal, feedback-overlay
+    ui/            # button, card, input, modal, spinner, badge, confetti,
+                   # timer-display, language-selector
+  hooks/           # use-game-state, use-online-game, use-room, use-crossword,
+                   # use-timer, use-sound, use-haptics
+  store/           # game-store (single Zustand store)
+  lib/             # game-logic, crossword, bot, networking, supabase,
+                   # data-loader, sound
+  constants/       # game-config, scrabble-values
+  data/
+    crosswords/    # en.json, es.json
+    questions/     # en.json, es.json
+  types/           # game.types.ts
+  i18n/
+    config.ts
+    locales/       # en.json, es.json
+tests/
+  welcome.spec.ts
+  gameplay.spec.ts
+  e2e-solo.spec.ts
+  multiplayer-flow.spec.ts
+  multiplayer-e2e.spec.ts
+  session-persistence.spec.ts
+  disconnect.spec.ts
+  edge-cases.spec.ts
 ```
 
-### Tailwind Configuration
+---
 
-```typescript
-fontFamily: {
-  'display': ['"Playfair Display"', 'serif'],
-  'body': ['Inter', 'sans-serif'],
-  'mono': ['"JetBrains Mono"', 'monospace'],
-}
-```
+## 10. Game Constants (`src/constants/game-config.ts`)
+
+| Constant | Value | Description |
+|----------|-------|-------------|
+| `VICTORY_POINTS` | 150 | Points needed to win |
+| `TURN_TIMER` | 180 | Seconds per turn |
+| `TRIVIA_TIMER` | 60 | Seconds for trivia answer |
+| `ROOM_CODE_LENGTH` | 4 | Characters in room code |
+| `BOT_NAME` | `'Socrates'` | Bot opponent name |
+| `BOT_ACCURACY` | 0.7 | Bot correct answer probability |
+| `BOT_THINK_MIN / MAX` | 3000 / 8000 | Bot think delay range (ms) |
+| `HINT_LETTER_COST` | 3 | Points cost for a letter hint |
+| `TRIVIA_HINT_COST` | 5 | Points cost for a trivia hint |
+| `FEEDBACK_CORRECT_DURATION` | 2000 | Correct feedback display time (ms) |
+| `FEEDBACK_INCORRECT_DURATION` | 4000 | Incorrect feedback display time (ms) |
