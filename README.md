@@ -10,6 +10,10 @@
 </p>
 
 <p align="center">
+  <a href="https://crossfire-intelectual.pages.dev/"><strong>Play now</strong></a>
+</p>
+
+<p align="center">
   <img src="docs/screenshots/gameplay-demo.gif" alt="Gameplay demo" width="300" />
 </p>
 
@@ -54,6 +58,7 @@
 | **i18n** | i18next with browser language detection |
 | **PWA** | vite-plugin-pwa (Workbox service worker) |
 | **Testing** | Playwright (E2E + multiplayer with dual browser contexts) |
+| **Hosting** | Cloudflare Pages |
 
 ## Getting Started
 
