@@ -597,7 +597,7 @@ export function GameScreen() {
 
       {/* Feedback Overlay */}
       <AnimatePresence>
-        {store.turnPhase === 'feedback' && store.lastFeedback && (
+        {store.turnPhase === 'feedback' && store.lastFeedback && (!isOnline || gameState.isMyTurn) && (
           <FeedbackOverlay feedback={store.lastFeedback} />
         )}
       </AnimatePresence>

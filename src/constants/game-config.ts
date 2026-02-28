@@ -15,7 +15,7 @@ export const ROOM_CODE_LENGTH = 4;
 
 export const BOT_NAME = 'Socrates';
 export const BOT_THINK_MIN = 3000;
-export const BOT_THINK_MAX = 8000;
+export const BOT_THINK_MAX = 7000;
 export const BOT_ACCURACY = 0.7;
 
 export const CATEGORIES = [
@@ -27,7 +27,7 @@ export const CATEGORIES = [
   'geography',
 ] as const;
 
-export const FEEDBACK_CORRECT_DURATION = 2000;
+export const FEEDBACK_CORRECT_DURATION = 4000;
 export const FEEDBACK_INCORRECT_DURATION = 4000;
 
 export const HINT_LETTER_COST = 3;
