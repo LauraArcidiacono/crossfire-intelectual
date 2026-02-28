@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useGameStore } from '../store/game-store';
 import { calculateScore, checkVictoryCondition, validateAnswer } from '../lib/game-logic';
-import { botAnswerQuestion, botSelectWord, getBotThinkDelay } from '../lib/bot';
+import { botAnswerQuestion, botSelectWord, botShouldUseHint, getBotThinkDelay } from '../lib/bot';
 import { cellKey, getHintCell, getWordCells } from '../lib/crossword';
 import { getRandomQuestion } from '../lib/data-loader';
 import { useOnlineGame } from './use-online-game';
@@ -10,6 +10,7 @@ import {
   FEEDBACK_CORRECT_DURATION,
   FEEDBACK_INCORRECT_DURATION,
   HINT_LETTER_COST,
+  TRIVIA_HINT_COST,
   TRIVIA_TIMER,
 } from '../constants/game-config';
 
@@ -17,6 +18,7 @@ interface BotQuestionDisplay {
   question: string;
   answer: string | null;
   isCorrect: boolean;
+  usedHint: boolean;
 }
 
 export function useGameState() {
@@ -277,6 +279,7 @@ export function useGameState() {
   // Clear bot question display on turn switch
   useEffect(() => {
     if (!isBotTurn) {
+      setIsBotThinking(false);
       setBotQuestionDisplay(null);
     }
   }, [isBotTurn]);
@@ -325,21 +328,33 @@ export function useGameState() {
     if (store.turnPhase === 'question' && store.currentQuestion) {
       setIsBotThinking(true);
       const questionText = store.currentQuestion.question;
+      const willUseHint = botShouldUseHint(store.players[1].score);
 
-      setBotQuestionDisplay({ question: questionText, answer: null, isCorrect: false });
+      setBotQuestionDisplay({ question: questionText, answer: null, isCorrect: false, usedHint: false });
 
       const thinkDelay = getBotThinkDelay();
 
       botTimeoutRef.current = setTimeout(() => {
-        const { answer, isCorrect } = botAnswerQuestion(store.currentQuestion!);
+        if (willUseHint) {
+          store.updateScore(1, -TRIVIA_HINT_COST);
+          setBotQuestionDisplay({ question: questionText, answer: null, isCorrect: false, usedHint: true });
 
-        setBotQuestionDisplay({ question: questionText, answer, isCorrect });
+          setTimeout(() => {
+            const { answer, isCorrect } = botAnswerQuestion(store.currentQuestion!, true);
+            setBotQuestionDisplay({ question: questionText, answer, isCorrect, usedHint: true });
 
-        setTimeout(() => {
-          setIsBotThinking(false);
-          setBotQuestionDisplay(null);
-          processAnswerSubmitted(answer, false, 1);
-        }, 2000);
+            setTimeout(() => {
+              processAnswerSubmitted(answer, true, 1);
+            }, 2000);
+          }, 1500);
+        } else {
+          const { answer, isCorrect } = botAnswerQuestion(store.currentQuestion!);
+          setBotQuestionDisplay({ question: questionText, answer, isCorrect, usedHint: false });
+
+          setTimeout(() => {
+            processAnswerSubmitted(answer, false, 1);
+          }, 2000);
+        }
       }, thinkDelay);
 
       return () => {

@@ -84,6 +84,7 @@
     "opponentTurnHint": "Opponent's turn...",
     "botQuestion": "Socrates answers:",
     "botAnswered": "Answered",
+    "botUsedHint": "Socrates asked for a hint...",
     "selectWord": "Select a word to begin",
     "wordCorrect": "Word completed!",
     "wordIncorrect": "Incorrect word",

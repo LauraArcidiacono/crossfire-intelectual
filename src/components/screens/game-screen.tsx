@@ -385,14 +385,38 @@ export function GameScreen() {
               <p className="text-base text-warm-brown font-medium mb-2">
                 {gameState.botQuestionDisplay.question}
               </p>
+              {gameState.botQuestionDisplay.usedHint && !gameState.botQuestionDisplay.answer && (
+                <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-sm text-night-blue/60 italic">
+                  {t('game.botUsedHint')}
+                </motion.p>
+              )}
               {gameState.botQuestionDisplay.answer && (
                 <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-sm">
+                  {gameState.botQuestionDisplay.usedHint && (
+                    <span className="mr-1.5">💡</span>
+                  )}
                   <span className="text-night-blue/80">{t('game.botAnswered')}: </span>
                   <strong className={gameState.botQuestionDisplay.isCorrect ? 'text-forest-green' : 'text-crimson'}>
                     {gameState.botQuestionDisplay.answer}
                     {gameState.botQuestionDisplay.isCorrect ? ' ✓' : ' ✗'}
                   </strong>
                 </motion.p>
+              )}
+              {store.turnPhase === 'feedback' && store.lastFeedback && (
+                <motion.div
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                  className="mt-2"
+                >
+                  <span className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-sm font-mono font-extrabold ${
+                    store.lastFeedback.isCorrect
+                      ? 'bg-forest-green/15 text-forest-green'
+                      : 'bg-crimson/15 text-crimson'
+                  }`}>
+                    +{store.lastFeedback.pointsEarned} {t('feedback.pointsEarned')}
+                  </span>
+                </motion.div>
               )}
             </div>
           </motion.div>
@@ -597,7 +621,7 @@ export function GameScreen() {
 
       {/* Feedback Overlay */}
       <AnimatePresence>
-        {store.turnPhase === 'feedback' && store.lastFeedback && (!isOnline || gameState.isMyTurn) && (
+        {store.turnPhase === 'feedback' && store.lastFeedback && (!isOnline || gameState.isMyTurn) && !gameState.isBotTurn && (
           <FeedbackOverlay feedback={store.lastFeedback} />
         )}
       </AnimatePresence>

@@ -17,6 +17,7 @@ export const BOT_NAME = 'Socrates';
 export const BOT_THINK_MIN = 3000;
 export const BOT_THINK_MAX = 7000;
 export const BOT_ACCURACY = 0.7;
+export const BOT_HINT_PROBABILITY = 0.2;
 
 export const CATEGORIES = [
   'history',

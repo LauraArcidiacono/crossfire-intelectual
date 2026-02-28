@@ -84,6 +84,7 @@
     "opponentTurnHint": "Turno del oponente...",
     "botQuestion": "Sócrates responde:",
     "botAnswered": "Respondió",
+    "botUsedHint": "Sócrates pidió una pista...",
     "selectWord": "Selecciona una palabra para comenzar",
     "wordCorrect": "¡Palabra completada!",
     "wordIncorrect": "Palabra incorrecta",
