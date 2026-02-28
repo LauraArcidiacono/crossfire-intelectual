@@ -21,6 +21,7 @@ const STOP_WORDS = new Set([
 
 function getKeyWords(text: string): string[] {
   return normalizeForComparison(text)
+    .replace(/[,;:.]/g, ' ')
     .split(/\s+/)
     .filter((w) => w.length > 0 && !STOP_WORDS.has(w));
 }
@@ -35,21 +36,28 @@ export function validateAnswer(question: Question, answer: string): boolean {
   // Multiple choice: only exact match
   if (question.type === 'multiple-choice') return false;
 
-  // Flexible matching for open questions:
-  // Check if all key words from the user's answer exist in the correct answer's words
   const correctWords = getKeyWords(question.answer);
   const answerWords = getKeyWords(answer);
 
   if (answerWords.length === 0) return false;
 
-  // All answer words must be present in the correct answer
+  // List answers (correct answer contains a comma): strict bidirectional match, order-independent
+  if (question.answer.includes(',')) {
+    return (
+      correctWords.every((cw) => answerWords.some((aw) => aw === cw)) &&
+      answerWords.every((aw) => correctWords.some((cw) => cw === aw))
+    );
+  }
+
+  // Non-list: flexible matching — all user words must appear in the correct answer
+  // Allows partial names: "Picasso" → "Pablo Picasso", "García Márquez" → "Gabriel García Márquez"
   const allWordsMatch = answerWords.every((aw) =>
     correctWords.some((cw) => cw === aw)
   );
 
-  if (allWordsMatch && answerWords.length >= 1) return true;
+  if (allWordsMatch) return true;
 
-  // Substring containment (for multi-word answers): "Garcia Marquez" in "Gabriel Garcia Marquez"
+  // Substring containment: "Garcia Marquez" in "Gabriel Garcia Marquez"
   if (normalizedAnswer.length >= 3 && normalizedCorrect.includes(normalizedAnswer)) return true;
   if (normalizedCorrect.length >= 3 && normalizedAnswer.includes(normalizedCorrect)) return true;
 
