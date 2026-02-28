@@ -85,19 +85,27 @@ export function useCrossword() {
       const available = wordsAtCell.filter((w) => !completedWords.includes(w.id));
       if (available.length === 0) return;
 
+      let newWordId: number;
       if (selectedWord && available.length > 1 && available.some((w) => w.id === selectedWord.id)) {
         const other = available.find((w) => w.id !== selectedWord.id);
-        if (other) {
-          selectWord(other.id);
-          setSelectedCell({ row, col });
-          return;
-        }
+        newWordId = other ? other.id : available[0].id;
+      } else {
+        newWordId = available[0].id;
       }
 
-      selectWord(available[0].id);
+      // Clear previous word's non-prefilled cells when switching words
+      if (selectedWord && newWordId !== selectedWord.id) {
+        getWordCells(selectedWord).forEach((c) => {
+          if (!getPrefilledLetter(crossword.grid, c.row, c.col)) {
+            setCellInput(cellKey(c.row, c.col), '');
+          }
+        });
+      }
+
+      selectWord(newWordId);
       setSelectedCell({ row, col });
     },
-    [crossword, selectedWord, completedWords, selectWord, setSelectedCell]
+    [crossword, selectedWord, completedWords, selectWord, setSelectedCell, setCellInput]
   );
 
   const handleClueClick = useCallback(

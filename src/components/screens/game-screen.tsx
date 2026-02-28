@@ -93,8 +93,14 @@ export function GameScreen() {
     }
   }, [gameState.online.opponentDisconnected]);
 
+  // Sentinel keeps the input non-empty so Android fires the input event on backspace
+  const SENTINEL = '\u200B';
+
   const focusInput = useCallback(() => {
-    hiddenInputRef.current?.focus();
+    if (hiddenInputRef.current) {
+      hiddenInputRef.current.focus();
+      hiddenInputRef.current.value = SENTINEL;
+    }
   }, []);
 
   // Blur hidden input when entering question/feedback to dismiss mobile keyboard
@@ -113,9 +119,21 @@ export function GameScreen() {
 
   const handleMobileInput = useCallback(
     (e: React.FormEvent<HTMLInputElement>) => {
-      const value = (e.target as HTMLInputElement).value;
-      if (value.length > 0) {
-        const lastChar = value[value.length - 1];
+      const target = e.target as HTMLInputElement;
+      const value = target.value;
+
+      // Android backspace: sentinel was deleted, value no longer contains it
+      if (!value.includes(SENTINEL)) {
+        const syntheticEvent = { key: 'Backspace', preventDefault: () => {} } as React.KeyboardEvent;
+        crosswordHook.handleKeyDown(syntheticEvent);
+        target.value = SENTINEL;
+        return;
+      }
+
+      // Extract typed character (strip sentinel)
+      const newText = value.replace(SENTINEL, '');
+      if (newText.length > 0) {
+        const lastChar = newText[newText.length - 1];
         if (/^[a-zA-ZñÑ]$/.test(lastChar)) {
           if (isGuest) {
             // Guest sends cell input to host
@@ -131,7 +149,8 @@ export function GameScreen() {
           crosswordHook.handleKeyDown(syntheticEvent);
         }
       }
-      (e.target as HTMLInputElement).value = '';
+
+      target.value = SENTINEL;
     },
     [crosswordHook, isGuest, gameState, store.selectedCell]
   );
