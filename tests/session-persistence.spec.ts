@@ -11,8 +11,9 @@ async function startSoloGame(page: import('@playwright/test').Page, name = 'Test
   await page.goto('/');
   await page.getByTestId('play-solo').click();
   await page.getByTestId('player-name-input').fill(name);
+  await page.getByTestId('name-continue-button').click();
   await page.getByText(/Science|Ciencia/).click();
-  await page.getByTestId('continue-button').click();
+  await page.getByTestId('category-continue-button').click();
   await expect(page.getByTestId('game-screen')).toBeVisible();
 }
 
@@ -58,9 +59,8 @@ test.describe('Session Persistence', () => {
     // If __zustand_store__ isn't exposed, use the game's own exit mechanism
     session = await page.evaluate((key) => sessionStorage.getItem(key), SESSION_KEY);
 
-    // If the direct store access didn't work (store not exposed), use the exit button
+    // If the direct store access didn't work (store not exposed), use the exit button flow instead
     if (session !== null) {
-      // Use the exit button flow instead
       await page.getByText(/Exit|Salir/).first().click();
       // Confirm exit
       await page.getByText(/Yes|Sí/).click();

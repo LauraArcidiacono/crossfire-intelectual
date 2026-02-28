@@ -66,10 +66,6 @@
 # Install dependencies
 npm install
 
-# Set up environment variables
-cp .env.example .env.local
-# Edit .env.local with your Supabase project URL and anon key
-
 # Start development server
 npm run dev
 

@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Solo Mode E2E', () => {
-  test('full solo flow: welcome -> config -> game', async ({ page }) => {
+  test('full solo flow: welcome -> name input -> categories -> game', async ({ page }) => {
     await page.goto('/');
 
     // Skip tutorial
@@ -16,18 +16,22 @@ test.describe('Solo Mode E2E', () => {
     // Click solo
     await page.getByTestId('play-solo').click();
 
-    // Config screen
-    await expect(page.getByTestId('config-screen')).toBeVisible();
+    // Name input screen
+    await expect(page.getByTestId('name-input-screen')).toBeVisible();
 
-    // Fill name
+    // Fill name and continue
     await page.getByTestId('player-name-input').fill('Player1');
+    await page.getByTestId('name-continue-button').click();
+
+    // Category select screen
+    await expect(page.getByTestId('category-select-screen')).toBeVisible();
 
     // Select categories
     await page.getByText(/Science|Ciencia/).click();
     await page.getByText(/History|Historia/).click();
 
     // Continue to game
-    await page.getByTestId('continue-button').click();
+    await page.getByTestId('category-continue-button').click();
 
     // Game screen should be visible
     await expect(page.getByTestId('game-screen')).toBeVisible();

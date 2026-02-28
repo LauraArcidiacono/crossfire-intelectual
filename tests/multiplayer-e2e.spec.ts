@@ -22,11 +22,15 @@ async function createRoomAsHost(
   await page.goto('/');
 
   await page.getByTestId('play-multi').click();
-  await expect(page.getByTestId('config-screen')).toBeVisible();
+  await expect(page.getByTestId('multiplayer-menu-screen')).toBeVisible();
+  await page.getByTestId('create-room-option').click();
 
   await page.getByTestId('player-name-input').fill(name);
+  await page.getByTestId('name-continue-button').click();
+
+  await expect(page.getByTestId('category-select-screen')).toBeVisible();
   await page.getByText(category).click();
-  await page.getByTestId('create-room-button').click();
+  await page.getByTestId('category-continue-button').click();
 
   await expect(page.getByTestId('waiting-room-screen')).toBeVisible({ timeout: 15_000 });
 
@@ -44,9 +48,13 @@ async function joinRoomAsGuest(page: Page, name: string, roomCode: string) {
   await page.goto('/');
 
   await page.getByTestId('play-multi').click();
-  await expect(page.getByTestId('config-screen')).toBeVisible();
+  await expect(page.getByTestId('multiplayer-menu-screen')).toBeVisible();
+  await page.getByTestId('join-room-option').click();
 
   await page.getByTestId('player-name-input').fill(name);
+  await page.getByTestId('name-continue-button').click();
+
+  await expect(page.getByTestId('join-room-screen')).toBeVisible();
   await page.getByTestId('join-code-input').fill(roomCode);
   await page.getByTestId('join-room-button').click();
 
@@ -190,7 +198,10 @@ test.describe('Multiplayer E2E', () => {
     );
     await thirdPage.goto('/');
     await thirdPage.getByTestId('play-multi').click();
+    await thirdPage.getByTestId('join-room-option').click();
     await thirdPage.getByTestId('player-name-input').fill('Intruder');
+    await thirdPage.getByTestId('name-continue-button').click();
+    await expect(thirdPage.getByTestId('join-room-screen')).toBeVisible();
     await thirdPage.getByTestId('join-code-input').fill(roomCode);
     await thirdPage.getByTestId('join-room-button').click();
 

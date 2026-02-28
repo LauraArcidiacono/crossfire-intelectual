@@ -37,7 +37,10 @@ export type RoomStatus = 'waiting' | 'playing' | 'finished';
 export type Screen =
   | 'welcome'
   | 'tutorial'
-  | 'config'
+  | 'multiplayer-menu'
+  | 'name-input'
+  | 'category-select'
+  | 'join-room'
   | 'waiting-room'
   | 'game'
   | 'victory';
@@ -483,7 +486,8 @@ Fonts loaded via Google Fonts in `index.html`.
 ```
 src/
   components/
-    screens/       # welcome, tutorial, config, waiting-room, game, victory
+    screens/       # welcome, tutorial, multiplayer-menu, name-input,
+                   # category-select, join-room, waiting-room, game, victory
                    # + question-modal, feedback-overlay
     ui/            # button, card, input, modal, spinner, badge, confetti,
                    # timer-display, language-selector
@@ -501,14 +505,14 @@ src/
     config.ts
     locales/       # en.json, es.json
 tests/
-  welcome.spec.ts
-  gameplay.spec.ts
-  e2e-solo.spec.ts
-  multiplayer-flow.spec.ts
-  multiplayer-e2e.spec.ts
-  session-persistence.spec.ts
-  disconnect.spec.ts
-  edge-cases.spec.ts
+  welcome.spec.ts            # 4 tests: welcome screen rendering
+  gameplay.spec.ts           # 3 tests: name input + category select flow, game start
+  e2e-solo.spec.ts           # 2 tests: full solo flow, language toggle
+  multiplayer-flow.spec.ts   # 6 tests: multiplayer menu, create/join flows, validation
+  multiplayer-e2e.spec.ts    # 4 tests: two-browser real Supabase flows
+  session-persistence.spec.ts # 6 tests: sessionStorage, reload restore
+  disconnect.spec.ts         # 3 tests: disconnect/reconnect (2 skipped)
+  edge-cases.spec.ts         # 3 tests: error handling, single category, exit
 ```
 
 ---
@@ -526,5 +530,7 @@ tests/
 | `BOT_THINK_MIN / MAX` | 3000 / 8000 | Bot think delay range (ms) |
 | `HINT_LETTER_COST` | 3 | Points cost for a letter hint |
 | `TRIVIA_HINT_COST` | 5 | Points cost for a trivia hint |
-| `FEEDBACK_CORRECT_DURATION` | 2000 | Correct feedback display time (ms) |
+| `FEEDBACK_CORRECT_DURATION` | 4000 | Correct feedback display time (ms) |
 | `FEEDBACK_INCORRECT_DURATION` | 4000 | Incorrect feedback display time (ms) |
+| `TURN_TIMER_THRESHOLDS` | `{ green: [120,180], yellow: [60,119], red: [0,59] }` | Turn timer color states |
+| `TRIVIA_TIMER_THRESHOLDS` | `{ green: [40,60], yellow: [20,39], red: [0,19] }` | Trivia timer color states |

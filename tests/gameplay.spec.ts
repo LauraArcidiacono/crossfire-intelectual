@@ -8,39 +8,42 @@ test.describe('Gameplay Flow', () => {
       localStorage.setItem('crossfire-tutorial-seen', 'true')
     );
     await page.goto('/');
-    // Navigate to config: click solo
+    // Navigate to name input
     await page.getByTestId('play-solo').click();
   });
 
-  test('should navigate from welcome to config screen', async ({ page }) => {
-    await expect(page.getByTestId('config-screen')).toBeVisible();
+  test('should navigate from welcome to name input screen', async ({ page }) => {
+    await expect(page.getByTestId('name-input-screen')).toBeVisible();
   });
 
-  test('should require name and category to continue', async ({ page }) => {
-    await expect(page.getByTestId('config-screen')).toBeVisible();
+  test('should require name to continue and category to start game', async ({ page }) => {
+    await expect(page.getByTestId('name-input-screen')).toBeVisible();
 
-    const continueBtn = page.getByTestId('continue-button');
-    await expect(continueBtn).toBeDisabled();
+    const nameContinueBtn = page.getByTestId('name-continue-button');
+    await expect(nameContinueBtn).toBeDisabled();
 
     // Enter name
     await page.getByTestId('player-name-input').fill('TestPlayer');
+    await expect(nameContinueBtn).toBeEnabled();
+    await nameContinueBtn.click();
 
-    // Still disabled without category
-    await expect(continueBtn).toBeDisabled();
+    // Category screen — continue disabled without category
+    await expect(page.getByTestId('category-select-screen')).toBeVisible();
+    const categoryContinueBtn = page.getByTestId('category-continue-button');
+    await expect(categoryContinueBtn).toBeDisabled();
 
-    // Select a category
+    // Select a category 
     await page.getByText(/History|Historia/).click();
-
-    // Now enabled
-    await expect(continueBtn).toBeEnabled();
+    await expect(categoryContinueBtn).toBeEnabled();
   });
 
   test('should start game and show game screen', async ({ page }) => {
-    await expect(page.getByTestId('config-screen')).toBeVisible();
-
     await page.getByTestId('player-name-input').fill('TestPlayer');
+    await page.getByTestId('name-continue-button').click();
+
+    await expect(page.getByTestId('category-select-screen')).toBeVisible();
     await page.getByText(/History|Historia/).click();
-    await page.getByTestId('continue-button').click();
+    await page.getByTestId('category-continue-button').click();
 
     await expect(page.getByTestId('game-screen')).toBeVisible();
   });

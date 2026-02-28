@@ -14,9 +14,13 @@ test.describe('Edge Cases', () => {
   test('joining a non-existent room shows error', async ({ page }) => {
     await goToWelcome(page);
     await page.getByTestId('play-multi').click();
-    await expect(page.getByTestId('config-screen')).toBeVisible();
+    await expect(page.getByTestId('multiplayer-menu-screen')).toBeVisible();
+    await page.getByTestId('join-room-option').click();
 
     await page.getByTestId('player-name-input').fill('LostPlayer');
+    await page.getByTestId('name-continue-button').click();
+
+    await expect(page.getByTestId('join-room-screen')).toBeVisible();
     await page.getByTestId('join-code-input').fill('ZZZZ');
     await page.getByTestId('join-room-button').click();
 
@@ -30,14 +34,16 @@ test.describe('Edge Cases', () => {
   test('game works with a single category', async ({ page }) => {
     await goToWelcome(page);
     await page.getByTestId('play-solo').click();
-    await expect(page.getByTestId('config-screen')).toBeVisible();
 
     await page.getByTestId('player-name-input').fill('SingleCat');
+    await page.getByTestId('name-continue-button').click();
+
+    await expect(page.getByTestId('category-select-screen')).toBeVisible();
 
     // Select only one category
     await page.getByText(/Geography|Geografía/).click();
 
-    const continueBtn = page.getByTestId('continue-button');
+    const continueBtn = page.getByTestId('category-continue-button');
     await expect(continueBtn).toBeEnabled();
     await continueBtn.click();
 
@@ -50,8 +56,9 @@ test.describe('Edge Cases', () => {
     await goToWelcome(page);
     await page.getByTestId('play-solo').click();
     await page.getByTestId('player-name-input').fill('Quitter');
+    await page.getByTestId('name-continue-button').click();
     await page.getByText(/History|Historia/).click();
-    await page.getByTestId('continue-button').click();
+    await page.getByTestId('category-continue-button').click();
 
     await expect(page.getByTestId('game-screen')).toBeVisible();
 

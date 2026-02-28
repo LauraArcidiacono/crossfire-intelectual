@@ -23,9 +23,15 @@ async function createRoomAsHost(page: Page, name: string): Promise<string> {
   await page.goto('/');
 
   await page.getByTestId('play-multi').click();
+  await expect(page.getByTestId('multiplayer-menu-screen')).toBeVisible();
+  await page.getByTestId('create-room-option').click();
+
   await page.getByTestId('player-name-input').fill(name);
+  await page.getByTestId('name-continue-button').click();
+
+  await expect(page.getByTestId('category-select-screen')).toBeVisible();
   await page.getByText(/Science|Ciencia/).click();
-  await page.getByTestId('create-room-button').click();
+  await page.getByTestId('category-continue-button').click();
 
   await expect(page.getByTestId('waiting-room-screen')).toBeVisible({ timeout: 15_000 });
   const code = await page.getByTestId('room-code').textContent();
@@ -38,7 +44,13 @@ async function joinRoomAsGuest(page: Page, name: string, roomCode: string) {
   await page.goto('/');
 
   await page.getByTestId('play-multi').click();
+  await expect(page.getByTestId('multiplayer-menu-screen')).toBeVisible();
+  await page.getByTestId('join-room-option').click();
+
   await page.getByTestId('player-name-input').fill(name);
+  await page.getByTestId('name-continue-button').click();
+
+  await expect(page.getByTestId('join-room-screen')).toBeVisible();
   await page.getByTestId('join-code-input').fill(roomCode);
   await page.getByTestId('join-room-button').click();
 
