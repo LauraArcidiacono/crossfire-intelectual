@@ -107,7 +107,7 @@ export function WaitingRoomScreen() {
   return (
     <div
       data-testid="waiting-room-screen"
-      className="min-h-screen bg-mesh-vibrant relative overflow-hidden flex flex-col items-center justify-center px-6"
+      className="min-h-screen bg-mesh-vibrant relative overflow-hidden flex flex-col items-center px-6 pt-10 pb-10"
     >
       <div className="blob blob-green w-64 h-64 -top-20 -left-20 opacity-25" style={{ animationDelay: '-4s' }} />
       <div className="blob blob-purple w-56 h-56 bottom-10 -right-16 opacity-25" style={{ animationDelay: '-9s' }} />
@@ -128,18 +128,19 @@ export function WaitingRoomScreen() {
         )}
       </AnimatePresence>
 
+      {/* Title */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
-        className="text-center mb-6 relative z-10"
+        className="text-center mb-4 relative z-10 w-full"
       >
-        <h2 className="font-title text-3xl font-extrabold text-forest-green mb-2">
+        <h2 className="font-title text-2xl font-extrabold text-forest-green mb-1">
           {isHost
             ? (guestHasJoined ? t('waitingRoom.readyTitle') : t('waitingRoom.roomCode'))
             : t('waitingRoom.readyTitle')
           }
         </h2>
-        <p className="text-base text-warm-brown/80">
+        <p className="text-sm text-warm-brown/80">
           {isHost
             ? (guestHasJoined ? t('waitingRoom.readySubtitle') : t('waitingRoom.shareCode'))
             : t('waitingRoom.waitingForHost')
@@ -147,23 +148,21 @@ export function WaitingRoomScreen() {
         </p>
       </motion.div>
 
-      {/* Room code display (host) */}
+      {/* Room code (host) */}
       {isHost && store.roomCode && (
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="mb-6 relative z-10"
+          className="mb-4 relative z-10"
         >
           <div className="glass-strong rounded-3xl p-6 text-center">
             <p className="text-sm text-warm-brown/70 font-semibold mb-2">{t('waitingRoom.roomCode')}</p>
-            <div className="flex items-center justify-center gap-3">
-              <span
-                data-testid="room-code"
-                className="font-mono text-5xl font-extrabold text-forest-green tracking-[0.3em] select-all"
-              >
-                {store.roomCode}
-              </span>
-            </div>
+            <span
+              data-testid="room-code"
+              className="font-mono text-5xl font-extrabold text-forest-green tracking-[0.3em] select-all"
+            >
+              {store.roomCode}
+            </span>
             <div className="mt-3 flex items-center justify-center gap-2">
               <motion.button
                 whileTap={{ scale: 0.95 }}
@@ -186,16 +185,16 @@ export function WaitingRoomScreen() {
         </motion.div>
       )}
 
-      {/* Guest: show connected room */}
+      {/* Guest: connected room */}
       {isGuest && store.roomCode && (
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="mb-6 relative z-10"
+          className="mb-4 relative z-10"
         >
-          <div className="glass-strong rounded-3xl p-6 text-center">
-            <p className="text-sm text-warm-brown/70 font-semibold mb-1">{t('waitingRoom.connectedTo')}</p>
-            <span className="font-mono text-3xl font-extrabold text-night-blue tracking-[0.2em]">
+          <div className="glass-strong rounded-2xl px-5 py-3 text-center">
+            <p className="text-xs text-warm-brown/70 font-semibold mb-0.5">{t('waitingRoom.connectedTo')}</p>
+            <span className="font-mono text-2xl font-extrabold text-night-blue tracking-[0.2em]">
               {store.roomCode}
             </span>
           </div>
@@ -203,15 +202,14 @@ export function WaitingRoomScreen() {
       )}
 
       {/* Players */}
-      <div className="flex flex-col sm:flex-row items-center gap-4 w-full max-w-md mb-6 relative z-10">
+      <div className="flex flex-col items-center gap-3 mb-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="flex-1 glass-strong rounded-2xl p-5 text-center"
+          className="w-56 glass-strong rounded-2xl p-4 text-center"
         >
-          <p className="text-sm text-warm-brown/70 font-semibold mb-1">{t('waitingRoom.player1')}</p>
           <p className="font-title font-extrabold text-forest-green text-lg">{store.players[0].name || '—'}</p>
-          {isHost && <span className="text-sm text-forest-green/60 font-medium">HOST</span>}
+          <span className="text-xs text-forest-green/60 font-semibold tracking-widest uppercase">HOST</span>
         </motion.div>
 
         <div className="text-warm-brown font-title font-extrabold text-xl">VS</div>
@@ -219,20 +217,20 @@ export function WaitingRoomScreen() {
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="flex-1 glass-strong rounded-2xl p-5 text-center"
+          className="w-56 glass-strong rounded-2xl p-4 text-center"
         >
-          <p className="text-sm text-warm-brown/70 font-semibold mb-1">{t('waitingRoom.player2')}</p>
           {guestHasJoined ? (
             <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }}>
               <p className="font-title font-extrabold text-night-blue text-lg">
                 {isHost ? (room.guestName || store.players[1].name) : store.players[1].name}
               </p>
+              <span className="text-xs text-night-blue/60 font-semibold tracking-widest uppercase">GUEST</span>
             </motion.div>
           ) : (
             <motion.p
-              animate={{ opacity: [0.4, 1, 0.4] }}
+              animate={{ opacity: [0.3, 0.7, 0.3] }}
               transition={{ repeat: Infinity, duration: 2 }}
-              className="text-base text-warm-brown/50 italic"
+              className="text-sm text-warm-brown/40 italic"
             >
               {t('waitingRoom.waitingForOpponent')}
             </motion.p>
@@ -245,14 +243,14 @@ export function WaitingRoomScreen() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 }}
-        className="mb-6 relative z-10"
+        className="mb-4 relative z-10"
       >
-        <p className="text-sm text-warm-brown/70 font-semibold mb-2 text-center">{t('waitingRoom.selectedCategories')}</p>
-        <div className="flex flex-wrap gap-2 justify-center">
+        <p className="text-xs text-warm-brown/70 font-semibold mb-1.5 text-center">{t('waitingRoom.selectedCategories')}</p>
+        <div className="flex flex-wrap gap-1.5 justify-center">
           {store.selectedCategories.map((cat) => (
             <span
               key={cat}
-              className="px-3 py-1 bg-forest-green/15 text-forest-green text-base font-semibold rounded-full backdrop-blur-sm"
+              className="px-2.5 py-0.5 bg-forest-green/15 text-forest-green text-sm font-semibold rounded-full"
             >
               {t(`config.${cat}`)}
             </span>
@@ -267,14 +265,17 @@ export function WaitingRoomScreen() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="mb-4 relative z-10"
+            className="mb-3 relative z-10"
           >
-            <p className="text-base text-forest-green font-semibold">
-              {room.guestName} {t('waitingRoom.guestJoined')}
+            <p className="text-sm text-forest-green font-semibold">
+              🎉 {room.guestName} {t('waitingRoom.guestJoined')}
             </p>
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Spacer — empuja los botones al fondo */}
+      <div className="flex-1" />
 
       {/* Action buttons */}
       <motion.div

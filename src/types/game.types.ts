@@ -9,7 +9,10 @@ export type TurnPhase = 'selecting' | 'typing' | 'submitted' | 'question' | 'fee
 export type Screen =
   | 'welcome'
   | 'tutorial'
-  | 'config'
+  | 'multiplayer-menu'
+  | 'name-input'
+  | 'category-select'
+  | 'join-room'
   | 'waiting-room'
   | 'game'
   | 'victory';

@@ -21,6 +21,7 @@ const MULTI_COLORS = [
 export function TutorialScreen() {
   const { t } = useTranslation();
   const setScreen = useGameStore((s) => s.setScreen);
+  const mode = useGameStore((s) => s.mode);
 
   const steps = [
     { title: t('tutorial.step1Title'), desc: t('tutorial.step1Desc') },
@@ -37,7 +38,7 @@ export function TutorialScreen() {
 
   const handleStart = () => {
     localStorage.setItem('crossfire-tutorial-seen', 'true');
-    setScreen('config');
+    setScreen(mode === 'solo' ? 'name-input' : 'multiplayer-menu');
   };
 
   return (

@@ -12,13 +12,13 @@ export function WelcomeScreen() {
   const handleSolo = () => {
     setMode('solo');
     const hasSeenTutorial = localStorage.getItem('crossfire-tutorial-seen');
-    setScreen(hasSeenTutorial ? 'config' : 'tutorial');
+    setScreen(hasSeenTutorial ? 'name-input' : 'tutorial');
   };
 
   const handleMulti = () => {
     setMode('multiplayer');
     const hasSeenTutorial = localStorage.getItem('crossfire-tutorial-seen');
-    setScreen(hasSeenTutorial ? 'config' : 'tutorial');
+    setScreen(hasSeenTutorial ? 'multiplayer-menu' : 'tutorial');
   };
 
   return (

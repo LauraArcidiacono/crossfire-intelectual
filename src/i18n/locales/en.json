@@ -138,9 +138,18 @@
     "code_collision": "Could not create room. Please try again.",
     "network_error": "Connection error. Please check your internet connection."
   },
+  "multiMenu": {
+    "title": "How do you want to play?",
+    "createDesc": "Choose categories and create your room",
+    "joinDesc": "Enter the code your friend shared with you"
+  },
+  "nameInput": {
+    "title": "What's your name?"
+  },
   "common": {
     "loading": "Loading...",
     "error": "Error",
-    "retry": "Retry"
+    "retry": "Retry",
+    "back": "BACK"
   }
 }

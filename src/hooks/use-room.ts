@@ -65,6 +65,10 @@ export function useRoom() {
               useGameStore.getState().startGame(crossword);
             }
             useGameStore.getState().applySyncedState(state);
+            // Trigger countdown after crossword is loaded
+            if (useGameStore.getState().currentScreen === 'waiting-room') {
+              setRoomStatus('countdown');
+            }
           });
           return;
         }
@@ -156,9 +160,11 @@ export function useRoom() {
     const crossword = await getRandomCrossword(s.language);
     useGameStore.getState().startGame(crossword);
 
-    // Sync the initial game state to Supabase so the guest receives it
+    // Fire-and-forget: send sync to guest without awaiting confirmation.
+    // This lets host start its countdown at the same moment the signal is sent,
+    // so both countdowns begin as close together as possible.
     const current = useGameStore.getState();
-    await syncGameState(roomId, {
+    syncGameState(roomId, {
       currentTurn: current.currentTurn,
       players: current.players,
       completedWords: current.completedWords,

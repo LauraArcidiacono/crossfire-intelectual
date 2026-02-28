@@ -80,6 +80,7 @@ interface UISlice {
   language: 'es' | 'en';
   soundEnabled: boolean;
   volume: number;
+  multiplayerIntent: 'create' | 'join' | null;
 }
 
 interface Actions {
@@ -113,6 +114,7 @@ interface Actions {
   setRoomId: (id: string | null) => void;
   setRoomCode: (code: string | null) => void;
   setPlayerRole: (role: PlayerRole | null) => void;
+  setMultiplayerIntent: (intent: 'create' | 'join' | null) => void;
   applySyncedState: (state: SyncableGameState) => void;
   resetGame: () => void;
 }
@@ -156,6 +158,7 @@ const initialUIState: UISlice = {
   language: 'es',
   soundEnabled: true,
   volume: 0.7,
+  multiplayerIntent: null,
 };
 
 const restoredSession = loadSession();
@@ -288,6 +291,7 @@ export const useGameStore = create<GameStore>((set) => ({
   setRoomId: (id) => set({ roomId: id }),
   setRoomCode: (code) => set({ roomCode: code }),
   setPlayerRole: (role) => set({ playerRole: role }),
+  setMultiplayerIntent: (intent) => set({ multiplayerIntent: intent }),
 
   applySyncedState: (state: SyncableGameState) =>
     set({

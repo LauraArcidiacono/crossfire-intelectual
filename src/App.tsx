@@ -6,7 +6,10 @@ import { WelcomeScreen } from './components/screens/welcome-screen';
 import { Spinner } from './components/ui/spinner';
 
 const TutorialScreen = lazy(() => import('./components/screens/tutorial-screen').then(m => ({ default: m.TutorialScreen })));
-const ConfigScreen = lazy(() => import('./components/screens/config-screen').then(m => ({ default: m.ConfigScreen })));
+const MultiplayerMenuScreen = lazy(() => import('./components/screens/multiplayer-menu-screen').then(m => ({ default: m.MultiplayerMenuScreen })));
+const NameInputScreen = lazy(() => import('./components/screens/name-input-screen').then(m => ({ default: m.NameInputScreen })));
+const CategorySelectScreen = lazy(() => import('./components/screens/category-select-screen').then(m => ({ default: m.CategorySelectScreen })));
+const JoinRoomScreen = lazy(() => import('./components/screens/join-room-screen').then(m => ({ default: m.JoinRoomScreen })));
 const WaitingRoomScreen = lazy(() => import('./components/screens/waiting-room-screen').then(m => ({ default: m.WaitingRoomScreen })));
 const GameScreen = lazy(() => import('./components/screens/game-screen').then(m => ({ default: m.GameScreen })));
 const VictoryScreen = lazy(() => import('./components/screens/victory-screen').then(m => ({ default: m.VictoryScreen })));
@@ -14,7 +17,10 @@ const VictoryScreen = lazy(() => import('./components/screens/victory-screen').t
 const screens = {
   welcome: WelcomeScreen,
   tutorial: TutorialScreen,
-  config: ConfigScreen,
+  'multiplayer-menu': MultiplayerMenuScreen,
+  'name-input': NameInputScreen,
+  'category-select': CategorySelectScreen,
+  'join-room': JoinRoomScreen,
   'waiting-room': WaitingRoomScreen,
   game: GameScreen,
   victory: VictoryScreen,

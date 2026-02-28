@@ -138,9 +138,18 @@
     "code_collision": "No se pudo crear la sala. Intentá de nuevo.",
     "network_error": "Error de conexión. Verificá tu conexión a internet e intenta de nuevo."
   },
+  "multiMenu": {
+    "title": "¿Cómo quieres jugar?",
+    "createDesc": "Elige las categorías y crea tu sala",
+    "joinDesc": "Ingresa el código que te compartió tu amigo"
+  },
+  "nameInput": {
+    "title": "¿Cómo te llamas?"
+  },
   "common": {
     "loading": "Cargando...",
     "error": "Error",
-    "retry": "Reintentar"
+    "retry": "Reintentar",
+    "back": "ATRÁS"
   }
 }
