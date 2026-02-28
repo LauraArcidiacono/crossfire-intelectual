@@ -2,10 +2,16 @@ export const VICTORY_POINTS = 150;
 export const TURN_TIMER = 180;
 export const TRIVIA_TIMER = 60;
 
-export const TIMER_THRESHOLDS = {
+export const TURN_TIMER_THRESHOLDS = {
   green: { min: 120, max: 180 },
   yellow: { min: 60, max: 119 },
   red: { min: 0, max: 59 },
+} as const;
+
+export const TRIVIA_TIMER_THRESHOLDS = {
+  green: { min: 40, max: 60 },
+  yellow: { min: 20, max: 39 },
+  red: { min: 0, max: 19 },
 } as const;
 
 export const GRID_ROWS = 10;

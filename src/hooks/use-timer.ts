@@ -1,13 +1,20 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { TIMER_THRESHOLDS } from '../constants/game-config';
+import { TURN_TIMER_THRESHOLDS } from '../constants/game-config';
+
+type TimerThresholds = {
+  green: { min: number; max: number };
+  yellow: { min: number; max: number };
+  red: { min: number; max: number };
+};
 
 interface UseTimerOptions {
   initialTime: number;
   onExpire?: () => void;
   autoStart?: boolean;
+  thresholds?: TimerThresholds;
 }
 
-export function useTimer({ initialTime, onExpire, autoStart = false }: UseTimerOptions) {
+export function useTimer({ initialTime, onExpire, autoStart = false, thresholds = TURN_TIMER_THRESHOLDS }: UseTimerOptions) {
   const [timeRemaining, setTimeRemaining] = useState(initialTime);
   const [isRunning, setIsRunning] = useState(autoStart);
   const [isPaused, setIsPaused] = useState(false);
@@ -61,9 +68,9 @@ export function useTimer({ initialTime, onExpire, autoStart = false }: UseTimerO
     setIsPaused(false);
   }, [initialTime]);
 
-  const timerColor = timeRemaining >= TIMER_THRESHOLDS.green.min
+  const timerColor = timeRemaining >= thresholds.green.min
     ? 'green'
-    : timeRemaining >= TIMER_THRESHOLDS.yellow.min
+    : timeRemaining >= thresholds.yellow.min
       ? 'yellow'
       : 'red';
 

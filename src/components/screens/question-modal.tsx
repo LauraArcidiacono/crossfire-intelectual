@@ -9,7 +9,7 @@ import { Badge } from '../ui/badge';
 import { useTimer } from '../../hooks/use-timer';
 import { useGameStore } from '../../store/game-store';
 import { shuffleOptions } from '../../lib/data-loader';
-import { TRIVIA_HINT_COST } from '../../constants/game-config';
+import { TRIVIA_HINT_COST, TRIVIA_TIMER_THRESHOLDS } from '../../constants/game-config';
 import type { Question, Word } from '../../types/game.types';
 import { calculateWordScore } from '../../constants/scrabble-values';
 
@@ -35,6 +35,7 @@ export function QuestionModal({ question, word, onAnswer, onTimeout }: QuestionM
     initialTime: 60,
     autoStart: true,
     onExpire: onTimeout,
+    thresholds: TRIVIA_TIMER_THRESHOLDS,
   });
 
   const basePoints = calculateWordScore(word.word);
@@ -82,7 +83,7 @@ export function QuestionModal({ question, word, onAnswer, onTimeout }: QuestionM
               {t('question.title')}
             </h2>
           </div>
-          <TimerDisplay seconds={timeRemaining} variant="circular" size="sm" />
+          <TimerDisplay seconds={timeRemaining} variant="circular" size="sm" thresholds={TRIVIA_TIMER_THRESHOLDS} />
         </div>
 
         <div className="flex items-center gap-3 mb-3">

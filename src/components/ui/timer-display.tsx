@@ -1,26 +1,33 @@
-import { TIMER_THRESHOLDS } from '../../constants/game-config';
+import { TURN_TIMER_THRESHOLDS } from '../../constants/game-config';
+
+type TimerThresholds = {
+  green: { min: number; max: number };
+  yellow: { min: number; max: number };
+  red: { min: number; max: number };
+};
 
 interface TimerDisplayProps {
   seconds: number;
   variant?: 'linear' | 'circular';
   size?: 'sm' | 'md' | 'lg';
+  thresholds?: TimerThresholds;
 }
 
-function getTimerColor(seconds: number): string {
-  if (seconds >= TIMER_THRESHOLDS.green.min) return 'text-forest-green';
-  if (seconds >= TIMER_THRESHOLDS.yellow.min) return 'text-terracotta';
+function getTimerColor(seconds: number, thresholds: TimerThresholds): string {
+  if (seconds >= thresholds.green.min) return 'text-forest-green';
+  if (seconds >= thresholds.yellow.min) return 'text-terracotta';
   return 'text-crimson';
 }
 
-function getTimerBgColor(seconds: number): string {
-  if (seconds >= TIMER_THRESHOLDS.green.min) return 'bg-forest-green';
-  if (seconds >= TIMER_THRESHOLDS.yellow.min) return 'bg-terracotta';
+function getTimerBgColor(seconds: number, thresholds: TimerThresholds): string {
+  if (seconds >= thresholds.green.min) return 'bg-forest-green';
+  if (seconds >= thresholds.yellow.min) return 'bg-terracotta';
   return 'bg-crimson';
 }
 
-function getTimerStrokeColor(seconds: number): string {
-  if (seconds >= TIMER_THRESHOLDS.green.min) return '#589C48';
-  if (seconds >= TIMER_THRESHOLDS.yellow.min) return '#F58024';
+function getTimerStrokeColor(seconds: number, thresholds: TimerThresholds): string {
+  if (seconds >= thresholds.green.min) return '#589C48';
+  if (seconds >= thresholds.yellow.min) return '#F58024';
   return '#DC143C';
 }
 
@@ -36,16 +43,16 @@ const sizeStyles: Record<string, string> = {
   lg: 'text-2xl',
 };
 
-export function TimerDisplay({ seconds, variant = 'linear', size = 'md' }: TimerDisplayProps) {
-  const isRedZone = seconds < TIMER_THRESHOLDS.yellow.min;
+export function TimerDisplay({ seconds, variant = 'linear', size = 'md', thresholds = TURN_TIMER_THRESHOLDS }: TimerDisplayProps) {
+  const isRedZone = seconds < thresholds.yellow.min;
 
   if (variant === 'circular') {
     const radius = size === 'lg' ? 40 : size === 'md' ? 30 : 20;
     const circumference = 2 * Math.PI * radius;
-    const maxTime = 60;
+    const maxTime = thresholds.green.max;
     const progress = Math.max(0, seconds / maxTime);
     const offset = circumference * (1 - progress);
-    const strokeColor = getTimerStrokeColor(seconds);
+    const strokeColor = getTimerStrokeColor(seconds, thresholds);
 
     return (
       <div className="relative inline-flex items-center justify-center">
@@ -72,7 +79,7 @@ export function TimerDisplay({ seconds, variant = 'linear', size = 'md' }: Timer
           />
         </svg>
         <span
-          className={`absolute font-mono font-bold ${sizeStyles[size]} ${getTimerColor(seconds)} ${isRedZone ? 'animate-pulse' : ''}`}
+          className={`absolute font-mono font-bold ${sizeStyles[size]} ${getTimerColor(seconds, thresholds)} ${isRedZone ? 'animate-pulse' : ''}`}
         >
           {seconds}
         </span>
@@ -83,13 +90,13 @@ export function TimerDisplay({ seconds, variant = 'linear', size = 'md' }: Timer
   return (
     <div className="flex items-center gap-2">
       <span
-        className={`font-mono font-bold ${sizeStyles[size]} ${getTimerColor(seconds)} ${isRedZone ? 'animate-pulse' : ''}`}
+        className={`font-mono font-bold ${sizeStyles[size]} ${getTimerColor(seconds, thresholds)} ${isRedZone ? 'animate-pulse' : ''}`}
       >
         {formatTime(seconds)}
       </span>
       <div className="w-20 h-2 bg-warm-brown/10 rounded-full overflow-hidden backdrop-blur-sm">
         <div
-          className={`h-full rounded-full transition-all duration-1000 ${getTimerBgColor(seconds)}`}
+          className={`h-full rounded-full transition-all duration-1000 ${getTimerBgColor(seconds, thresholds)}`}
           style={{ width: `${Math.max(0, (seconds / 180) * 100)}%` }}
         />
       </div>
