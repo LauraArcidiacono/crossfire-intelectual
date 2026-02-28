@@ -27,11 +27,13 @@
 4. **Win the match** — reach 150 points or have the highest score when all words are completed
 
 <p align="center">
-  <img src="docs/screenshots/01-welcome.png" alt="Welcome screen" width="220" />
-  &nbsp;&nbsp;
-  <img src="docs/screenshots/03-config.png" alt="Config screen" width="220" />
-  &nbsp;&nbsp;
-  <img src="docs/screenshots/04-game.png" alt="Game screen" width="220" />
+  <img src="docs/screenshots/01-welcome.png" alt="Welcome screen" width="180" />
+  &nbsp;
+  <img src="docs/screenshots/03-category-select-active.png" alt="Category select" width="180" />
+  &nbsp;
+  <img src="docs/screenshots/05-word-typing.png" alt="Typing a word" width="180" />
+  &nbsp;
+  <img src="docs/screenshots/06-trivia.png" alt="Trivia question" width="180" />
 </p>
 
 ## Features
