@@ -160,11 +160,12 @@ export function useRoom() {
     const crossword = await getRandomCrossword(s.language);
     useGameStore.getState().startGame(crossword);
 
-    // Fire-and-forget: send sync to guest without awaiting confirmation.
-    // This lets host start its countdown at the same moment the signal is sent,
-    // so both countdowns begin as close together as possible.
+    // Await the sync so the DB write completes before the host starts its
+    // countdown. The guest will receive the Supabase notification shortly
+    // after (typically <300 ms), which is much tighter than fire-and-forget
+    // where the write might not have even started when the host begins counting.
     const current = useGameStore.getState();
-    syncGameState(roomId, {
+    await syncGameState(roomId, {
       currentTurn: current.currentTurn,
       players: current.players,
       completedWords: current.completedWords,

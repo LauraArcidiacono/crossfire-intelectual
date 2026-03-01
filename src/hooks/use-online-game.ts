@@ -173,8 +173,9 @@ export function useOnlineGame() {
     store.status,
     store.gameStats,
     store.wordCompletions,
-    store.timeRemaining,
-    store.triviaTimeRemaining,
+    // timeRemaining and triviaTimeRemaining are intentionally excluded:
+    // the TimerDisplay reads from the local useTimer instance, not from
+    // the store, so syncing them to Supabase every second is pure overhead.
   ]);
 
   // Guest: send move to host
