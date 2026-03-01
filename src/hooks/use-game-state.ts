@@ -139,14 +139,16 @@ export function useGameState() {
 
   const handleTurnTimeout = useCallback(() => {
     if (online.isGuest) {
+      if (!isMyTurn) return;
       online.sendGameMove({ type: 'timeout' });
       return;
     }
     store.switchTurn();
-  }, [store, online.isGuest, online.sendGameMove]);
+  }, [store, online.isGuest, online.sendGameMove, isMyTurn]);
 
   const handleTriviaTimeout = useCallback(() => {
     if (online.isGuest) {
+      if (!isMyTurn) return;
       online.sendGameMove({ type: 'timeout' });
       return;
     }
@@ -164,7 +166,7 @@ export function useGameState() {
     });
     store.recordWordCompletion({ wordId: word.id, playerIndex: currentPlayerIndex, points });
     store.setTurnPhase('feedback');
-  }, [store, currentPlayerIndex, online.isGuest, online.sendGameMove]);
+  }, [store, currentPlayerIndex, online.isGuest, online.sendGameMove, isMyTurn]);
 
   const handleFeedbackComplete = useCallback(() => {
     if (!store.crossword) return;

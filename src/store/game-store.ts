@@ -20,7 +20,7 @@ import { TURN_TIMER } from '../constants/game-config';
 const SESSION_KEY = 'crossfire-game-session';
 
 function saveSession(state: GameSlice & UISlice) {
-  if (state.status !== 'playing') {
+  if (state.status !== 'playing' || state.mode === 'multiplayer') {
     sessionStorage.removeItem(SESSION_KEY);
     return;
   }
